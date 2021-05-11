@@ -1,6 +1,6 @@
 .Varukorg {
 
-  height: 100vh;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -23,8 +23,8 @@
 
 .Varukorg header h1 {
 
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 
 }
 
