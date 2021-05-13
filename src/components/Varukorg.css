@@ -1,0 +1,129 @@
+.Varukorg {
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: var(--background-color);
+  color: var(--text-color);
+
+}
+
+/* Header */
+.Varukorg header {
+
+  display: flex;
+  align-items: center;
+
+  margin: 2vmin;
+
+}
+
+.Varukorg header h1 {
+
+  margin: 0px;
+  padding: 0px;
+
+}
+
+/* Main */
+.Varukorg main {
+
+  margin: 2vmin;
+
+}
+
+.Varukorg .MovieItem {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+  height: 10vh;
+  margin-top: 0.2vmin;
+  margin-bottom: 0.2vmin;
+
+}
+
+.Varukorg .MovieItem div {
+
+  display: flex;
+  align-items: center;
+
+}
+
+.Varukorg .MovieItem div img {
+
+  width: 10vh;
+  height: 10vh;
+  margin-right: 1.25vmin;
+
+  object-fit: contain;
+
+}
+
+.Varukorg .MovieItem div .MovieTitle {
+
+  color: var(--primary-color);
+  font-size: calc(10px + 1.25vmin);
+  font-weight: normal;
+
+}
+
+.Varukorg .MovieItem .MoviePrice {
+
+  font-size: calc(10px + 1vmin);
+  font-weight: bolder;
+
+}
+
+/* Footer */
+.Varukorg footer {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 2vmin;
+
+}
+
+.Varukorg footer h2 {
+
+  margin: 0px;
+  padding: 0px;
+
+  text-align: center;
+
+}
+
+.Varukorg footer button {
+
+  margin: 2vmin;
+  padding: 1vmin 2vmin;
+
+  background: var(--primary-color);
+  border: 0.25vmin solid var(--primary-color);
+  color: var(--text-color);
+  border-radius: 0.5vmin;
+  font-size: calc(10px + 1.25vmin);
+  text-decoration: none;
+  cursor: pointer;
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+
+}
+
+.Varukorg footer button:hover {
+
+  background: var(--primarydark-color);
+  border: 0.25vmin solid var(--primarydark-color);
+  box-shadow: 0.25vh 0.5vh 1vh #191919;
+
+}
