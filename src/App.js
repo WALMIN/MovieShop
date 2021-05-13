@@ -3,19 +3,25 @@ import MovieList from './components/MovieList';
 import React, {useState, useEffect} from 'react';
 import {actions} from './features/movieList'
 import { useSelector } from 'react-redux';
+import NavigationBar from './components/NavigationBar';
+import Varukorg from './components/Varukorg';
+import { Route, HashRouter as Router, Link, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Movie Shop</h1>
-      </header>
-
-      <main>
-        <MovieList />
-        <TestMovieList />
-      </main>
-    </div>
+    <Router basename="/">
+      <div className="App">
+        <main>
+        <Switch>
+          <Route exact path="/cart"> <Varukorg /> </Route>
+          <Route exact path="/"><MovieList /> <TestMovieList /> </Route>
+        </Switch>
+        </main>
+        <footer>
+          <NavigationBar />
+        </footer>
+      </div>
+    </Router>
   );
 }
 
