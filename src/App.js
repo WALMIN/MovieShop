@@ -28,11 +28,7 @@ function App() {
 const TestMovieList = () => {
   const apiList = useSelector(state => state.movieList.fact);
 
-  if(apiList === null) {
-    return (
-      <div>Ingen laddad lista, vänta.....</div>
-    )
-  } else {
+  if (apiList != null) {
     return (
       <div style={{background: '#f3f3f3'}}>
         {apiList.map((item) => (
@@ -40,7 +36,10 @@ const TestMovieList = () => {
         ))}
       </div>
     )
-
+  } else {
+    return (
+      <div>Ingen laddad lista, vänta.....</div>
+    )
   }
 };
 
