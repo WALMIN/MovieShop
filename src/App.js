@@ -15,7 +15,7 @@ function App() {
         <main>
         <Switch>
           <Route exact path="/cart"> <Varukorg /> </Route>
-          <Route exact path= "/saved"><Favourite/> </Route>
+          <Route exact path= "/favourites"><Favourite/> </Route>
           <Route exact path="/"><MovieList /> <TestMovieList /> </Route>
         </Switch>
         </main>
