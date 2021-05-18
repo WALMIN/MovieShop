@@ -28,9 +28,9 @@
   
   .Container .MoviePoster div img {
   
-    width: 10vh;
-    height: 10vh;
-    margin-right: 1.25vmin;
+    width: 20vh;
+    height: 20vh;
+    margin-right: 1.00vmin;
     object-fit: contain;
   
   }
