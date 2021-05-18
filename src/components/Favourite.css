@@ -1,11 +1,38 @@
-.myFavourites{
+.Container{
     background: black;
     color: blanchedalmond;
     display: flex;
     flex-direction: column;
     height: 100%;
+    
+}
+
+.Container .MoviePoster{
+    
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 20vh;
+  margin-top: 0.2vmin;
+  margin-bottom: 0.2vmin;
+  flex-direction: column;
 }
 
 
     
 
+.Container .MoviePoster div {
+
+    display: flex;
+    align-items: center;
+  
+  }
+  
+  .Container .MoviePoster div img {
+  
+    width: 40vh;
+    height: 20vh;
+  
+    object-fit: contain;
+  
+  }
