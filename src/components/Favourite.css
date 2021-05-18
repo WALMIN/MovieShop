@@ -30,7 +30,7 @@
   
   .Container .MoviePoster div img {
   
-    width: 20vh;
+    width: 40vh;
     height: 20vh;
     
     object-fit: contain;
