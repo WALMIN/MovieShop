@@ -8,7 +8,6 @@ const MovieList = () => {
    const arrayGenre = useSelector(state => state.movieList.arrayGenre); 
    const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
    const dispatch = useDispatch(); 
-    //dispatch(actions.resetLists()); 
  
    useEffect(() => { 
        fetchAllGenres(dispatch); 
@@ -41,13 +40,6 @@ const MovieList = () => {
                             <EachGenreItem id={item.id} name={item.name} dispatch={dispatch}/> 
                         ))} 
                     </div> 
-                {/* map:ar alla i arrayGenre till en <p> */} 
-                {/* <div> 
-                    {arrayGenre.map((item) => ( 
-                        <EachGenreItem id={item.id} name={item.name}/> 
-                    ))} 
-                </div> */} 
-            
             </div> 
         ) 
     } else if (status === STATUS.FETCHING_MOVIES_BY_GENRE) { 
@@ -56,7 +48,6 @@ const MovieList = () => {
                 <h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1> 
                  
                 {/* map:ar alla i arrayGenre till en <p> */} 
-        
                 {console.log('Hämtar nu alla MOVIES enligt GENRES....')} 
        
                   
@@ -73,19 +64,6 @@ const MovieList = () => {
                         <EachGenreItem id={item.id} name={item.name}/> 
                     ))} 
                 </div> 
-
-                
- 
-                {/* map:ar alla i arrayMovies till en <p> */} 
-             
-                    {/* <p>{arrayMovieList}</p> */} 
-                    {/* {JSON.parse(arrayMovieList).map((item) => ( 
-                         
-                        <EachMovieItem title={item.original_title}/> 
-                    ))} 
-                    */} 
-               
- 
             </div> 
         ) 
     }  
@@ -120,7 +98,6 @@ const EachGenreItem = (props, dispatch) => {
     } 
    
 const EachMovieItem = (props) => {
-    //fetchEachGenresMovies(props, props.dispatch)
     const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
     console.log("Each genre props: ", props.props) 
 
@@ -182,14 +159,7 @@ function fetchAllGenres(dispatch) {
                // Uppdatera våran state.arrayGenres i [movieList.js] med tempArray som nu är [ { id: 22, 'action'},  { id: 55, 'drama'}, etc.. etc..] 
                  //dispatch(actions.successAllGenres()); 
                 dispatch(actions.listGenreFetched(tempArray));
-                dispatch(actions.successAllGenres()); 
-   
-                 //fetchMoviesInAllGenres({dispatch, tempArray}) 
-          
-                //Skickar med dispatch:ern till nästa function fetchMoviesInAllGenres 
-                // fetchMoviesInAllGenres(dispatch, tempArray) 
-     
-           
+                dispatch(actions.successAllGenres());          
            }) 
            .catch(error => { 
                console.error('There was an error!', error); 
@@ -199,7 +169,7 @@ function fetchAllGenres(dispatch) {
     function fetchEachGenresMovies(props) {
         console.log('props.id ::::::::    ' + props.props.id )
         const dispatch = props.props.dispatch
-        //dispatch.isFetching();
+        //dispatch(actions.isFetching()); 
         var movieTempArray = []; 
 
         const genreUrl = `https://api.themoviedb.org/3/genre/${props.props.id}/movies?api_key=3dbd54ecb77c41b970728ba04b569d4c&page_size=1`; 
@@ -236,55 +206,6 @@ function fetchAllGenres(dispatch) {
                     console.error('There was an error!', error); 
                 }); 
     }
-     
-    /*function fetchMoviesInAllGenres(props) { 
-     
-        console.log(props) 
-        const dispatch = props.dispatch 
-        const genreArray = props.tempArray 
-        var movieTempArray = []; 
-     
-        dispatch(actions.isFetchingMovieByGenre()); 
-     
-        //Loopar igenom varje item i Array Genre 
-        genreArray.forEach((genreObject) => { 
-            const genreUrl = `https://api.themoviedb.org/3/genre/${genreObject.id}/movies?api_key=3dbd54ecb77c41b970728ba04b569d4c&page_size=1`; 
-     
-             fetch(genreUrl) 
-                
-                .then(async response => { 
-                    const data = await response.json(); 
-     
-                    if (!response.ok) { 
-                        const error = (data && data.message) || response.statusText; 
-                        return Promise.reject(error); 
-                    } 
-                    const vArr = JSON.stringify(data.results) 
-                    // console.log(vArr) 
-                      // ovan Konverterar datan från [results:[object: object, object: object, ... , osv]] till en [{ id: value, original_title: value, ...}, { id: value, original_title: value, ...}] 
-     
-                    // JSON.parse gör om vArr [{ id: value, original_title: 'Batman', ...}, { id: value, original_title: 'Nicolinas äventyr', ...}] till [object: object, object: object] igen fast utan genre: innan 
-                    JSON.parse(vArr).forEach((props) => { 
-                        console.log('Each result title ' + props.original_title + ' in GENRE: ' + genreObject.id); 
-                        const item = createMovieItem(props.original_title) 
-                        movieTempArray.push(item); 
-                         
-                    }); 
-     
-                    console.log('Laddar nästa..') 
-                    console.log('Movie temp array' + JSON.stringify(movieTempArray));
-                    dispatch(actions.listMoviesFetched(movieTempArray)); 
-                    dispatch(actions.successAllMovies()); 
-                  
-     
-                     
-                }) 
-                .catch(error => { 
-                    console.error('There was an error!', error); 
-                }); 
-     
-         }) 
-    } */
       
     function createGenreItem(id, name) { 
         return { 
