@@ -14,7 +14,7 @@ return(
        <h1>Dina sparade filmer</h1>
        </header>
        
-       <div className= "moviePoster">
+       <div className= "MoviePoster">
 
            {products.map(product => 
            

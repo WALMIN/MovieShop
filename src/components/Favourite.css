@@ -6,6 +6,31 @@
     height: 100%;
 }
 
+.Container .MoviePoster{
+    
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+  margin-top: 0.2vmin;
+  margin-bottom: 0.2vmin;
+}
+
 
     
 
+.Container .MoviePoster div {
+
+    display: flex;
+    align-items: center;
+  
+  }
+  
+  .Container .MoviePoster div img {
+  
+    width: 10vh;
+    height: 10vh;
+    margin-right: 1.25vmin;
+    object-fit: contain;
+  
+  }
