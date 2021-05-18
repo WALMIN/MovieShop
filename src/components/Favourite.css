@@ -15,6 +15,7 @@
   height: 10vh;
   margin-top: 0.2vmin;
   margin-bottom: 0.2vmin;
+  flex-direction: column;
 }
 
 
@@ -31,7 +32,7 @@
   
     width: 20vh;
     height: 20vh;
-    margin-right: 1.00vmin;
+    
     object-fit: contain;
   
   }
