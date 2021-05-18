@@ -9,16 +9,24 @@ function myFavourites() {
         ["The Dark Knight Rises", 119, "https://static0.colliderimages.com/wordpress/wp-content/uploads/the-dark-knight-rises-imax-poster.jpeg"]
       ];
 return(
-   <div className="Title">
-       <header className= "SparadeFilmer">
+   <div className="Container">
+       <header className= "SavedMovies">
        <h1>Dina sparade filmer</h1>
        </header>
        
-       <div className= "moviePosters">
+       <div className= "moviePoster">
 
            {products.map(product => 
+           
+           <div>
 
            <img src= {product[2]}/>
+          
+           <p className="MovieTitle">{product[0]}</p>
+
+           </div>
+
+          
        )}
        
        </div>
