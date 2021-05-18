@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    justify-content: space-between;
 }
 
 .Container .MoviePoster{
@@ -30,7 +31,7 @@
   
     width: 20vh;
     height: 20vh;
-    margin-right: 1.00vmin;
+    margin-right: 0.50vmin;
     object-fit: contain;
   
   }
