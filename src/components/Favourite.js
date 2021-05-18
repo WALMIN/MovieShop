@@ -10,7 +10,10 @@ function myFavourites() {
       ];
 return(
    <div className="Title">
+       <header className= "SparadeFilmer">
        <h1>Dina sparade filmer</h1>
+       </header>
+       
        <div className= "moviePosters">
 
            {products.map(product => 
