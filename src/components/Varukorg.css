@@ -39,8 +39,6 @@
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
 
   height: 10vh;
   margin-top: 0.2vmin;
@@ -48,14 +46,37 @@
 
 }
 
-.Varukorg .MovieItem div {
+.Varukorg .MovieItem .RemoveButton {
+
+  width: 4vh;
+  height: 4vh;
+
+}
+
+.Varukorg .MovieItem .RemoveButton:hover {
+
+  opacity: 0.75;
+
+}
+
+.Varukorg .MovieItemInfo {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+}
+
+.Varukorg .MovieItemInfo div {
 
   display: flex;
   align-items: center;
 
 }
 
-.Varukorg .MovieItem div img {
+.Varukorg .MovieItemInfo div img {
 
   width: 10vh;
   height: 10vh;
@@ -65,7 +86,7 @@
 
 }
 
-.Varukorg .MovieItem div .MovieTitle {
+.Varukorg .MovieItemInfo div .MovieTitle {
 
   color: var(--primary-color);
   font-size: calc(10px + 1.25vmin);
@@ -73,7 +94,7 @@
 
 }
 
-.Varukorg .MovieItem .MoviePrice {
+.Varukorg .MovieItemInfo .MoviePrice {
 
   font-size: calc(10px + 1vmin);
   font-weight: bolder;
