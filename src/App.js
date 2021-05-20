@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 import {actions} from './features/movieList'
 import { useSelector } from 'react-redux';
 import NavigationBar from './components/NavigationBar';
-import Varukorg from './components/Varukorg';
+import Cart from './components/Cart';
 import { Route, HashRouter as Router, Link, Switch } from "react-router-dom";
 import Favourite  from './components/Favourite';
 
@@ -14,8 +14,8 @@ function App() {
       <div className="App">
         <main>
         <Switch>
-          <Route exact path="/cart"> <Varukorg /> </Route>
-          <Route exact path= "/favourites"><Favourite/> </Route>
+          <Route exact path="/cart"> <Cart /> </Route>
+          <Route exact path= "/favourites"> <Favourite /> </Route>
           <Route exact path="/"><MovieList /> <TestMovieList /> </Route>
         </Switch>
         </main>
