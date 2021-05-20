@@ -5,6 +5,7 @@ import { actions } from '../features/cartList';
 
 function Varukorg() {
   const cartList = useSelector(state => state.cartList.items);
+  const total = useSelector(state => state.cartList.total);
 
   const dispatch = useDispatch();
   const deleteFromCart = (id) => {
@@ -21,7 +22,7 @@ function Varukorg() {
         { (cartList.length > 0) ?
           cartList.map(product =>
             <div key={product[0]} className="MovieItem">
-              <img className="RemoveButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => deleteFromCart(product[0]) }/>
+              <img className="RemoveButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => deleteFromCart([product[0], product[3]]) }/>
               <div className="MovieItemInfo">
                 <div>
                   <img src={product[2]} />
@@ -36,8 +37,8 @@ function Varukorg() {
         }
       </main>
       <footer>
-        <h2>Summa:<br/>{0} kr</h2>
-        <button>Fortsätt</button>
+        <h2>Summa:<br/>{total} kr</h2>
+        <button>Continue</button>
       </footer>
     </div>
   );
