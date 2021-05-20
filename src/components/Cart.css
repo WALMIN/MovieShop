@@ -1,4 +1,4 @@
-.Varukorg {
+.Cart {
 
   height: 100%;
 
@@ -12,7 +12,7 @@
 }
 
 /* Header */
-.Varukorg header {
+.Cart header {
 
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@
 
 }
 
-.Varukorg header h1 {
+.Cart header h1 {
 
   margin: 0px;
   padding: 0px;
@@ -29,13 +29,13 @@
 }
 
 /* Main */
-.Varukorg main {
+.Cart main {
 
   margin: 2vmin;
 
 }
 
-.Varukorg .MovieItem {
+.Cart .MovieItem {
 
   display: flex;
   align-items: center;
@@ -46,20 +46,20 @@
 
 }
 
-.Varukorg .MovieItem .RemoveButton {
+.Cart .MovieItem .RemoveButton {
 
   width: 4vh;
   height: 4vh;
 
 }
 
-.Varukorg .MovieItem .RemoveButton:hover {
+.Cart .MovieItem .RemoveButton:hover {
 
   opacity: 0.75;
 
 }
 
-.Varukorg .MovieItemInfo {
+.Cart .MovieItemInfo {
 
   display: flex;
   align-items: center;
@@ -69,14 +69,14 @@
 
 }
 
-.Varukorg .MovieItemInfo div {
+.Cart .MovieItemInfo div {
 
   display: flex;
   align-items: center;
 
 }
 
-.Varukorg .MovieItemInfo div img {
+.Cart .MovieItemInfo div img {
 
   width: 10vh;
   height: 10vh;
@@ -86,7 +86,7 @@
 
 }
 
-.Varukorg .MovieItemInfo div .MovieTitle {
+.Cart .MovieItemInfo div .MovieTitle {
 
   color: var(--primary-color);
   font-size: calc(10px + 1.25vmin);
@@ -94,7 +94,7 @@
 
 }
 
-.Varukorg .MovieItemInfo .MoviePrice {
+.Cart .MovieItemInfo .MoviePrice {
 
   font-size: calc(10px + 1vmin);
   font-weight: bolder;
@@ -102,7 +102,7 @@
 }
 
 /* Footer */
-.Varukorg footer {
+.Cart footer {
 
   display: flex;
   align-items: center;
@@ -112,7 +112,7 @@
 
 }
 
-.Varukorg footer h2 {
+.Cart footer h2 {
 
   margin: 0px;
   padding: 0px;
@@ -121,7 +121,7 @@
 
 }
 
-.Varukorg footer button {
+.Cart footer button {
 
   margin: 2vmin;
   padding: 1vmin 2vmin;
@@ -141,7 +141,7 @@
 
 }
 
-.Varukorg footer button:hover {
+.Cart footer button:hover {
 
   background: var(--primarydark-color);
   border: 0.25vmin solid var(--primarydark-color);

@@ -1,9 +1,9 @@
-import "./Varukorg.css";
+import "./Cart.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from '../features/cartList';
 
-function Varukorg() {
+function Cart() {
   const cartList = useSelector(state => state.cartList.items);
   const total = useSelector(state => state.cartList.total);
 
@@ -14,9 +14,9 @@ function Varukorg() {
   }
 
   return (
-    <div className="Varukorg">
-      <header className="Varukorg-header">
-        <h1>Varukorg</h1>
+    <div className="Cart">
+      <header className="Cart-header">
+        <h1>Cart</h1>
       </header>
       <main>
         { (cartList.length > 0) ?
@@ -37,11 +37,11 @@ function Varukorg() {
         }
       </main>
       <footer>
-        <h2>Summa:<br/>{total} kr</h2>
-        <button>Continue</button>
+        <h2>Total:<br/>{total} kr</h2>
+        <button>Check out</button>
       </footer>
     </div>
   );
 }
 
-export default Varukorg;
+export default Cart;
