@@ -1,4 +1,5 @@
 import "./Cart.css";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from '../features/cartList';
@@ -33,13 +34,22 @@ function Cart() {
             </div>
           )
           :
-          <p>Your cart is empty.</p>
+          <div className="Cart-empty">
+            <img className="CartImage" src={(process.env.PUBLIC_URL + "/images/cart-empty.svg")} />
+            <p className="CartTitle">Oops! Your cart is empty!</p>
+            <p className="CartText">Looks like you haven't added<br/>anything to your cart yet</p>
+            <Link className="CartButton" to="/">Continue shopping</Link>
+          </div>
         }
       </main>
-      <footer>
-        <h2>Total:<br/>{total} kr</h2>
-        <button>Check out</button>
-      </footer>
+      { (cartList.length > 0) ?
+        <footer>
+          <h2>Total:<br/>{total} kr</h2>
+          <button>Checkout</button>
+        </footer>
+        :
+        <div></div>
+      }
     </div>
   );
 }
