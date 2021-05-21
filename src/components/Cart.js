@@ -1,11 +1,56 @@
 import "./Cart.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from '../features/cartList';
 
 function Cart() {
-  const cartList = useSelector(state => state.cartList.items);
+  // localStorage.removeItem("cart")
+
+  let [cart, setCart] = useState([])
+  let localCart = localStorage.getItem("cart");
+
+  useEffect(() => {
+    localCart = JSON.parse(localCart);
+    if (localCart) setCart(localCart)
+
+  }, [])
+
+  const updateItem = (itemID, add) => {
+    let cartCopy = [...cart]
+    let existentItem = cartCopy.find(item => item.id == itemID);
+
+    if (!existentItem) return
+
+    if(add){
+      existentItem.quantity += 1;
+
+    } else {
+      existentItem.quantity -= 1;
+
+    }
+
+    if (existentItem.quantity <= 0) {
+      cartCopy = cartCopy.filter(item => item.id != itemID)
+
+    }
+
+    setCart(cartCopy);
+    let cartString = JSON.stringify(cartCopy);
+    localStorage.setItem('cart', cartString);
+
+  }
+
+  const removeItem = (itemID) => {
+    let cartCopy = [...cart]
+    cartCopy = cartCopy.filter(item => item.id != itemID);
+
+    setCart(cartCopy);
+    let cartString = JSON.stringify(cartCopy)
+    localStorage.setItem('cart', cartString)
+
+  }
+
   const total = useSelector(state => state.cartList.total);
 
   const dispatch = useDispatch();
@@ -20,16 +65,23 @@ function Cart() {
         <h1>Cart</h1>
       </header>
       <main>
-        { (cartList.length > 0) ?
-          cartList.map(product =>
-            <div key={product[0]} className="MovieItem">
-              <img className="RemoveButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => deleteFromCart([product[0], product[3]]) }/>
+        { (cart.length > 0) ?
+          cart.map(product =>
+            <div key={product.id} className="MovieItem">
               <div className="MovieItemInfo">
                 <div>
-                  <img src={product[2]} />
-                  <p className="MovieTitle">{product[1]}</p>
+                  <img src={product.img} />
+                  <div className="MovieItemInnerInfo">
+                    <p className="MovieTitle">{product.title}</p>
+                    <div className="Quantity">
+                      <img className="QuantityAddButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => updateItem(product.id, false) }/>
+                      <p className="Quantity">{product.quantity}</p>
+                      <img className="QuantityRemoveButton" src={(process.env.PUBLIC_URL + "/images/add.svg")} onClick={ () => updateItem(product.id, true) }/>
+                      <img className="RemoveButton" src={(process.env.PUBLIC_URL + "/images/delete.svg")} onClick={ () => removeItem(product.id) }/>
+                    </div>
+                  </div>
                 </div>
-                <p className="MoviePrice">{product[3]} kr</p>
+                <p className="MoviePrice">{product.price} kr</p>
                 </div>
             </div>
           )
@@ -42,7 +94,7 @@ function Cart() {
           </div>
         }
       </main>
-      { (cartList.length > 0) ?
+      { (cart.length > 0) ?
         <footer>
           <h2>Total:<br/>{total} kr</h2>
           <button>Checkout</button>
