@@ -16,7 +16,7 @@ function Cart() {
 
       setTotal(0);
       localCart.map(product => {
-        setTotal(t => (t + (product.quantity * product.price)));
+        return setTotal(t => (t + (product.quantity * product.price)));
 
       });
 
@@ -54,7 +54,7 @@ function Cart() {
     // Update total price
     setTotal(0);
     newCart.map(product => {
-      setTotal(t => (t + (product.quantity * product.price)));
+      return setTotal(t => (t + (product.quantity * product.price)));
 
     });
 
@@ -74,7 +74,7 @@ function Cart() {
     // Update total price
     setTotal(0);
     newCart.map(product => {
-      setTotal(t => (t + (product.quantity * product.price)));
+      return setTotal(t => (t + (product.quantity * product.price)));
 
     });
 
@@ -91,14 +91,14 @@ function Cart() {
             <div key={product.id} className="MovieItem">
               <div className="MovieItemInfo">
                 <div>
-                  <img src={product.img} />
+                  <img src={product.img} alt={product.title} />
                   <div className="MovieItemInnerInfo">
                     <p className="MovieTitle">{product.title}</p>
                     <div className="Quantity">
-                      <img className="QuantityAddButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => updateItem(product.id, false) }/>
+                      <img className="QuantityAddButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => updateItem(product.id, false) } alt="Remove"/>
                       <p className="Quantity">{product.quantity}</p>
-                      <img className="QuantityRemoveButton" src={(process.env.PUBLIC_URL + "/images/add.svg")} onClick={ () => updateItem(product.id, true) }/>
-                      <img className="RemoveButton" src={(process.env.PUBLIC_URL + "/images/delete.svg")} onClick={ () => removeItem(product.id) }/>
+                      <img className="QuantityRemoveButton" src={(process.env.PUBLIC_URL + "/images/add.svg")} onClick={ () => updateItem(product.id, true) } alt="Add"/>
+                      <img className="RemoveButton" src={(process.env.PUBLIC_URL + "/images/delete.svg")} onClick={ () => removeItem(product.id) } alt="Delete"/>
                     </div>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ function Cart() {
           )
           :
           <div className="Cart-empty">
-            <img className="CartImage" src={(process.env.PUBLIC_URL + "/images/cart-empty.svg")} />
+            <img className="CartImage" src={(process.env.PUBLIC_URL + "/images/cart-empty.svg")} alt="Cart"/>
             <p className="CartTitle">Oops! Your cart is empty!</p>
             <p className="CartText">Looks like you haven't added<br/>anything to your cart yet</p>
             <Link className="CartButton" to="/">Continue shopping</Link>
