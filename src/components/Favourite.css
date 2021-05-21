@@ -1,21 +1,20 @@
 .Container{
-    background: black;
-    color: blanchedalmond;
+
+    background: var(--background-color);
     display: flex;
     flex-direction: column;
     height: 100%;
-    
+    color: var(--text-color);
 }
 
 .Container .MoviePoster{
     
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 20vh;
   margin-top: 0.2vmin;
   margin-bottom: 0.2vmin;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 
@@ -25,14 +24,26 @@
 
     display: flex;
     align-items: center;
-  
+    flex-direction: column;
   }
   
   .Container .MoviePoster div img {
   
-    width: 40vh;
+    width: 20vh;
     height: 20vh;
+    margin-top: 5vmin;
   
     object-fit: contain;
   
+  }
+  .Container .MoviePoster .MovieTitle{
+    
+    color: var(--primary-color);
+  }
+
+  .Container .SavedMovies{
+   text-align: left;
+   margin: 2vmin;
+
+    
   }
