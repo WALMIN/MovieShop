@@ -3,21 +3,32 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Cart() {
-  let [cart, setCart] = useState([]);
-  let localCart = localStorage.getItem("cart");
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
 
   // Set state from local storage
   useEffect(() => {
+    let localCart = localStorage.getItem("cart");
     localCart = JSON.parse(localCart);
-    if (localCart) setCart(localCart);
 
-  }, [])
+    if (localCart) {
+      setCart(localCart);
+
+      setTotal(0);
+      localCart.map(product => {
+        setTotal(t => (t + (product.quantity * product.price)));
+
+      });
+
+    }
+
+  }, []);
 
   const updateItem = (id, add) => {
     let newCart = [...cart];
 
     // See if item exist
-    let existingItem = newCart.find(item => item.id == id);
+    let existingItem = newCart.find(item => item.id === id);
     if (!existingItem) return
 
     // Check if user wants to add or remove
@@ -31,7 +42,7 @@ function Cart() {
 
     // Delete if no items left
     if (existingItem.quantity <= 0) {
-       newCart =  newCart.filter(item => item.id != id);
+       newCart = newCart.filter(item => item.id !== id);
 
     }
 
@@ -40,18 +51,32 @@ function Cart() {
     let cartString = JSON.stringify(newCart);
     localStorage.setItem('cart', cartString);
 
+    // Update total price
+    setTotal(0);
+    newCart.map(product => {
+      setTotal(t => (t + (product.quantity * product.price)));
+
+    });
+
   }
 
   const removeItem = (id) => {
     let newCart = [...cart];
 
     // Remove item from list
-    newCart = newCart.filter(item => item.id != id);
+    newCart = newCart.filter(item => item.id !== id);
 
     // Save state & local storage
     setCart(newCart);
     let cartString = JSON.stringify(newCart);
     localStorage.setItem('cart', cartString);
+
+    // Update total price
+    setTotal(0);
+    newCart.map(product => {
+      setTotal(t => (t + (product.quantity * product.price)));
+
+    });
 
   }
 
@@ -92,7 +117,7 @@ function Cart() {
       </main>
       { (cart.length > 0) ?
         <footer>
-          <h2>Total:<br/>{0} kr</h2>
+          <h2>Total:<br/>{total} kr</h2>
           <button onClick={() => localStorage.removeItem("cart")}>Checkout</button>
         </footer>
         :
