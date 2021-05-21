@@ -1,61 +1,57 @@
 import "./Cart.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { actions } from '../features/cartList';
 
 function Cart() {
-  // localStorage.removeItem("cart")
-
-  let [cart, setCart] = useState([])
+  let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
 
+  // Set state from local storage
   useEffect(() => {
     localCart = JSON.parse(localCart);
-    if (localCart) setCart(localCart)
+    if (localCart) setCart(localCart);
 
   }, [])
 
-  const updateItem = (itemID, add) => {
-    let cartCopy = [...cart]
-    let existentItem = cartCopy.find(item => item.id == itemID);
+  const updateItem = (id, add) => {
+    let newCart = [...cart];
 
-    if (!existentItem) return
+    // See if item exist
+    let existingItem = newCart.find(item => item.id == id);
+    if (!existingItem) return
 
+    // Check if user wants to add or remove
     if(add){
-      existentItem.quantity += 1;
+      existingItem.quantity += 1;
 
     } else {
-      existentItem.quantity -= 1;
+      existingItem.quantity -= 1;
 
     }
 
-    if (existentItem.quantity <= 0) {
-      cartCopy = cartCopy.filter(item => item.id != itemID)
+    // Delete if no items left
+    if (existingItem.quantity <= 0) {
+       newCart =  newCart.filter(item => item.id != id);
 
     }
 
-    setCart(cartCopy);
-    let cartString = JSON.stringify(cartCopy);
+    // Save state & local storage
+    setCart(newCart);
+    let cartString = JSON.stringify(newCart);
     localStorage.setItem('cart', cartString);
 
   }
 
-  const removeItem = (itemID) => {
-    let cartCopy = [...cart]
-    cartCopy = cartCopy.filter(item => item.id != itemID);
+  const removeItem = (id) => {
+    let newCart = [...cart];
 
-    setCart(cartCopy);
-    let cartString = JSON.stringify(cartCopy)
-    localStorage.setItem('cart', cartString)
+    // Remove item from list
+    newCart = newCart.filter(item => item.id != id);
 
-  }
-
-  const total = useSelector(state => state.cartList.total);
-
-  const dispatch = useDispatch();
-  const deleteFromCart = (id) => {
-    dispatch(actions.deleteItem(id));
+    // Save state & local storage
+    setCart(newCart);
+    let cartString = JSON.stringify(newCart);
+    localStorage.setItem('cart', cartString);
 
   }
 
@@ -96,8 +92,8 @@ function Cart() {
       </main>
       { (cart.length > 0) ?
         <footer>
-          <h2>Total:<br/>{total} kr</h2>
-          <button>Checkout</button>
+          <h2>Total:<br/>{0} kr</h2>
+          <button onClick={() => localStorage.removeItem("cart")}>Checkout</button>
         </footer>
         :
         <div></div>
