@@ -1,13 +1,22 @@
 import React from 'react';
 import './Favourite.css';
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { actions } from '../features/favouriteList';
 
-function myFavourites() {
+function Favourites() {
+  const favouriteList = useSelector (state => state.favouriteList.items);
+  
 
-    const products = [
-        ["Batman Begins", 99, "https://sfanytime-images-prod.secure.footprint.net/COVERM/ba242472-c422-41dd-a724-9f81010f54bf_COVERM_01.jpg?w=375&fm=pjpg&s=cd8710e230dbe303f7f9795a38beba57"],
-        ["The Dark Knight", 109, "https://sfanytime-images-prod.secure.footprint.net/COVERM/COVERM_b9e21514-0507-4965-a0a4-7ebb3971dd90_01.jpg?w=375&fm=pjpg&s=14f65063145150c9ab0b824200da9075"],
-        ["The Dark Knight Rises", 119, "https://static0.colliderimages.com/wordpress/wp-content/uploads/the-dark-knight-rises-imax-poster.jpeg"]
-      ];
+  const dispatch = useDispatch();
+  const deleteFromFavourites = (id) => {
+    dispatch(actions.deleteFavourites(id));
+
+  }
+
+
+
+
 return(
    <div className="Container">
        <header className= "SavedMovies">
@@ -16,13 +25,13 @@ return(
        
        <div className= "MoviePoster">
 
-           {products.map(product => 
+           {favouriteList.map(product => 
            
            <div>
 
            <img src= {product[2]}/>
           
-           <p className="MovieTitle">{product[0]}</p>
+           <p className="MovieTitle">{product[1]}</p>
 
            </div>
 
@@ -35,4 +44,4 @@ return(
 )
 }
 
-export default myFavourites;
+export default Favourites;
