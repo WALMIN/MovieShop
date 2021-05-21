@@ -9,6 +9,8 @@
         justify-content: space-around;
         flex-wrap: wrap;
         padding: 5px 0;
+        background: var(--background-color);
+        color: var(--text-color);
     }
     
     .viewMovieDetails .posterimg {
@@ -44,10 +46,12 @@
     }
     
     .cart{
-        background: darkcyan;
-        color: white;
+        background: var(--primary-color);
+        border: 0.25vmin solid var(--primary-color);
+        color: var(--text-color);
+        border-radius: 0.5vmin;
         outline: none;
-        border-radius:2px;
+       font-weight: bold;
         cursor: pointer;
         padding:10px;
         margin-top: 15px;
@@ -126,15 +130,43 @@
     .technicalInfo {
         padding-top: 20px;
         text-align: left;
+        
     }
     
     .technicalInfo > div{
         font-size: 11px;
     }
 
+
+    .technicalInfo .homepage{
+        background:blue;
+        width: fit-content;
+        border-radius: 1px;
+        cursor: pointer;
+    }
+
+    .technicalInfo .homepage a{
+        color: white;
+        text-decoration: unset;
+        font-weight: bold;
+    }
+
     .production-companies {
         padding-top: 20px;
     }
+
+    /*.movieBox .addCart{
+        margin: 2vmin;
+        padding: 1vmin 2vmin;
+        background: var(--primary-color);
+        border: 0.25vmin solid var(--primary-color);
+        color: var(--text-color);
+        border-radius: 0.5vmin;
+        font-size: calc(10px + 1.25vmin);
+        text-decoration: none;
+        cursor: pointer;
+        width: fit-content;
+    }*/
     
     
     @media only screen and (max-width: 768px) {

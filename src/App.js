@@ -25,9 +25,6 @@ function App() {
           <NavigationBar />
         </footer>
         </div>
-
-     
-        
     </Router>
   );
 }

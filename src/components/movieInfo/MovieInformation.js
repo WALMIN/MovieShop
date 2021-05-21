@@ -60,7 +60,8 @@ class MovieInformation extends Component {
                     <p> <b>Overview</b> <br /> {this.state.apiResponse.overview} </p>
                     
                 </div>
-                <div className="technicalInfo"> 
+                
+                <section className="technicalInfo"> 
                        <h4><u>Technical Information</u></h4>
                         
                         <div className="release-date">
@@ -70,7 +71,7 @@ class MovieInformation extends Component {
                             <p><b>Spoken Languages:</b> {this.state.apiResponse.spoken_languages.map((sp_lang)=> sp_lang.english_name) + " " }</p>
                         </div>
                         <div className="homepage"> 
-                            <p><b>Visit:</b> <a href = {this.state.apiResponse.homepage}>{this.state.apiResponse.homepage}</a></p>
+                            <p> <a id="hmpage" href = {this.state.apiResponse.homepage} target="_blank">Visit Site</a></p>
                         </div>
                         <div className="production-companies">
                             <h4>Credits</h4>
@@ -87,7 +88,8 @@ class MovieInformation extends Component {
                             <p><b>Popularity:</b>{this.state.apiResponse.popularity} </p>
                         </div>
                         
-                </div>
+                </section>
+                
                     <div className="addCart">
                             <button className="cart"> ADD TO CART </button>
                     </div>
