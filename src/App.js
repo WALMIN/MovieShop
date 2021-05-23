@@ -7,7 +7,7 @@ import NavigationBar from './components/NavigationBar';
 import Cart from './components/Cart';
 import { Route, HashRouter as Router, Link, Switch } from "react-router-dom";
 import Favourite  from './components/Favourite';
-import MovieInformation from './components/movieInfo/MovieInformation';
+import MovieInfo from './components/movieInfo/MovieInformation';
 
 function App() {
   return (
@@ -18,7 +18,8 @@ function App() {
           <Route exact path="/cart"> <Cart /> </Route>
           <Route exact path= "/favourites"> <Favourite /> </Route>
           <Route exact path="/"><MovieList /> <TestMovieList /> </Route>
-          <Route exact path ="/MovieInformation" component={MovieInformation}/>
+          <Route exact path="/MovieInfo/:id" render={(props) => (
+                      <MovieInfo id={props.match.params.id}/>)}/>
         </Switch>
         </main>
         <footer>

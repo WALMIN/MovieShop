@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import './MovieInformation.css';
-import star from "../../images/star.png";
+
+
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
+
 
 class MovieInformation extends Component {
     state ={
@@ -10,8 +12,13 @@ class MovieInformation extends Component {
    };
 
    async componentDidMount() {
-    const url = "https://api.themoviedb.org/3/movie/106646?api_key=3dbd54ecb77c41b970728ba04b569d4c";
-    const response = await fetch(url);
+    const m_id = this.props.id;
+    console.log("Movie Id"+ m_id);
+    const api_key="?api_key=3dbd54ecb77c41b970728ba04b569d4c"
+    //const movie_url = "https://api.themoviedb.org/3/movie/106646?api_key=3dbd54ecb77c41b970728ba04b569d4c";
+    const url = "https://api.themoviedb.org/3/movie/";
+    const movie_url=url+m_id+api_key;
+    const response = await fetch(movie_url);
     const data = await response.json();
     this.setState({ apiResponse: data});
   }
@@ -37,7 +44,7 @@ class MovieInformation extends Component {
                     </span>
                 </div>
                 <div className="ratings">
-                    <p><img className="starIcon" src={star} alt="" /> 
+                <p><img className="starIcon" src={(process.env.PUBLIC_URL + "/images/star.png")} alt="" /> 
                     <span className="rating_value">{this.state.apiResponse.vote_average} </span>
                     <span className="vote_counts">{this.state.apiResponse.vote_count.toLocaleString("en-US")} votes</span>
                     </p>
