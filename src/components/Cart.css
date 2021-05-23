@@ -46,19 +46,6 @@
 
 }
 
-.Cart .MovieItem .RemoveButton {
-
-  width: 4vh;
-  height: 4vh;
-
-}
-
-.Cart .MovieItem .RemoveButton:hover {
-
-  opacity: 0.75;
-
-}
-
 .Cart .MovieItemInfo {
 
   display: flex;
@@ -86,7 +73,18 @@
 
 }
 
+.Cart .MovieItemInfo .MovieItemInnerInfo {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+}
+
 .Cart .MovieItemInfo div .MovieTitle {
+
+  margin: 0px;
 
   color: var(--primary-color);
   font-size: calc(10px + 1.25vmin);
@@ -98,6 +96,79 @@
 
   font-size: calc(10px + 1vmin);
   font-weight: bolder;
+
+}
+
+.Cart .MovieItemInfo .Quantity .QuantityAddButton {
+
+  width: 2.5vh;
+  height: 2.5vh;
+  margin: 0;
+  padding: 0.25vmin;
+
+  border: 1px solid var(--text-color);
+  border-radius: 0.5vmin 0vmin 0vmin 0.5vmin;
+
+}
+
+.Cart .MovieItemInfo .Quantity .QuantityAddButton:hover {
+
+  opacity: 0.75;
+
+}
+
+.Cart .MovieItemInfo .Quantity .QuantityRemoveButton {
+
+  width: 2.5vh;
+  height: 2.5vh;
+  margin: 0;
+  padding: 0.25vmin;
+
+  border: 1px solid var(--text-color);
+  border-radius: 0vmin 0.5vmin 0.5vmin 0vmin;
+
+}
+
+.Cart .MovieItemInfo .Quantity .QuantityRemoveButton:hover {
+
+  opacity: 0.75;
+
+}
+
+.Cart .MovieItemInfo .Quantity .Quantity {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 5vh;
+  height: 2.5vh;
+  padding: 0.25vmin;
+
+  text-align: center;
+
+  font-size: calc(10px + 1vmin);
+  border: 1px solid var(--text-color);
+
+}
+
+.Cart .MovieItem .RemoveButton {
+
+  width: 2.5vh;
+  height: 2.5vh;
+  margin-left: 2.5vmin;
+  margin-right: 1vmin;
+  padding: 0.25vmin;
+
+  border: 1px solid var(--text-color);
+  border-radius: 0.5vmin;
+
+}
+
+.Cart .MovieItem .RemoveButton:hover {
+
+  opacity: 0.75;
 
 }
 
@@ -117,7 +188,7 @@
   margin: 0px;
   padding: 0px;
 
-  text-align: center;
+  text-align: left;
 
 }
 
@@ -142,6 +213,73 @@
 }
 
 .Cart footer button:hover {
+
+  background: var(--primarydark-color);
+  border: 0.25vmin solid var(--primarydark-color);
+  box-shadow: 0.25vh 0.5vh 1vh #191919;
+
+}
+
+/* Empty */
+.Cart-empty {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+}
+
+.Cart-empty .CartImage {
+
+  width: 12.5vh;
+  height: 12.5vh;
+
+  object-fit: contain;
+
+}
+
+.Cart-empty .CartTitle {
+
+  margin-top: 2vmin;
+
+  color: var(--primary-color);
+  font-size: calc(10px + 1.5vmin);
+  font-weight: bold;
+
+}
+
+.Cart-empty .CartText {
+
+  margin-top: 0vmin;
+
+  font-size: calc(10px + 1vmin);
+
+}
+
+.Cart-empty .CartButton {
+
+  margin-top: 2vmin;
+  padding: 1vmin 2vmin;
+
+  background: var(--primary-color);
+  border: 0.25vmin solid var(--primary-color);
+  color: var(--text-color);
+  border-radius: 0.5vmin;
+  font-size: calc(10px + 1vmin);
+  text-decoration: none;
+  cursor: pointer;
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+
+}
+
+.Cart-empty .CartButton:hover {
 
   background: var(--primarydark-color);
   border: 0.25vmin solid var(--primarydark-color);
