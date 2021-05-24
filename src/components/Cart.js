@@ -1,15 +1,82 @@
 import "./Cart.css";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { actions } from '../features/cartList';
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Cart() {
-  const cartList = useSelector(state => state.cartList.items);
-  const total = useSelector(state => state.cartList.total);
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
 
-  const dispatch = useDispatch();
-  const deleteFromCart = (id) => {
-    dispatch(actions.deleteItem(id));
+  // Set state from local storage
+  useEffect(() => {
+    let localCart = localStorage.getItem("cart");
+    localCart = JSON.parse(localCart);
+
+    if (localCart) {
+      setCart(localCart);
+
+      setTotal(0);
+      localCart.map(product => {
+        return setTotal(t => (t + (product.quantity * product.price)));
+
+      });
+
+    }
+
+  }, []);
+
+  const updateItem = (id, add) => {
+    let newCart = [...cart];
+
+    // See if item exist
+    let existingItem = newCart.find(item => item.id === id);
+    if (!existingItem) return
+
+    // Check if user wants to add or remove
+    if(add){
+      existingItem.quantity += 1;
+
+    } else {
+      existingItem.quantity -= 1;
+
+    }
+
+    // Delete if no items left
+    if (existingItem.quantity <= 0) {
+       newCart = newCart.filter(item => item.id !== id);
+
+    }
+
+    // Save state & local storage
+    setCart(newCart);
+    let cartString = JSON.stringify(newCart);
+    localStorage.setItem('cart', cartString);
+
+    // Update total price
+    setTotal(0);
+    newCart.map(product => {
+      return setTotal(t => (t + (product.quantity * product.price)));
+
+    });
+
+  }
+
+  const removeItem = (id) => {
+    let newCart = [...cart];
+
+    // Remove item from list
+    newCart = newCart.filter(item => item.id !== id);
+
+    // Save state & local storage
+    setCart(newCart);
+    let cartString = JSON.stringify(newCart);
+    localStorage.setItem('cart', cartString);
+
+    // Update total price
+    setTotal(0);
+    newCart.map(product => {
+      return setTotal(t => (t + (product.quantity * product.price)));
+
+    });
 
   }
 
@@ -19,27 +86,43 @@ function Cart() {
         <h1>Cart</h1>
       </header>
       <main>
-        { (cartList.length > 0) ?
-          cartList.map(product =>
-            <div key={product[0]} className="MovieItem">
-              <img className="RemoveButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => deleteFromCart([product[0], product[3]]) }/>
+        { (cart.length > 0) ?
+          cart.map(product =>
+            <div key={product.id} className="MovieItem">
               <div className="MovieItemInfo">
                 <div>
-                  <img src={product[2]} />
-                  <p className="MovieTitle">{product[1]}</p>
+                  <img src={product.img} alt={product.title} />
+                  <div className="MovieItemInnerInfo">
+                    <p className="MovieTitle">{product.title}</p>
+                    <div className="Quantity">
+                      <img className="QuantityAddButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => updateItem(product.id, false) } alt="Remove"/>
+                      <p className="Quantity">{product.quantity}</p>
+                      <img className="QuantityRemoveButton" src={(process.env.PUBLIC_URL + "/images/add.svg")} onClick={ () => updateItem(product.id, true) } alt="Add"/>
+                      <img className="RemoveButton" src={(process.env.PUBLIC_URL + "/images/delete.svg")} onClick={ () => removeItem(product.id) } alt="Delete"/>
+                    </div>
+                  </div>
                 </div>
-                <p className="MoviePrice">{product[3]} kr</p>
+                <p className="MoviePrice">{product.price} kr</p>
                 </div>
             </div>
           )
           :
-          <p>Your cart is empty.</p>
+          <div className="Cart-empty">
+            <img className="CartImage" src={(process.env.PUBLIC_URL + "/images/cart-empty.svg")} alt="Cart"/>
+            <p className="CartTitle">Oops! Your cart is empty!</p>
+            <p className="CartText">Looks like you haven't added<br/>anything to your cart yet</p>
+            <Link className="CartButton" to="/">Continue shopping</Link>
+          </div>
         }
       </main>
-      <footer>
-        <h2>Total:<br/>{total} kr</h2>
-        <button>Check out</button>
-      </footer>
+      { (cart.length > 0) ?
+        <footer>
+          <h2>Total:<br/>{total} kr</h2>
+          <button onClick={() => localStorage.removeItem("cart")}>Checkout</button>
+        </footer>
+        :
+        <div></div>
+      }
     </div>
   );
 }

@@ -1,11 +1,9 @@
 import './App.css';
 import MovieList from './components/MovieList';
-import React, {useState, useEffect} from 'react';
-import {actions} from './features/movieList'
 import { useSelector } from 'react-redux';
 import NavigationBar from './components/NavigationBar';
 import Cart from './components/Cart';
-import { Route, HashRouter as Router, Link, Switch } from "react-router-dom";
+import { Route, HashRouter as Router, Switch } from "react-router-dom";
 import Favourite  from './components/Favourite';
 import MovieInfo from './components/movieInfo/MovieInformation';
 
