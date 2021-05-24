@@ -4,7 +4,7 @@ import './MovieInformation.css';
 
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
-
+const MOVIE_PRICE = 79
 
 class MovieInformation extends Component {
     state ={
@@ -36,7 +36,7 @@ class MovieInformation extends Component {
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span> €72 </span>
+                    <span> ${MOVIE_PRICE + this.state.apiResponse.vote_average} </span>
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
