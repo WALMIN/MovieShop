@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import './MovieInformation.css';
-
+import { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_PRICE = 79
 
+
 class MovieInformation extends Component {
     state ={
-       apiResponse:null
+       apiResponse:null,
+       cart:[]
    };
 
+   
    async componentDidMount() {
     const m_id = this.props.id;
     console.log("Movie Id"+ m_id);
@@ -21,7 +25,32 @@ class MovieInformation extends Component {
     const response = await fetch(movie_url);
     const data = await response.json();
     this.setState({ apiResponse: data});
+
+    //Cart 
+    const localCart = localStorage.getItem("cart");
+    if(localCart) {
+        this.setState({cart:JSON.parse(localCart)});
+    }
   }
+
+  addItem = (id,newItem) => {
+    let newCart = this.state.cart;
+    let existingItem = null;
+    console.log("Cart"+ newCart);
+    if (newCart) { existingItem = newCart.find(item => item.id === id);}
+    // Add to quantity if items exist or add new item    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+        console.log("New Cart" + newItem.title);
+      newCart.push(newItem);
+    }
+    // Save state & local storage    
+    this.setState({cart:newCart});
+    let stringCart = JSON.stringify(newCart);
+    localStorage.setItem("cart", stringCart) 
+  }
+  
     render(){
         if (!this.state.apiResponse) {
             return <div>didn't get a Data</div>;
@@ -64,12 +93,13 @@ class MovieInformation extends Component {
                 </div>
               
                 <div className="overview">
-                    <p> <b>Overview</b> <br /> {this.state.apiResponse.overview} </p>
+                    <h3><u>Overview</u></h3>  
+                    <p>{this.state.apiResponse.overview} </p>
                     
                 </div>
                 
                 <section className="technicalInfo"> 
-                       <h4><u>Technical Information</u></h4>
+                       <h3><u>Technical Information</u></h3>
                         
                         <div className="release-date">
                             <p> <b>Released Date:</b> {this.state.apiResponse.release_date}</p>
@@ -98,7 +128,7 @@ class MovieInformation extends Component {
                 </section>
                 
                     <div className="addCart">
-                            <button className="cart"> ADD TO CART </button>
+                            <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
                     </div>
                 </div>
             </div>
