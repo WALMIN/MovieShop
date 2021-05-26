@@ -37,7 +37,7 @@ const MovieList = () => {
             <div> 
                 {/*<h1>{STATUS.SUCCESS_GENRES}</h1> */}
                 {console.log('Nu är arrayGenre klar')} 
-                    <div> 
+                    <div className="container"> 1
                         {arrayGenre.map((item) => (
                             <EachGenreItem id={item.id} name={item.name} dispatch={dispatch}/> 
                         ))} 
@@ -56,15 +56,14 @@ const MovieList = () => {
         ) 
     } else if (status === STATUS.SUCCESS_MOVIES) { 
         return ( 
-            <div> 
+            <div className="genre-movie-container"> 2
                 {/*<h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1>
                 <p>{'Alla MOVIES nu hämtade utifrån GENRE'}</p> */}
  
-                 <div className="content-row"> 
+                 
                     {arrayGenre.map((item) => (
                         <EachGenreItem id={item.id} name={item.name}/> 
                     ))} 
-                </div> 
             </div> 
         ) 
     }  
@@ -86,12 +85,16 @@ const MovieList = () => {
 } 
 const EachGenreItem = (props, dispatch) => { 
      
-        console.log("PROPR", props) 
-     
+        //console.log("PROPR", props) 
         return( 
-            <div> 
-                <h1 className="genre-title" >{props.name}</h1> 
+            <div className="content-row-genre-item"> 3
+                <div className="content-row-genre-item-title"> 3.1
+                    <h1 className="genre-title" >{props.name}</h1> 
+                </div>
+
+                <div className="content-row-genre-item-movie"> 3.2
                 <EachMovieItem props={props} dispatch={dispatch}/> 
+                </div>
             </div> 
      
         ); 
@@ -107,12 +110,12 @@ const EachMovieItem = (props) => {
     
      
     return( 
-    <div className="content-row-container"> {
+        <React.Fragment>{ 
         arrayMovieList.map((item) => (
-            <ContentRow item={item}/>
-                    
+            <ContentRow item={item}/>         
         ))}
-    </div> 
+        </React.Fragment>
+   
      
     ); 
 }

@@ -58,7 +58,7 @@ const Jumbotron = () => {
     //<p>RANDOM INDEX {randomIndex}</p>
     var bg = img
         return( 
-            <div className="jumbotron" style ={ { backgroundImage: "url("+bg+")" } }>
+            <div className="jumbotron" style ={ { backgroundImage: " linear-gradient(rgba(255, 99, 71, 0), rgba(20, 20, 20, 0.82)), url("+bg+")" } }>
                 <div className="synopsis">
                     {/*Vi vill ha en logo här*/}
                     <h1>{arrayMovieList[randomIndex].original_title}</h1>
@@ -66,7 +66,6 @@ const Jumbotron = () => {
                     <button>More Info</button>
                     <p>RANDOM INDEX {randomIndex}</p>
                 </div>
-
             </div>
         )
     }

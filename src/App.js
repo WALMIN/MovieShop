@@ -16,13 +16,15 @@ function App() {
         <Switch>
           <Route exact path="/cart"> <Varukorg /> </Route>
           <Route exact path="/">
-            <Jumbotron /> 
-            <MovieList />
+            <Jumbotron />
+            <div style={{position: "absolute", top: "65vh"}}>
+              <MovieList />
+            </div> 
           </Route>
         </Switch>
         </main>
         <footer>
-          <NavigationBar />
+          
         </footer>
       </div>
     </Router>

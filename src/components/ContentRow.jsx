@@ -15,9 +15,11 @@ const ContentRow = ({item, genreName}) => {
         img = "https://image.tmdb.org/t/p/w500/" + imgPath;
 
         return( 
-            <div className="block-wrapper">
-                <img src={img} alt="No image available"/>
-            </div>
+            //<div className="block-wrapper"> 4
+            <React.Fragment>
+                <img className="poster-img" src={img} alt="No image available"/>
+            </React.Fragment>
+            //</div>
             
         )
     }
