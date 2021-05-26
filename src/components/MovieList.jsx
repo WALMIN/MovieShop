@@ -113,8 +113,8 @@ const EachMovieItem = (props) => {
             {
                 arrayMovieList.map((item) => (
                     
-                    <p>MOVIE NAME: {item.original_title} 
-                    <Link to={`/MovieInfo/${item.id}`}> {item.id}</Link>  </p>
+                    <p><Link to={`/MovieInfo/${item.id}`}>MOVIE NAME: {item.original_title} 
+                     </Link>  </p>
                 ))
             }
         </p> 

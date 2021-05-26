@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import './MovieInformation.css';
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
+import {FaStar} from "react-icons/fa";
 
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
@@ -73,7 +74,7 @@ class MovieInformation extends Component {
                     </span>
                 </div>
                 <div className="ratings">
-                <p><img className="starIcon" src={(process.env.PUBLIC_URL + "/images/star.png")} alt="" /> 
+                    <p> <FaStar style={{color:"yellow"}}/>
                     <span className="rating_value">{this.state.apiResponse.vote_average} </span>
                     <span className="vote_counts">{this.state.apiResponse.vote_count.toLocaleString("en-US")} votes</span>
                     </p>
