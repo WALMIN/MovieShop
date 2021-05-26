@@ -1,0 +1,31 @@
+.content-row {
+    padding-left: 60px;
+    overflow-x: hidden;
+}
+
+.content-row-container {
+    display: flex;
+
+}
+.genre-title {
+    margin: 20px 0 10px;
+    color: white;
+}
+
+.block-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.block-wrapper img {
+    width: 100px;
+    height: 100px;
+}
+
+
+.ContentBlock {
+    flex: 18vw;
+    flex-shrink: 0;
+    height: 9.5vw;
+    margin-right: 4px;
+  }

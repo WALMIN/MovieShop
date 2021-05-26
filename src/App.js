@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import NavigationBar from './components/NavigationBar';
 import Varukorg from './components/Varukorg';
 import { Route, HashRouter as Router, Link, Switch } from "react-router-dom";
+import Jumbotron from './components/Jumbotron';
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
         <main>
         <Switch>
           <Route exact path="/cart"> <Varukorg /> </Route>
-          <Route exact path="/"><MovieList /> <TestMovieList /> </Route>
+          <Route exact path="/">
+            <Jumbotron /> 
+            <MovieList />
+          </Route>
         </Switch>
         </main>
         <footer>

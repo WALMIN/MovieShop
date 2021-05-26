@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'; 
 import { useDispatch, useSelector } from "react-redux"; 
-import {actions, STATUS} from "../features/movieList" 
+import {actions, STATUS} from "../features/movieList" ;
+import ContentRow from '../components/ContentRow';
+import '../css/ContentRow.css';
 
  
 const MovieList = () => { 
@@ -19,21 +21,21 @@ const MovieList = () => {
    if(status === STATUS.NORMAL) { 
         return ( 
             <div> 
-                <h1>{STATUS.NORMAL}</h1> 
+                {/*<h1>{STATUS.NORMAL}</h1> */}
                 {console.log('Redo för att ladda fakta! Börjar hämta alla genres!')} 
             </div> 
         ) 
     } else if (status === STATUS.FETCHING_GENRES) { 
         return ( 
             <div> 
-                <h1>{STATUS.FETCHING_GENRES}</h1> 
+                {/*<h1>{STATUS.FETCHING_GENRES}</h1> */}
                 {console.log('Hämtar nu alla genres')} 
             </div> 
         ) 
     } else if (status === STATUS.SUCCESS_GENRES) { 
         return ( 
             <div> 
-                <h1>{STATUS.SUCCESS_GENRES}</h1> 
+                {/*<h1>{STATUS.SUCCESS_GENRES}</h1> */}
                 {console.log('Nu är arrayGenre klar')} 
                     <div> 
                         {arrayGenre.map((item) => (
@@ -45,8 +47,7 @@ const MovieList = () => {
     } else if (status === STATUS.FETCHING_MOVIES_BY_GENRE) { 
         return ( 
             <div> 
-                <h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1> 
-                 
+                {/*<h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1>*/}             
                 {/* map:ar alla i arrayGenre till en <p> */} 
                 {console.log('Hämtar nu alla MOVIES enligt GENRES....')} 
        
@@ -56,10 +57,10 @@ const MovieList = () => {
     } else if (status === STATUS.SUCCESS_MOVIES) { 
         return ( 
             <div> 
-                <h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1> 
-                <p>{'Alla MOVIES nu hämtade utifrån GENRE'}</p> 
+                {/*<h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1>
+                <p>{'Alla MOVIES nu hämtade utifrån GENRE'}</p> */}
  
-                 <div> 
+                 <div className="content-row"> 
                     {arrayGenre.map((item) => (
                         <EachGenreItem id={item.id} name={item.name}/> 
                     ))} 
@@ -70,7 +71,7 @@ const MovieList = () => {
     else if (status === STATUS.SUCCSESS) { 
         return ( 
             <div> 
-                <h1>{STATUS.SUCCSESS}</h1> 
+                {/*<h1>{STATUS.SUCCSESS}</h1> */}
                 <p>{'Alla GENRES och MOVIES nu klara'}</p> 
  
             </div> 
@@ -89,8 +90,7 @@ const EachGenreItem = (props, dispatch) => {
      
         return( 
             <div> 
-                <p>ID: {props.id}</p> 
-                <p>NAME: {props.name}</p> 
+                <h1 className="genre-title" >{props.name}</h1> 
                 <EachMovieItem props={props} dispatch={dispatch}/> 
             </div> 
      
@@ -107,14 +107,11 @@ const EachMovieItem = (props) => {
     
      
     return( 
-    <div> 
-        <p>
-            {
-                arrayMovieList.map((item) => (
-                    <p>MOVIE NAME: {item.original_title}</p>
-                ))
-            }
-        </p> 
+    <div className="content-row-container"> {
+        arrayMovieList.map((item) => (
+            <ContentRow item={item}/>
+                    
+        ))}
     </div> 
      
     ); 
