@@ -1,0 +1,184 @@
+* {
+    padding: 0;
+    box-sizing:border-box;
+    margin:0;
+    }
+    
+    .viewMovieDetails{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 5px 0;
+        background: var(--background-color);
+        color: var(--text-color);
+    }
+    
+    .viewMovieDetails .posterimg {
+        justify-content: space-around;
+        width: 80%;
+        height: 80%;
+    }
+    
+    
+    .viewMovieDetails .movieBox{
+        max-width: 500px;
+        min-width: 290px;
+    }
+    
+    .movieBox .movieTitle{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    
+    .movieBox .movieTitle h2{
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    .movieBox .movieTitle span{
+        color:crimson;
+    }
+    
+    .movieBox p{
+        line-height: 1.5;
+        margin: 5px 0;
+    }
+    
+    .cart{
+        background: var(--primary-color);
+        border: 0.25vmin solid var(--primary-color);
+        color: var(--text-color);
+        border-radius: 0.5vmin;
+        outline: none;
+        font-weight: bold;
+        cursor: pointer;
+        padding:10px;
+        margin-top: 15px;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    .release_status{
+        text-align: left;
+        font-size: 10px;
+        display: block;
+    }
+    
+    .release_status .lang  {
+        font-size: 12px;
+        padding:2px;
+        background-color:darkgrey;
+        color:white;
+        border-radius: 5px;
+        margin-left:10px ;
+    }
+    
+    .ratings{
+        text-align:left;
+        display: flex;
+    }   
+    
+    .ratings .lang{
+        margin-left: 5px;
+        margin-bottom: 15px;
+    }
+    
+    .ratings .rating_value{
+        font-size: 22px;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+    
+    .ratings .vote_counts{
+        font-size: 10px;
+    }
+    
+    .runtime{
+        text-align: left;
+        display: flex;
+    }
+    
+    
+    .classGenres {
+       font-size: 12px;
+        justify-content: space-around;
+    }
+    .genres {
+        padding-left: 60px;
+        display: inline-flex;
+        text-align: right;
+        
+    }
+    
+    .overview{
+        text-align: left;
+    }
+    
+    .overview p{
+        text-align: justify;
+        border-width: thin;
+        border-radius: 2px;
+        background-color: darksalmon;
+    }
+    
+    
+    .technicalInfo {
+        padding-top: 20px;
+        text-align: left;
+    }
+    
+    .technicalInfo > div{
+        font-size: 11px;
+    }
+
+
+    .technicalInfo .homepage{
+        background:blue;
+        width: fit-content;
+        border-radius: 1px;
+        cursor: pointer;
+    }
+
+    .technicalInfo .homepage a{
+        color: white;
+        text-decoration: unset;
+        font-weight: bold;
+    }
+
+    .production-companies {
+        padding-top: 20px;
+    }
+
+    /*.movieBox .addCart{
+        margin: 2vmin;
+        padding: 1vmin 2vmin;
+        background: var(--primary-color);
+        border: 0.25vmin solid var(--primary-color);
+        color: var(--text-color);
+        border-radius: 0.5vmin;
+        font-size: calc(10px + 1.25vmin);
+        text-decoration: none;
+        cursor: pointer;
+        width: fit-content;
+    }*/
+    
+    
+    @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        .posterimg {
+            align-items: center;
+            padding-right: 20px;
+            padding-left: 20px;
+            width: 70%;
+            height:70%;
+        }
+      }
+    
+      @media screen and (min-width: 992px) {
+          .viewMovieDetails{
+              display:grid;
+              grid-template-columns: repeat(2,1fr);
+              grid-gap: 1.5rem;
+          }
+      }

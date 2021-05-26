@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'; 
+import reactDom from 'react-dom';
 import { useDispatch, useSelector } from "react-redux"; 
 import {actions, STATUS} from "../features/movieList" 
-
+import {Link} from "react-router-dom";
  
 const MovieList = () => { 
    const status = useSelector(state => state.movieList.status); 
@@ -111,7 +112,9 @@ const EachMovieItem = (props) => {
         <p>
             {
                 arrayMovieList.map((item) => (
-                    <p>MOVIE NAME: {item.original_title}</p>
+                    
+                    <p><Link to={`/MovieInfo/${item.id}`}>MOVIE NAME: {item.original_title} 
+                     </Link>  </p>
                 ))
             }
         </p> 
