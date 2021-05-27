@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'; 
+import reactDom from 'react-dom';
 import { useDispatch, useSelector } from "react-redux"; 
 import {actions, STATUS} from "../features/movieList" ;
 import ContentRow from '../components/ContentRow';
 import '../css/ContentRow.css';
-
+import {Link} from "react-router-dom";
  
 const MovieList = () => { 
    const status = useSelector(state => state.movieList.status); 
@@ -112,10 +113,11 @@ const EachMovieItem = (props) => {
     return( 
         <React.Fragment>{ 
         arrayMovieList.map((item) => (
-            <ContentRow item={item}/>         
+            <Link to={`/MovieInfo/${item.id}`}>
+              <ContentRow item={item}/>
+            </Link>    
         ))}
         </React.Fragment>
-   
      
     ); 
 }

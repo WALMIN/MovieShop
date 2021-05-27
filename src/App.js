@@ -1,12 +1,12 @@
 import './App.css';
 import MovieList from './components/MovieList';
-import React, {useState, useEffect} from 'react';
-import {actions} from './features/movieList'
 import { useSelector } from 'react-redux';
 import NavigationBar from './components/NavigationBar';
-import Varukorg from './components/Varukorg';
-import { Route, HashRouter as Router, Link, Switch } from "react-router-dom";
 import Jumbotron from './components/Jumbotron';
+import Cart from './components/Cart';
+import { Route, HashRouter as Router, Switch } from "react-router-dom";
+import Favourite  from './components/Favourite';
+import MovieInfo from './components/movieInfo/MovieInformation';
 
 function App() {
   return (
@@ -14,19 +14,22 @@ function App() {
       <div className="App">
         <main>
         <Switch>
-          <Route exact path="/cart"> <Varukorg /> </Route>
           <Route exact path="/">
             <Jumbotron />
             <div style={{position: "absolute", top: "65vh"}}>
               <MovieList />
             </div> 
           </Route>
+          <Route exact path="/cart"> <Cart /> </Route>
+          <Route exact path= "/favourites"> <Favourite /> </Route>
+          <Route exact path="/MovieInfo/:id" render={(props) => (
+                      <MovieInfo id={props.match.params.id}/>)}/>
         </Switch>
         </main>
         <footer>
-          
+          <NavigationBar />
         </footer>
-      </div>
+        </div>
     </Router>
   );
 }

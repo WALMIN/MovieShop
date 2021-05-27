@@ -1,0 +1,85 @@
+.Container{
+
+    background: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--text-color);
+}
+
+.Container .MovieItems{
+    
+  display: flex;
+  align-items: center;
+  height: 20vh;
+  margin-top: 0.2vmin;
+  margin-bottom: 0.2vmin;
+  
+  
+}
+
+
+    
+
+.Container .MovieItems div {
+
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .Container .MovieItems div img {
+  
+    width: 20vh;
+    height: 20vh;
+    margin-top: 5vmin;
+    object-fit: contain;
+  
+  }
+  .Container .MoviePoster .MovieTitle{
+    
+    color: var(--primary-color);
+  }
+
+
+
+  
+  .Container .SavedMovies{
+   text-align: left;
+   margin: 2vmin;
+   flex-direction: row ;
+   justify-content: space-between;
+   
+
+    
+  }
+
+  .Container .MovieItems .RemoveFavourites img{
+  
+    width: 3vh;
+    height: 3vh;
+    margin-bottom: 23vmin;
+    
+  }
+
+  .Container .MovieContainer{
+    flex-direction: row;
+  }
+  
+
+  .Container .MoviePoster {
+    flex-direction: column;
+  }
+  
+  .Container button {
+    width: 5vh;
+    height: 3vh;
+    
+    
+  }
+  .Container .SavedMovies{
+    display: flex;
+    flex-direction: row;
+    align-items:  flex-end;
+  }
+  
