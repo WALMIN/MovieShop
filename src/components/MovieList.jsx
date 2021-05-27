@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'; 
 import reactDom from 'react-dom';
 import { useDispatch, useSelector } from "react-redux"; 
-import {actions, STATUS} from "../features/movieList" 
+import {actions, STATUS} from "../features/movieList" ;
+import ContentRow from '../components/ContentRow';
+import '../css/ContentRow.css';
 import {Link} from "react-router-dom";
  
 const MovieList = () => { 
@@ -20,23 +22,23 @@ const MovieList = () => {
    if(status === STATUS.NORMAL) { 
         return ( 
             <div> 
-                <h1>{STATUS.NORMAL}</h1> 
+                {/*<h1>{STATUS.NORMAL}</h1> */}
                 {console.log('Redo för att ladda fakta! Börjar hämta alla genres!')} 
             </div> 
         ) 
     } else if (status === STATUS.FETCHING_GENRES) { 
         return ( 
             <div> 
-                <h1>{STATUS.FETCHING_GENRES}</h1> 
+                {/*<h1>{STATUS.FETCHING_GENRES}</h1> */}
                 {console.log('Hämtar nu alla genres')} 
             </div> 
         ) 
     } else if (status === STATUS.SUCCESS_GENRES) { 
         return ( 
             <div> 
-                <h1>{STATUS.SUCCESS_GENRES}</h1> 
+                {/*<h1>{STATUS.SUCCESS_GENRES}</h1> */}
                 {console.log('Nu är arrayGenre klar')} 
-                    <div> 
+                    <div className="container"> 1
                         {arrayGenre.map((item) => (
                             <EachGenreItem id={item.id} name={item.name} dispatch={dispatch}/> 
                         ))} 
@@ -46,8 +48,7 @@ const MovieList = () => {
     } else if (status === STATUS.FETCHING_MOVIES_BY_GENRE) { 
         return ( 
             <div> 
-                <h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1> 
-                 
+                {/*<h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1>*/}             
                 {/* map:ar alla i arrayGenre till en <p> */} 
                 {console.log('Hämtar nu alla MOVIES enligt GENRES....')} 
        
@@ -56,22 +57,21 @@ const MovieList = () => {
         ) 
     } else if (status === STATUS.SUCCESS_MOVIES) { 
         return ( 
-            <div> 
-                <h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1> 
-                <p>{'Alla MOVIES nu hämtade utifrån GENRE'}</p> 
+            <div className="genre-movie-container"> 2
+                {/*<h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1>
+                <p>{'Alla MOVIES nu hämtade utifrån GENRE'}</p> */}
  
-                 <div> 
+                 
                     {arrayGenre.map((item) => (
                         <EachGenreItem id={item.id} name={item.name}/> 
                     ))} 
-                </div> 
             </div> 
         ) 
     }  
     else if (status === STATUS.SUCCSESS) { 
         return ( 
             <div> 
-                <h1>{STATUS.SUCCSESS}</h1> 
+                {/*<h1>{STATUS.SUCCSESS}</h1> */}
                 <p>{'Alla GENRES och MOVIES nu klara'}</p> 
  
             </div> 
@@ -86,13 +86,16 @@ const MovieList = () => {
 } 
 const EachGenreItem = (props, dispatch) => { 
      
-        console.log("PROPR", props) 
-     
+        //console.log("PROPR", props) 
         return( 
-            <div> 
-                <p>ID: {props.id}</p> 
-                <p>NAME: {props.name}</p> 
+            <div className="content-row-genre-item"> 3
+                <div className="content-row-genre-item-title"> 3.1
+                    <h1 className="genre-title" >{props.name}</h1> 
+                </div>
+
+                <div className="content-row-genre-item-movie"> 3.2
                 <EachMovieItem props={props} dispatch={dispatch}/> 
+                </div>
             </div> 
      
         ); 
@@ -108,17 +111,13 @@ const EachMovieItem = (props) => {
     
      
     return( 
-    <div> 
-        <p>
-            {
-                arrayMovieList.map((item) => (
-                    
-                    <p><Link to={`/MovieInfo/${item.id}`}>MOVIE NAME: {item.original_title} 
-                     </Link>  </p>
-                ))
-            }
-        </p> 
-    </div> 
+        <React.Fragment>{ 
+        arrayMovieList.map((item) => (
+            <Link to={`/MovieInfo/${item.id}`}>
+              <ContentRow item={item}/>
+            </Link>    
+        ))}
+        </React.Fragment>
      
     ); 
 }
