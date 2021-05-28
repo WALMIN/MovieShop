@@ -110,11 +110,20 @@ const EachMovieItem = (props) => {
     }, [props.dispatch]); 
     
      
-    return( 
+   /* return( 
         <React.Fragment>{ 
         arrayMovieList.map((item) => (
             <Link to={`/MovieInfo/${item.id}`}>
               <ContentRow item={item}/>
+            </Link>    
+        ))}
+        </React.Fragment>
+     
+    ); */
+    return( 
+        <React.Fragment>{ 
+        arrayMovieList.map((item) => (
+            <Link to={`/MovieInfo/${item.id}`}> Click here
             </Link>    
         ))}
         </React.Fragment>

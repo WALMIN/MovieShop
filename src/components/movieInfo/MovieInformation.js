@@ -3,18 +3,25 @@ import './MovieInformation.css';
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import {FaStar} from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+
 
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_PRICE = 79
+//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
 
-
+/*const mapStateToProps = (state) => {
+    return{
+    arrayMovieList: state.movieList.arrayMovieList
+    }
+  }*/
 class MovieInformation extends Component {
     state ={
        apiResponse:null,
        cart:[]
    };
-
+   
    
    async componentDidMount() {
     const m_id = this.props.id;
@@ -26,13 +33,20 @@ class MovieInformation extends Component {
     const response = await fetch(movie_url);
     const data = await response.json();
     this.setState({ apiResponse: data});
+    
+    //const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
+   /* const arrayMovieList = this.props.arrayMovieList;
+    console.log("Data value inside Movieinformation:" + this.props.arrayMovieList);*/
 
     //Cart 
     const localCart = localStorage.getItem("cart");
-    if(localCart) {
+    if(localCart) 
+    {
         this.setState({cart:JSON.parse(localCart)});
     }
   }
+
+  
 
   addItem = (id,newItem) => {
     let newCart = this.state.cart;
@@ -40,11 +54,13 @@ class MovieInformation extends Component {
     console.log("Cart"+ newCart);
     if (newCart) { existingItem = newCart.find(item => item.id === id);}
     // Add to quantity if items exist or add new item    
-    if (existingItem) {
+    if (existingItem) 
+    {
       existingItem.quantity += 1;
-    } else {
+    } else 
+    {
         console.log("New Cart" + newItem.title);
-      newCart.push(newItem);
+        newCart.push(newItem);
     }
     // Save state & local storage    
     this.setState({cart:newCart});
@@ -53,11 +69,14 @@ class MovieInformation extends Component {
   }
   
     render(){
+        
         if (!this.state.apiResponse) {
+            
             return <div>didn't get a Data</div>;
           }
         return (
             
+
             <div className="viewMovieDetails">
             <div className="poster_img">
                 <img src= { POSTER_URL + this.state.apiResponse.poster_path } alt="" />
@@ -127,7 +146,7 @@ class MovieInformation extends Component {
                         </div>
                         
                 </section>
-                
+                <br/>
                     <div className="addCart">
                             <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
                     </div>
@@ -135,6 +154,9 @@ class MovieInformation extends Component {
             </div>
         )
     }
+    
 }
 
-export default MovieInformation
+
+
+export default MovieInformation;
