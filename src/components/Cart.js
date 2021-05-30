@@ -1,6 +1,8 @@
 import "./Cart.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { actions } from '../features/cart';
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -80,10 +82,20 @@ function Cart() {
 
   }
 
+  const dispatch = useDispatch();
+  const updateTotal = (total) => {
+    dispatch(actions.updateTotal(total));
+
+  }
+
   return (
     <div className="Cart">
       <header className="Cart-header">
         <h1>Cart</h1>
+        <div>
+          <h2>{total.toFixed(2)} kr</h2>
+          <Link className="CheckoutButton" to="/payment" onClick={ () => updateTotal(total)}>Checkout</Link>
+        </div>
       </header>
       <main>
         { (cart.length > 0) ?
@@ -102,7 +114,7 @@ function Cart() {
                     </div>
                   </div>
                 </div>
-                <p className="MoviePrice">{product.price} kr</p>
+                <p className="MoviePrice">{product.price.toFixed(2)} kr</p>
                 </div>
             </div>
           )
@@ -115,14 +127,6 @@ function Cart() {
           </div>
         }
       </main>
-      { (cart.length > 0) ?
-        <footer>
-          <h2>Total:<br/>{total} kr</h2>
-          <button onClick={() => localStorage.removeItem("cart")}>Checkout</button>
-        </footer>
-        :
-        <div></div>
-      }
     </div>
   );
 }
