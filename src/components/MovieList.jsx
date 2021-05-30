@@ -119,11 +119,12 @@ const EachMovieItem = (props) => {
         ))}
         </React.Fragment>
      
-    ); */
+    ); */ 
     return( 
         <React.Fragment>{ 
         arrayMovieList.map((item) => (
-            <Link to={`/MovieInfo/${item.id}`}> Click here
+            <Link to={`/MovieInfo/${item.id}`}>
+              Click Here
             </Link>    
         ))}
         </React.Fragment>

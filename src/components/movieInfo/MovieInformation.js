@@ -79,13 +79,13 @@ class MovieInformation extends Component {
 
             <div className="viewMovieDetails">
             <div className="poster_img">
-                <img src= { POSTER_URL + this.state.apiResponse.poster_path } alt="" />
+                <img src= { POSTER_URL + this.state.apiResponse.poster_path } alt=""  />
             </div>
 
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span> ${MOVIE_PRICE + this.state.apiResponse.vote_average} </span>
+                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span>
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
@@ -104,7 +104,7 @@ class MovieInformation extends Component {
                 <div className="genres">
                     <p className="classGenres" >  { 
                             this.state.apiResponse.genres.map((gen)=>
-                                gen.name 
+                                gen.name
                              ) +" "
 
                         }    </p>
@@ -131,8 +131,8 @@ class MovieInformation extends Component {
                             <p> <a id="hmpage" href = {this.state.apiResponse.homepage} target="_blank">Visit Site</a></p>
                         </div>
                         <div className="production-companies">
-                            <h4>Credits</h4>
-                            <h4>Production Companies:</h4>
+                            <h4><u>Credits</u></h4>
+                            <h4><u>Production Companies:</u></h4>
                             <p>{this.state.apiResponse.production_companies.map((prd_comp)=> prd_comp.name) + " "}</p>
                         </div>
                         <div className="revenue"> 
@@ -150,6 +150,7 @@ class MovieInformation extends Component {
                     <div className="addCart">
                             <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
                     </div>
+                    
                 </div>
             </div>
         )

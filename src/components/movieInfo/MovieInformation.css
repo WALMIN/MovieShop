@@ -1,33 +1,38 @@
 * {
     padding: 0;
     box-sizing:border-box;
-    margin:0;
+    margin: 0px;   
     }
     
     .viewMovieDetails{
         display: flex;
         justify-content: space-around;
-        flex-wrap: wrap;
+        flex-wrap:wrap;
         padding: 5px 0;
         background: var(--background-color);
         color: var(--text-color);
     }
     
-    .viewMovieDetails .posterimg {
-        justify-content: space-around;
-        width: 80%;
-        height: 80%;
+    .viewMovieDetails .poster_img {
+        justify-content:space-around;
+        max-width: 80%;
+        max-height: 70% ;
+        padding-left: 80px;
     }
+
+  
     
     
     .viewMovieDetails .movieBox{
-        max-width: 500px;
+        max-width: 600px;
         min-width: 290px;
     }
     
     .movieBox .movieTitle{
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-content: center;
+        margin-left: 0;   
         margin-bottom: 15px;
     }
     
@@ -38,15 +43,14 @@
     
     .movieBox .movieTitle span{
         color:crimson;
+        padding-left: 200px;
+        margin-top: 5px;
+        font-size: 18px;
     }
     
     .movieBox p{
         line-height: 1.5;
         margin: 5px 0;
-    }
-
-    .movieBox .addCart{
-        align-content: center;
     }
     
     .cart{
@@ -61,6 +65,11 @@
         margin-top: 15px;
         text-align: center;
         text-decoration: none;
+    }
+
+    .addCart {
+        text-align: center ;
+        padding-bottom: 30px;
     }
     
     .release_status{
@@ -105,8 +114,11 @@
     
     
     .classGenres {
-       font-size: 12px;
+        font-size: 12px;
         justify-content: space-around;
+        padding: 5px;
+        border:1px solid;
+        border-radius: 1rem;
     }
     .genres {
         padding-left: 60px;
@@ -116,29 +128,33 @@
     }
     
     .overview{
+        padding-top: 5px;
         text-align: left;
     }
     
     .overview p{
+        padding-top: 2px;
         text-align: justify;
-        border-width: thin;
-        border-radius: 2px;
-        background-color: darksalmon;
+        
+        padding-left: 5px;
+        font-size: 14px;
     }
     
     
     .technicalInfo {
-        padding-top: 20px;
+        padding-top: 5px;
         text-align: left;
     }
     
     .technicalInfo > div{
-        font-size: 11px;
+        font-size: 12px;
+        padding-top: 2px;
+        padding-left: 5px;
     }
 
 
     .technicalInfo .homepage{
-        background:blue;
+        
         width: fit-content;
         border-radius: 1px;
         cursor: pointer;
@@ -146,14 +162,22 @@
 
     .technicalInfo .homepage a{
         color: white;
+        background:blue;
         text-decoration: unset;
         font-weight: bold;
+        padding: 2px 2px 2px 2px;
     }
 
     .production-companies {
         padding-top: 20px;
     }
-
+    .production-companies >h4 {
+        
+        padding-top: 5px;
+    }
+    .production-companies >p {
+        padding-top: 2px;
+    }
     /*.movieBox .addCart{
         margin: 2vmin;
         padding: 1vmin 2vmin;
@@ -170,12 +194,26 @@
     
     @media only screen and (max-width: 768px) {
         /* For mobile phones: */
-        .posterimg {
-            align-items: center;
-            padding-right: 20px;
-            padding-left: 20px;
-            width: 70%;
-            height:70%;
+        .viewMovieDetails{
+            display:flexbox;
+            justify-content: space-between;
+            margin-left: 0;
+            margin-top: 5px;
+         
+        
+        }
+        .viewMovieDetails .poster_img {    
+            object-fit: contain; 
+            padding-left: 0;
+            width: 200px;
+            height:auto;
+        }
+
+        .viewMovieDetails .movieBox{
+            max-width: 100%;
+            min-width: 290px;
+            padding-left: 5px;
+            
         }
       }
     
