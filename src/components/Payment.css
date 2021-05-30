@@ -26,10 +26,15 @@
 
 }
 
-.Payment input {
+.Payment .BillingDetails {
+
+  display: flex;
+  flex-direction: column;
 
   width: 40vw;
-  padding: 1.5vmin 2.5vmin;
+  padding-top: 1vmin;
+  padding-left: 1vmin;
+  padding-right: 1vmin;
   margin-bottom: 1vmin;
 
   background: #ffffff;
@@ -39,7 +44,19 @@
 
 }
 
-.Payment input:focus {
+.Payment .BillingDetails input {
+
+  width: 100%;
+  padding: 1.5vmin 2.5vmin;
+  margin-bottom: 1vmin;
+
+  background: #efefef;
+  border: none;
+  border-radius: 0.5vmin;
+
+}
+
+.Payment .BillingDetails input:focus {
 
   outline: none;
 
@@ -133,18 +150,7 @@
 
 }
 
-.Payment .PaymentMethod .PaymentMethodTitle div {
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 4vmin;
-  margin-left: 1vmin;
-
-  color: #000000;
-
-}
 
 .Payment .PaymentMethod .PaymentMethodTitle img {
 
@@ -166,10 +172,9 @@
   width: 100%;
   padding: 1.5vmin 2.5vmin;
 
-  background: #e5e5e5;
+  background: #efefef;
   border: none;
   border-radius: 0.5vmin;
-  color: #00000;
 
 }
 

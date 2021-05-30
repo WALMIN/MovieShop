@@ -97,15 +97,17 @@ function Payment() {
   return (
     <div className="Payment">
       <p className="Title">Billing details</p>
-      <input type="text" placeholder="First name" autocomplete="given-name" value={firstName} onChange={i => { setFirstName(i.target.value) }} required />
-      <input type="text" placeholder="Last name" autocomplete="family-name" value={lastName} onChange={i => { setLastName(i.target.value) }} required />
-      <input type="text" placeholder="Email" autocomplete="email" value={email} onChange={i => { setEmail(i.target.value) }} required />
-      <input type="text" placeholder="Phone" autocomplete="tel" value={phone} onChange={i => { setPhone(i.target.value) }} required />
-      <input type="text" placeholder="Country" autocomplete="country-name" value={country} onChange={i => { setCountry(i.target.value) }} required />
-      <input type="text" placeholder="Street name and house number" autocomplete="street-address" value={street} onChange={i => { setStreet(i.target.value) }} required />
-      <input type="text" placeholder="Apartment, suite, unit, etc. (optional)" value={streetOptional} onChange={i => { setStreetOptional(i.target.value) }} />
-      <input type="text" placeholder="Postal code" value={postalCode} onChange={i => { setPostalCode(i.target.value) }} required />
-      <input type="text" placeholder="City" value={city} onChange={i => { setCity(i.target.value) }} required />
+      <div className="BillingDetails">
+        <input type="text" placeholder="First name" autocomplete="given-name" value={firstName} onChange={i => { setFirstName(i.target.value) }} required />
+        <input type="text" placeholder="Last name" autocomplete="family-name" value={lastName} onChange={i => { setLastName(i.target.value) }} required />
+        <input type="text" placeholder="Email" autocomplete="email" value={email} onChange={i => { setEmail(i.target.value) }} required />
+        <input type="text" placeholder="Phone" autocomplete="tel" value={phone} onChange={i => { setPhone(i.target.value) }} required />
+        <input type="text" placeholder="Country" autocomplete="country-name" value={country} onChange={i => { setCountry(i.target.value) }} required />
+        <input type="text" placeholder="Street name and house number" autocomplete="street-address" value={street} onChange={i => { setStreet(i.target.value) }} required />
+        <input type="text" placeholder="Apartment, suite, unit, etc. (optional)" value={streetOptional} onChange={i => { setStreetOptional(i.target.value) }} />
+        <input type="text" placeholder="Postal code" value={postalCode} onChange={i => { setPostalCode(i.target.value) }} required />
+        <input type="text" placeholder="City" value={city} onChange={i => { setCity(i.target.value) }} required />
+      </div>
 
       <p className="Title">Shipping</p>
       {
@@ -138,8 +140,8 @@ function Payment() {
         </div>
         { paymentMethod === 0 ?
           <div className="PaymentMethodFields">
-            <input type="text" placeholder="Card number" autocomplete="cc-number" value={cardNumber} onChange={i => { setCardNumber(i.target.value) }} required />
-            <input type="month" autocomplete="cc-exp" onChange={i => { setCardExpire(i.target.value) }} required />
+            <input type="text" placeholder="Card number" autocomplete="cc-number" value={cardNumber} onChange={i => { setCardNumber(i.target.value) }} style={{"margin-bottom": "1vmin"}} required />
+            <input type="month" autocomplete="cc-exp" onChange={i => { setCardExpire(i.target.value) }} style={{"margin-bottom": "1vmin"}} required />
             <input type="number" placeholder="CVC/CVV" min="0" max="9999" maxlength="4" autocomplete="cc-csc" value={cardCvc} onChange={i => { setCardCvc(i.target.value) }} required />
           </div>
           : null
