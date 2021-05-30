@@ -29,7 +29,7 @@
 .Payment input {
 
   width: 40vw;
-  padding: 1.5vh 2.5vh;
+  padding: 1.5vmin 2.5vmin;
   margin-bottom: 1vmin;
 
   background: #ffffff;
@@ -45,10 +45,10 @@
 
 }
 
-.Payment .DeliveryOption {
+.Payment .ShippingOption {
 
   width: 40vw;
-  padding: 0.5vh;
+  padding: 1vmin;
   margin-bottom: 1vmin;
 
   background: #ffffff;
@@ -59,16 +59,16 @@
 
 }
 
-.Payment .DeliveryOption .DeliveryTitle {
+.Payment .ShippingOption .ShippingTitle {
 
   display: flex;
 
   height: 4vmin;
-  margin-bottom: 0.25vmin;
+  margin-bottom: 0.75vmin;
 
 }
 
-.Payment .DeliveryOption .DeliveryTitle div {
+.Payment .ShippingOption .ShippingTitle div {
 
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@
 
 }
 
-.Payment .DeliveryOption .DeliveryTitle div img {
+.Payment .ShippingOption .ShippingTitle div img {
 
   height: 4vmin;
   margin-left: 1vmin;
@@ -87,16 +87,95 @@
 
 }
 
-.Payment .DeliveryOption .DeliveryTitle div p {
+.Payment .ShippingOption .ShippingTitle div p {
 
   font-weight: bold;
 
 }
 
-.Payment .DeliveryOption input {
+.Payment .ShippingOption input {
 
-  width: 2vh;
-  height: 4vh;
+  width: 2vmin;
+  height: 4vmin;
+
+}
+
+.Payment .PaymentMethod {
+
+  display: flex;
+  flex-direction: column;
+
+  width: 40vw;
+  padding: 1vmin;
+  margin-bottom: 1vmin;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 0.5vmin;
+  color: #00000;
+
+}
+
+.Payment .PaymentMethod .PaymentMethodTitle {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  height: 4vmin;
+
+}
+
+.Payment .PaymentMethod .PaymentMethodTitle input {
+
+  width: 2vmin;
+  height: 4vmin;
+
+}
+
+.Payment .PaymentMethod .PaymentMethodTitle div {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 4vmin;
+  margin-left: 1vmin;
+
+  color: #000000;
+
+}
+
+.Payment .PaymentMethod .PaymentMethodTitle img {
+
+  height: 4vmin;
+  margin-left: 1vmin;
+
+  object-fit: contain;
+
+}
+
+.Payment .PaymentMethod .PaymentMethodFields {
+
+  margin-top: 1vmin;
+
+}
+
+.Payment .PaymentMethod input {
+
+  width: 100%;
+  padding: 1.5vmin 2.5vmin;
+
+  background: #e5e5e5;
+  border: none;
+  border-radius: 0.5vmin;
+  color: #00000;
+
+}
+
+.Payment .PaymentMethod input:focus {
+
+  outline: none;
 
 }
 
@@ -133,6 +212,6 @@
 
   background: #54BB6B;
   border: 0.25vmin solid #54BB6B;
-  box-shadow: 0.25vh 0.5vh 1vh #191919;
+  box-shadow: 0.25vmin 0.5vmin 1vmin #191919;
 
 }

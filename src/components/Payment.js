@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { actions } from '../features/cart';
 
 function Payment() {
+  // Billing details
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,18 +16,25 @@ function Payment() {
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
 
+  // Payment
+  const [paymentMethod, setPaymentMethod] = useState("");
+
   const [cardNumber, setCardNumber] = useState("");
   const [cardExpire, setCardExpire] = useState("");
   const [cardCvc, setCardCvc] = useState("");
 
+  const [swishNumber, setSwishNumber] = useState("");
+
+  const [paypalEmail, setPaypalEmail] = useState("");
+
   const total = useSelector(state => state.cart.total);
   const [shipping, setShipping] = useState(0);
 
-  const deliveryList = [
-    ["Postnord", "postnord.webp", "Leverans inom 3-4 vardagar", 29],
-    ["DHL", "dhl.png", "Leverans inom 3-4 vardagar", 29],
-    ["Instabox", "instabox.png", "Leverans inom 1-2 dagar", 39],
-    ["Budbee", "budbee.png", "Hemleverans inom 1-2 vardagar", 49]
+  const shippingList = [
+    ["Postnord", "postnord.webp", "Delivery within 3-4 weekdays", 29],
+    ["DHL", "dhl.png", "Delivery within 3-4 weekdays", 29],
+    ["Instabox", "instabox.png", "Delivery within 1-2 days", 39],
+    ["Budbee", "budbee.png", "Home delivery within 1-2 weekdays", 49]
   ];
 
   // Go to cart if no price/cart empty
@@ -43,32 +51,44 @@ function Payment() {
     let cardVisaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/;
     let cardMasterCard = /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$/;
 
-    if(emailRegex.test(email) &&
-        phoneRegex.test(phone.replace(" ", "")) &&
 
-        shipping !== 0 &&
-
-        (cardAmericanExpressRegex.test(cardNumber) ||
+    if(emailRegex.test(email) && phoneRegex.test(phone.replace(" ", "")) && shipping !== 0){
+      // Card
+      if(paymentMethod == 0) {
+        if(cardAmericanExpressRegex.test(cardNumber) ||
         cardVisaRegex.test(cardNumber) ||
-        cardMasterCard.test(cardNumber)) &&
+        cardMasterCard.test(cardNumber) &&
         setCardExpire.length > 0 &&
         (cardCvc >= 100 && cardCvc <= 9999)){
-      alert(
-        firstName + " " + lastName + "\n" +
-        email + "\n" +
-        phone + "\n\n" +
-        country + "\n" +
-        street + "\n" +
-        streetOptional + "\n" +
-        postalCode + "\n" +
-        city + "\n\n" +
-        cardNumber + "\n" +
-        cardExpire + "\n" +
-        cardCvc
-      );
 
-    } else {
+        alert("(" + paymentMethod + ")\n" +
+          firstName + " " + lastName + "\n" + email + "\n" + phone + "\n\n" +
+          country + "\n" + street + "\n" + streetOptional + "\n" + postalCode + "\n" + city + "\n\n" +
+          cardNumber + "\n" + cardExpire + "\n" + cardCvc);
 
+        }
+
+      // PayPal
+      } else if(paymentMethod == 1) {
+        if(emailRegex.test(paypalEmail)){
+          alert("(" + paymentMethod + ")\n" +
+            firstName + " " + lastName + "\n" + email + "\n" + phone + "\n\n" +
+            country + "\n" + street + "\n" + streetOptional + "\n" + postalCode + "\n" + city + "\n\n" +
+            paypalEmail);
+
+        }
+
+      // Swish
+      } else if(paymentMethod == 2) {
+        if(phoneRegex.test(swishNumber)){
+          alert("(" + paymentMethod + ")\n" +
+            firstName + " " + lastName + "\n" + email + "\n" + phone + "\n\n" +
+            country + "\n" + street + "\n" + streetOptional + "\n" + postalCode + "\n" + city + "\n\n" +
+            swishNumber);
+
+        }
+
+      }
 
     }
 
@@ -87,27 +107,78 @@ function Payment() {
       <input type="text" placeholder="Postal code" value={postalCode} onChange={i => { setPostalCode(i.target.value) }} required />
       <input type="text" placeholder="City" value={city} onChange={i => { setCity(i.target.value) }} required />
 
-      <p className="Title">Delivery</p>
+      <p className="Title">Shipping</p>
       {
-        deliveryList.map(delivery =>
-          <div className="DeliveryOption">
-            <div className="DeliveryTitle">
-              <input type="radio" name="delivery" value={delivery[0]} onClick={ () => setShipping(delivery[3]) } />
-              <div for={delivery[0]}>
-                <img src={(process.env.PUBLIC_URL + "/images/delivery/" + delivery[1])} />
-                <p>+{delivery[3]} kr</p>
+        shippingList.map(shipping =>
+          <div className="ShippingOption">
+            <div className="ShippingTitle">
+              <input type="radio" name="shipping" value={shipping[0]} onClick={ () => setShipping(shipping[3]) } />
+              <div for={shipping[0]}>
+                <img src={(process.env.PUBLIC_URL + "/images/shipping/" + shipping[1])} />
+                <p>+{shipping[3]} kr</p>
               </div>
             </div>
-            <p>{delivery[2]}</p>
+            <p>{shipping[2]}</p>
           </div>
 
         )
       }
 
       <p className="Title">Payment</p>
-      <input type="text" placeholder="Card number" autocomplete="cc-number" value={cardNumber} onChange={i => { setCardNumber(i.target.value) }} required />
-      <input type="month" autocomplete="cc-exp" onChange={i => { setCardExpire(i.target.value) }} required />
-      <input type="number" placeholder="CVC/CVV" min="0" max="9999" maxlength="4" autocomplete="cc-csc" value={cardCvc} onChange={i => { setCardCvc(i.target.value) }} required />
+      <div className="PaymentMethod">
+        <div className="PaymentMethodTitle">
+          <div>
+            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod(0) } />
+          </div>
+          <div>
+            <img src={(process.env.PUBLIC_URL + "/images/payment/visa.jpg")} />
+            <img src={(process.env.PUBLIC_URL + "/images/payment/mastercard.png")} />
+            <img src={(process.env.PUBLIC_URL + "/images/payment/american-express.jpg")} />
+          </div>
+        </div>
+        { paymentMethod === 0 ?
+          <div className="PaymentMethodFields">
+            <input type="text" placeholder="Card number" autocomplete="cc-number" value={cardNumber} onChange={i => { setCardNumber(i.target.value) }} required />
+            <input type="month" autocomplete="cc-exp" onChange={i => { setCardExpire(i.target.value) }} required />
+            <input type="number" placeholder="CVC/CVV" min="0" max="9999" maxlength="4" autocomplete="cc-csc" value={cardCvc} onChange={i => { setCardCvc(i.target.value) }} required />
+          </div>
+          : null
+        }
+      </div>
+
+      <div className="PaymentMethod">
+        <div className="PaymentMethodTitle">
+          <div>
+            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod(1) } />
+          </div>
+          <div>
+            <img src={(process.env.PUBLIC_URL + "/images/payment/paypal.png")} />
+          </div>
+        </div>
+        { paymentMethod === 1 ?
+          <div className="PaymentMethodFields">
+            <input type="text" placeholder="PayPal email" autocomplete="email" value={paypalEmail} onChange={i => { setPaypalEmail(i.target.value) }} required />
+          </div>
+          : null
+        }
+      </div>
+
+      <div className="PaymentMethod">
+        <div className="PaymentMethodTitle">
+          <div>
+            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod(2) } />
+          </div>
+          <div>
+            <img src={(process.env.PUBLIC_URL + "/images/payment/swish.svg")} />
+          </div>
+        </div>
+        { paymentMethod === 2 ?
+          <div className="PaymentMethodFields">
+            <input type="text" placeholder="Swish number" autocomplete="tel" value={swishNumber} onChange={i => { setSwishNumber(i.target.value) }} required />
+          </div>
+          : null
+        }
+      </div>
 
       <p className="Title">To pay</p>
       <p className="ToPay">{(total + shipping).toFixed(2)} kr</p>
