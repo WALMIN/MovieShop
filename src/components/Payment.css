@@ -1,0 +1,138 @@
+.Payment {
+
+  padding-left: 30vw;
+  padding-right: 30vw;
+  padding-bottom: 9vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  background: var(--background-color);
+  color: var(--text-color);
+
+}
+
+.Payment .Title {
+
+  margin: 0px;
+  margin-top: 0.5vmin;
+  margin-bottom: 1vmin;
+
+  color: var(--text-color);
+  font-size: calc(10px + 1.5vmin);
+  font-weight: bold;
+
+}
+
+.Payment input {
+
+  width: 40vw;
+  padding: 1.5vh 2.5vh;
+  margin-bottom: 1vmin;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 0.5vmin;
+  color: #00000;
+
+}
+
+.Payment input:focus {
+
+  outline: none;
+
+}
+
+.Payment .DeliveryOption {
+
+  width: 40vw;
+  padding: 0.5vh;
+  margin-bottom: 1vmin;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 0.5vmin;
+
+  color: #000000;
+
+}
+
+.Payment .DeliveryOption .DeliveryTitle {
+
+  display: flex;
+
+  height: 4vmin;
+  margin-bottom: 0.25vmin;
+
+}
+
+.Payment .DeliveryOption .DeliveryTitle div {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+}
+
+.Payment .DeliveryOption .DeliveryTitle div img {
+
+  height: 4vmin;
+  margin-left: 1vmin;
+
+  object-fit: contain;
+
+}
+
+.Payment .DeliveryOption .DeliveryTitle div p {
+
+  font-weight: bold;
+
+}
+
+.Payment .DeliveryOption input {
+
+  width: 2vh;
+  height: 4vh;
+
+}
+
+.Payment .ToPay {
+
+  margin: 0px;
+
+  color: var(--text-color);
+  font-size: calc(10px + 2vmin);
+
+}
+
+.Payment .PurchaseButton {
+
+  margin-top: 2vmin;
+  padding: 1vmin 2vmin;
+
+  background: #5ED077;
+  border: 0.25vmin solid #5ED077;
+  color: var(--text-color);
+  border-radius: 0.5vmin;
+  font-size: calc(10px + 1vmin);
+  text-decoration: none;
+  cursor: pointer;
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+
+}
+
+.Payment .PurchaseButton:hover {
+
+  background: #54BB6B;
+  border: 0.25vmin solid #54BB6B;
+  box-shadow: 0.25vh 0.5vh 1vh #191919;
+
+}
