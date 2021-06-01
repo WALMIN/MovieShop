@@ -20,9 +20,6 @@
         padding-left: 80px;
     }
 
-  
-    
-    
     .viewMovieDetails .movieBox{
         max-width: 600px;
         min-width: 290px;
@@ -70,6 +67,7 @@
     .addCart {
         text-align: center ;
         padding-bottom: 30px;
+        position: relative;
     }
     
     .release_status{
@@ -135,7 +133,6 @@
     .overview p{
         padding-top: 2px;
         text-align: justify;
-        
         padding-left: 5px;
         font-size: 14px;
     }
@@ -154,7 +151,6 @@
 
 
     .technicalInfo .homepage{
-        
         width: fit-content;
         border-radius: 1px;
         cursor: pointer;
@@ -177,6 +173,13 @@
     }
     .production-companies >p {
         padding-top: 2px;
+    }
+
+    .ratingsComments{
+        margin-top: 50px;
+        position: absolute;
+        width: fit-content;
+        height: fit-content;
     }
     /*.movieBox .addCart{
         margin: 2vmin;

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import {FaStar} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import StarRating from '../starrating/StarRating'; 
 
 
 
@@ -75,9 +76,7 @@ class MovieInformation extends Component {
             return <div>didn't get a Data</div>;
           }
         return (
-            
-
-            <div className="viewMovieDetails">
+        <div className="viewMovieDetails">
             <div className="poster_img">
                 <img src= { POSTER_URL + this.state.apiResponse.poster_path } alt=""  />
             </div>
@@ -120,7 +119,6 @@ class MovieInformation extends Component {
                 
                 <section className="technicalInfo"> 
                        <h3><u>Technical Information</u></h3>
-                        
                         <div className="release-date">
                             <p> <b>Released Date:</b> {this.state.apiResponse.release_date}</p>
                         </div>
@@ -149,10 +147,15 @@ class MovieInformation extends Component {
                 <br/>
                     <div className="addCart">
                             <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
-                    </div>
-                    
+                    </div> 
+
+                    <div className="ratingsComments">
+                           <p> <StarRating /> </p>
+                        </div>
                 </div>
-            </div>
+                       
+        </div>
+                
         )
     }
     
