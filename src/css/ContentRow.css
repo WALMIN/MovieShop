@@ -1,10 +1,10 @@
-/*1*/
+
 .container { 
     display: flex;
     flex-direction: column;
     position: absolute;
     top: -60px;
-    width: 100vh;
+    width: 100%;
     height: 100%;
     background: pink;
 }
@@ -12,24 +12,15 @@
 /*2*/
 .genre-movie-container { 
     display: flex;
-    width: 90%;
+    width: 95%;
     flex-direction: column;
     margin: 20px;
 }
 
 /*3*/
-.content-row-genre-item {
-    height: 250px;
-    min-width: 80%;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-}
-
-/*3.1*/
-.content-row-genre-item-title {
-    width: fit-content;
-    display: flex;
+div + .movie-row-container {
+    width: 100%;
+    height: 100%;
 }
 
 /*3.2*/
@@ -41,18 +32,6 @@
     height: 100%;
 }
 
-/*4*/
-/*.block-wrapper {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}*/
-
-/*
-.content-row-container {
-    display: flex;
-}*/
-
 .genre-title {
     display: flex;
     width: 100px;
@@ -63,7 +42,20 @@
 
 .poster-img {
     border-radius: 5px;
-    margin-right: 5px;
-    width: 30%;
+    width: 140px;
+    height: 200px;
+}
+.content-row-genre-item-movie * > a {
+    display: flex;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+  
+}
+
+.contentrow-link-container {
+    display: flex;
+    background: yellow;
+    width: 100%;
     height: 100%;
 }

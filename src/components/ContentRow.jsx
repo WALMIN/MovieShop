@@ -5,8 +5,7 @@ import { waitFor } from '@testing-library/dom';
 
 
 
-const ContentRow = ({item, genreName}) => {
-    const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
+const ContentRow = ({item}) => {
     let imgPath = null;
     let img = null;
 
@@ -15,12 +14,9 @@ const ContentRow = ({item, genreName}) => {
         img = "https://image.tmdb.org/t/p/w500/" + imgPath;
 
         return( 
-            //<div className="block-wrapper"> 4
             <React.Fragment>
                 <img className="poster-img" src={img} alt="No image available"/>
-            </React.Fragment>
-            //</div>
-            
+            </React.Fragment>  
         )
     }
 
