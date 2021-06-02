@@ -11,14 +11,15 @@ const colors = {
 const ref = db.collection('movieinfo');
 
 function StarRating({movId}) {
-    console.log("movieId in starrating:" + this.movId);
+    const mId = movId;
+    console.log("movieId in starrating:" + mId);
 
     const [posts,setPosts] = useState([]);
     useEffect(() => {
        /* db.collection('sampleId').onSnapshot(snap => {
                 setPosts(snap.docs.map(doc=>doc.data()))
         })*/
-        ref.where('movieId','==',this.movId).onSnapshot(snap => {
+        ref.where('movieId','==',mId).onSnapshot(snap => {
             setPosts(snap.docs.map(doc=>doc.data()))
         })
     }, [])
@@ -28,7 +29,7 @@ function StarRating({movId}) {
      const [hoverValue,setHoverValue] = useState(undefined);
 
      const handleClick = value => {
-         setCurrentValue(value)
+         setCurrentValue(value);
      };
 
      const handleMouseOver = value => {
@@ -40,19 +41,13 @@ function StarRating({movId}) {
      };
 
      const saveComments = () =>{
-        console.log("Inside saveComments");
-       /* db.collection('sampleId').doc("newRating").set({
-            movieId:"234",
-            movieTitle:"Starwars",
-            movieRating:"10",
-            movieComments:"Poor"
-        })*/
         const newData = {
-            movieId:this.movId,
-            movieRating: "1",
-            movieComments:"Well"
+            movieId:mId,
+            movieRating: +currentValue,
+            movieComments:"Well Done Kumar"
         };
-        ref.doc(newData.movieId).set(newData)
+        console.log("Movie Id" + currentValue);
+        ref.add(newData)
         .then(() => {
            console.log("Document successfully written!");
        })
