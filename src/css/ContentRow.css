@@ -42,6 +42,7 @@ div + .movie-row-container {
 
 .poster-img {
     border-radius: 5px;
+    padding-right: 8px;
     width: 140px;
     height: 200px;
 }
@@ -55,7 +56,6 @@ div + .movie-row-container {
 
 .contentrow-link-container {
     display: flex;
-    background: yellow;
     width: 100%;
     height: 100%;
 }

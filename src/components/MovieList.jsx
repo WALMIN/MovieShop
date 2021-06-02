@@ -54,6 +54,13 @@ const MovieList = () => {
     } else if (status === STATUS.SUCCESS_MOVIES) { 
     let filteredMovieList = []
     let genreMovie = null;
+    //console.log('Array Movie List: ', arrayMovieList);
+
+    arrayMovieList.forEach((array) => (
+        array.forEach((item) => (
+            console.log('varje Item: ', item)
+        ))
+    ))
 
     
         return ( 
@@ -66,13 +73,10 @@ const MovieList = () => {
                         <div className="movie-row-container"> 3
                             <h1 className="genre-title" >{genreItem.name}</h1> 
                             {filteredMovieList = arrayMovieList.filter((movie) => movie.genre_ids === genreItem.id)}
-                            {console.log('filtered movie list ', filteredMovieList)}
-                            {console.log('item.id', genreItem.id)}
-                            {console.log('movie.id', arrayMovieList[0].genre_ids)}
+
 
                             <div className="content-row-genre-item-movie"> 3.2
                                 {arrayMovieList.slice(0, 50).map((item) => (
-                                    
                                     <Link to={`/MovieInfo/${item.id}`} className="contentrow-link-container">
                                         <ContentRow item={item}/>
                                     </Link>    
@@ -179,6 +183,7 @@ function fetchAllGenres(dispatch) {
                // Arrayn är klar här, allting har pushats i forEach 
                // Uppdatera våran state.arrayGenres i [movieList.js] med tempArray som nu är [ { id: 22, 'action'},  { id: 55, 'drama'}, etc.. etc..] 
                  //dispatch(actions.successAllGenres()); 
+    
                 dispatch(actions.listGenreFetched(tempArray));
                 dispatch(actions.successAllGenres());          
            }) 
@@ -193,8 +198,9 @@ function fetchAllGenres(dispatch) {
         //dispatch(actions.isFetching()); 
         dispatch(actions.isFetchingMovieByGenre);
         var movieTempArray = []; 
-
-        const genreUrl = `https://api.themoviedb.org/3/genre/${props.id}/movies?api_key=3dbd54ecb77c41b970728ba04b569d4c&page_size=1&page=1`; 
+    
+        const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=3dbd54ecb77c41b970728ba04b569d4c&language=en-US&sort_by=popularity.asc&include_adult=false&include_video=false&page=1&vote_count.gte=7&with_genres=${props.id}`
+        //const genreUrl = `https://api.themoviedb.org/3/genre/${props.id}/movies?api_key=3dbd54ecb77c41b970728ba04b569d4c&page_size=1&page=1`; 
 
         fetch(genreUrl)    
                 .then(async response => { 
@@ -211,13 +217,15 @@ function fetchAllGenres(dispatch) {
                       // ovan Konverterar datan från [results:[object: object, object: object, ... , osv]] till en [{ id: value, original_title: value, ...}, { id: value, original_title: value, ...}] 
      
                     // JSON.parse gör om vArr [{ id: value, original_title: 'Batman', ...}, { id: value, original_title: 'Nicolinas äventyr', ...}] till [object: object, object: object] igen fast utan genre: innan 
-                    JSON.parse(vArr).forEach((props) => { 
+                    JSON.parse(vArr).forEach((item) => { 
                         //console.log('Each result title ' + props.original_title + ' in GENRE: '); 
-                        const item = createMovieItem(props.original_title) 
-                        movieTempArray.push(props); 
+                        //const item = createMovieItem(item.original_title) 
+                        movieTempArray.push(item); 
                          
                     }); 
-     
+                    let cat = {
+                        id: props.id
+                    }
                     //console.log('Laddar nästa..') 
                     //console.log('Movie temp array' + JSON.stringify(movieTempArray));
                     dispatch(actions.listMoviesFetched(movieTempArray)); 
