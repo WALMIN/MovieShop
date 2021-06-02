@@ -10,6 +10,7 @@ import StarRating from '../starrating/StarRating';
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_PRICE = 79
+
 //const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
 
 /*const mapStateToProps = (state) => {
@@ -20,7 +21,8 @@ const MOVIE_PRICE = 79
 class MovieInformation extends Component {
     state ={
        apiResponse:null,
-       cart:[]
+       cart:[],
+       mov_id:""
    };
    
    
@@ -34,6 +36,9 @@ class MovieInformation extends Component {
     const response = await fetch(movie_url);
     const data = await response.json();
     this.setState({ apiResponse: data});
+
+    //Setting state for movId 
+    this.setState({ mov_id: data.id});
     
     //const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
    /* const arrayMovieList = this.props.arrayMovieList;
@@ -47,7 +52,6 @@ class MovieInformation extends Component {
     }
   }
 
-  
 
   addItem = (id,newItem) => {
     let newCart = this.state.cart;
@@ -150,8 +154,9 @@ class MovieInformation extends Component {
                     </div> 
 
                     <div className="ratingsComments">
-                           <p> <StarRating /> </p>
-                        </div>
+                             <StarRating movId = {this.state.mov_id} />  
+                            
+                    </div>
                 </div>
                        
         </div>
