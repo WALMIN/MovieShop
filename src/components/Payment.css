@@ -1,0 +1,222 @@
+.Payment {
+
+  padding-left: 30vw;
+  padding-right: 30vw;
+  padding-bottom: 9vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  background: var(--background-color);
+  color: var(--text-color);
+
+}
+
+.Payment .Title {
+
+  margin: 0px;
+  margin-top: 0.5vmin;
+  margin-bottom: 1vmin;
+
+  color: var(--text-color);
+  font-size: calc(10px + 1.5vmin);
+  font-weight: bold;
+
+}
+
+.Payment .BillingDetails {
+
+  display: flex;
+  flex-direction: column;
+
+  width: 40vw;
+  padding-top: 1vmin;
+  padding-left: 1vmin;
+  padding-right: 1vmin;
+  margin-bottom: 1vmin;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 0.5vmin;
+  color: #00000;
+
+}
+
+.Payment .BillingDetails input {
+
+  width: 100%;
+  padding: 1.5vmin 2.5vmin;
+  margin-bottom: 1vmin;
+
+  background: #efefef;
+  border: none;
+  border-radius: 0.5vmin;
+
+}
+
+.Payment .BillingDetails input:focus {
+
+  outline: none;
+
+}
+
+.Payment .ShippingOption {
+
+  width: 40vw;
+  padding: 1vmin;
+  margin-bottom: 1vmin;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 0.5vmin;
+
+  color: #000000;
+
+}
+
+.Payment .ShippingOption .ShippingTitle {
+
+  display: flex;
+
+  height: 4vmin;
+  margin-bottom: 0.75vmin;
+
+}
+
+.Payment .ShippingOption .ShippingTitle div {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+}
+
+.Payment .ShippingOption .ShippingTitle div img {
+
+  height: 4vmin;
+  margin-left: 1vmin;
+
+  object-fit: contain;
+
+}
+
+.Payment .ShippingOption .ShippingTitle div p {
+
+  font-weight: bold;
+
+}
+
+.Payment .ShippingOption input {
+
+  width: 2vmin;
+  height: 4vmin;
+
+}
+
+.Payment .PaymentMethod {
+
+  display: flex;
+  flex-direction: column;
+
+  width: 40vw;
+  padding: 1vmin;
+  margin-bottom: 1vmin;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 0.5vmin;
+  color: #00000;
+
+}
+
+.Payment .PaymentMethod .PaymentMethodTitle {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  height: 4vmin;
+
+}
+
+.Payment .PaymentMethod .PaymentMethodTitle input {
+
+  width: 2vmin;
+  height: 4vmin;
+
+}
+
+
+
+.Payment .PaymentMethod .PaymentMethodTitle img {
+
+  height: 4vmin;
+  margin-left: 1vmin;
+
+  object-fit: contain;
+
+}
+
+.Payment .PaymentMethod .PaymentMethodFields {
+
+  margin-top: 1vmin;
+
+}
+
+.Payment .PaymentMethod input {
+
+  width: 100%;
+  padding: 1.5vmin 2.5vmin;
+
+  background: #efefef;
+  border: none;
+  border-radius: 0.5vmin;
+
+}
+
+.Payment .PaymentMethod input:focus {
+
+  outline: none;
+
+}
+
+.Payment .ToPay {
+
+  margin: 0px;
+
+  color: var(--text-color);
+  font-size: calc(10px + 2vmin);
+
+}
+
+.Payment .PurchaseButton {
+
+  margin-top: 2vmin;
+  padding: 1vmin 2vmin;
+
+  background: #5ED077;
+  border: 0.25vmin solid #5ED077;
+  color: var(--text-color);
+  border-radius: 0.5vmin;
+  font-size: calc(10px + 1vmin);
+  text-decoration: none;
+  cursor: pointer;
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+
+}
+
+.Payment .PurchaseButton:hover {
+
+  background: #54BB6B;
+  border: 0.25vmin solid #54BB6B;
+  box-shadow: 0.25vmin 0.5vmin 1vmin #191919;
+
+}
