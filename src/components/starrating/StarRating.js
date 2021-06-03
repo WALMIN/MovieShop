@@ -65,6 +65,7 @@ function StarRating({movId}) {
         //Add new ratings & comments to firebase
         ref.add(newData)
         .then(() => {
+            alert('Added posts');
            console.log("Document successfully written!");
            
        })
