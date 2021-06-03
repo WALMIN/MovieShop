@@ -15,12 +15,12 @@ function StarRating({movId}) {
     console.log("movieId in starrating:" + mId);
 
     const [posts,setPosts] = useState([]);
+    const [userComment, setUserComment] = useState("");
+
     useEffect(() => {
-       /* db.collection('sampleId').onSnapshot(snap => {
-                setPosts(snap.docs.map(doc=>doc.data()))
-        })*/
         ref.where('movieId','==',mId).onSnapshot(snap => {
             setPosts(snap.docs.map(doc=>doc.data()))
+           
         })
     }, [])
 
@@ -41,19 +41,33 @@ function StarRating({movId}) {
      };
 
      const saveComments = () =>{
+        //event.preventDefault();
+        //setPosts(event);
+        console.log("User comments submitted:" + userComment);
+        console.log("star value" + currentValue);
+
         const newData = {
-            movieId:mId,
+            movieId: mId,
             movieRating: +currentValue,
-            movieComments:"Well Done Kumar"
+            movieComments: userComment
         };
-        console.log("Movie Id" + currentValue);
+        //Add new ratings & comments to firebase
         ref.add(newData)
         .then(() => {
+            {this.generateAlert()};
            console.log("Document successfully written!");
+           
        })
        .catch((error) => {
            console.error("Error writing document: ", error);
        });
+    };
+
+    const generateAlert = () => {
+        alert('Ratings & Comment submitted');
+    }
+    const handleBlur = event => {
+        console.log('You finished typing:', setUserComment);
     }
      
     return (
@@ -85,7 +99,8 @@ function StarRating({movId}) {
             </div>
 
             <div className="comments">
-                <textarea className="userComments" placeholder="Write Comments" />
+                <textarea className="userComments" placeholder="Write Comments"  onBlur={handleBlur} value={userComment} onChange={(e)=>
+            setUserComment(e.target.value)}/>
                 <button className="submitBtn" onClick = {saveComments}>Submit</button>
             </div>
         </div>
