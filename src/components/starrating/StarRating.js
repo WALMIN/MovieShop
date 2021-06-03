@@ -74,13 +74,15 @@ function StarRating({movId}) {
         <div className="container">
             <h2> Ratings and Comments </h2>
             {
-                posts.map(
-                    (vari)=>(
+                posts.map((vari) => {
+                        return(
                         <div>
-                            <h4>{vari.movieRating}</h4>
-                            <h4>{vari.movieComments}</h4>
+                            <p>{vari.movieRating + " "}
+                            <span>{vari.movieComments}</span>
+                            </p>
                         </div>
-                    )
+                        )
+                    }
                 )
             }
             <div className="star"> 

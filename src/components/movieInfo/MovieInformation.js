@@ -40,10 +40,6 @@ class MovieInformation extends Component {
     //Setting state for movId 
     this.setState({ mov_id: data.id});
     
-    //const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
-   /* const arrayMovieList = this.props.arrayMovieList;
-    console.log("Data value inside Movieinformation:" + this.props.arrayMovieList);*/
-
     //Cart 
     const localCart = localStorage.getItem("cart");
     if(localCart) 
