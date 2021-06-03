@@ -8,6 +8,8 @@ import { waitFor } from '@testing-library/dom';
 const ContentRow = ({item}) => {
     let imgPath = null;
     let img = null;
+    //console.log('kmr vi hit?')
+    //console.log('Content row Item: ', item)
 
     if(item != null) {
         imgPath = item.poster_path;
