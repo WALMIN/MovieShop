@@ -118,7 +118,10 @@ class MovieInformation extends Component {
                 </div>
                 
                 <section className="technicalInfo"> 
-                       <h3><u>Technical Information</u></h3>
+                        <input type="checkbox" id="chk" />
+                        <label className="chkBtn" for="chk"><u> Technical Information</u></label>
+                            
+                        <div className="technicalContent">
                         <div className="release-date">
                             <p> <b>Released Date:</b> {this.state.apiResponse.release_date}</p>
                         </div>
@@ -142,7 +145,7 @@ class MovieInformation extends Component {
                         <div className="popularity"> 
                             <p><b>Popularity:</b>{this.state.apiResponse.popularity} </p>
                         </div>
-                        
+                      </div>  
                 </section>
                 <br/>
                     <div className="addCart">

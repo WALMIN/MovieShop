@@ -164,6 +164,41 @@
         padding: 2px 2px 2px 2px;
     }
 
+    .technicalInfo input{
+        display: none;
+        visibility: hidden;
+    }
+
+    .technicalInfo .chkBtn{
+        display: inline-block;
+        padding:10px;
+        background-color: white;
+        color:teal;
+        font-weight: bold;
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .technicalInfo .chkBtn::after{
+        content: '\2795';
+        size:10px;
+    }
+
+    .technicalInfo .technicalContent{
+    height:0;
+    overflow: hidden;
+    transition: .5s;
+    }
+
+    #chk:checked ~ .technicalContent{
+        height: fit-content;
+    }
+
+    #chk:checked ~ .chkBtn::after{
+        content: '\2796';
+        size:10px;
+    }
+
     .production-companies {
         padding-top: 20px;
     }

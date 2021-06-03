@@ -16,13 +16,24 @@ function StarRating({movId}) {
 
     const [posts,setPosts] = useState([]);
     const [userComment, setUserComment] = useState("");
-
+    
     useEffect(() => {
+        
         ref.where('movieId','==',mId).onSnapshot(snap => {
-            setPosts(snap.docs.map(doc=>doc.data()))
-           
+            var postsLists = [];
+            snap.forEach((doc) => {
+                const data = doc.data();
+                postsLists.push(data);
+                setPosts(postsLists);
+            });
+            console.log("Got from firestore:" + postsLists);
+            //setPosts(snap.docs.map(doc=>doc.data()))
+            //setPosts(commentsList);
+           console.log("setPosts value:"+ setPosts.value);
         })
     }, [])
+
+    
 
      const stars = Array(5).fill(0);
      const [currentValue,setCurrentValue] = useState(0);
@@ -54,7 +65,6 @@ function StarRating({movId}) {
         //Add new ratings & comments to firebase
         ref.add(newData)
         .then(() => {
-            {this.generateAlert()};
            console.log("Document successfully written!");
            
        })
@@ -63,9 +73,6 @@ function StarRating({movId}) {
        });
     };
 
-    const generateAlert = () => {
-        alert('Ratings & Comment submitted');
-    }
     const handleBlur = event => {
         console.log('You finished typing:', setUserComment);
     }
