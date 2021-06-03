@@ -17,17 +17,16 @@ function Favourites() {
 
   const [show,setShow]= useState(false)
   const [edit,setEdit]= useState(false)
-
-
+  
 
 
   return (
     <div className="Container">
       
       <header className="SavedMovies">
-        <h1>Dina sparade filmer</h1>
-        <button onClick={()=>setShow(!show)}>Edit</button>
-       
+        <h1>Saved Movies</h1>
+    
+        <img src={(process.env.PUBLIC_URL + "/images/edit.svg")} onClick={()=>setShow(!show)}/>
 
       </header>
       
@@ -55,7 +54,7 @@ function Favourites() {
               
               {
 
-              show?<img src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={()=>deleteFromFavourites(product[0])}/>:null
+              show?<img src={(process.env.PUBLIC_URL + "/images/clear.svg")} onClick={()=>deleteFromFavourites(product[0])}/>:null
               
               }
 
