@@ -9,8 +9,9 @@ const faliure = createAction('faliure');
 const listGenreFetched = createAction('genres done fetched');
 const listMoviesFetched = createAction('subMovies done fetched');
 const resetLists = createAction('resetting Lists');
+const pushPartFetch = createAction('fetcher statuses succsess')
 
-const actions = { isFetching, isFetchingMovieByGenre, succsess, successAllGenres, successAllMovies, faliure, listGenreFetched, listMoviesFetched, resetLists };
+const actions = { isFetching, isFetchingMovieByGenre, succsess, successAllGenres, successAllMovies, faliure, listGenreFetched, listMoviesFetched, resetLists, pushPartFetch };
 
 const STATUS = {
     NORMAL: 'normal',
@@ -19,7 +20,8 @@ const STATUS = {
     SUCCESS_GENRES: 'Success GENRES',
     SUCCESS_MOVIES: 'Success MOVIES BY GENRE',
     SUCCSESS: 'succsess',
-    FALIURE: 'faliure'
+    FALIURE: 'faliure',
+    API_FETCHER_STATUSES_SUCCESS: 'api fetcher statuses success'
 }
 
 const initialState = {
@@ -63,6 +65,14 @@ const reducer = createReducer(initialState, {
         ...state,
         status: STATUS.FALIURE
     }),
+
+    [pushPartFetch]: (state, action) => {
+
+
+        state.arrayMovieList.push(action.payload)
+      
+        state.status = STATUS.API_FETCHER_STATUSES_SUCCESS
+    },
     
     [listGenreFetched]: (state, action) => {
         const value = action.payload; // Listan som skickats med från functionen (fetchAllGenres)
@@ -75,7 +85,9 @@ const reducer = createReducer(initialState, {
     
     [listMoviesFetched]: (state, action) => {
         const value = action.payload; // Listan som skickats med från functionen (fetchAllMoviesByGenre)
-        state.arrayMovieList.push(...value) // Uppdatera [arrayMovieList], ... för att sprida ut arrayn, annars är den för stor för att push
+        //console.log('logg i redux movie', value)
+        //state.arrayMovieList = [value];
+        state.arrayMovieList.push(value) // Uppdatera [arrayMovieList], ... för att sprida ut arrayn, annars är den för stor för att push
     // state.status = STATUS.FETCHING_MOVIES_BY_GENRE // men vi kan lägga en sån här så det blir tydligare
     },
     

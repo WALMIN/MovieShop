@@ -3,18 +3,29 @@ import './MovieInformation.css';
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import {FaStar} from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import StarRating from '../starrating/StarRating'; 
 
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_PRICE = 79
+//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
 
+//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
 
+/*const mapStateToProps = (state) => {
+    return{
+    arrayMovieList: state.movieList.arrayMovieList
+    }
+  }*/
 class MovieInformation extends Component {
+
     state ={
        apiResponse:null,
-       cart:[]
+       cart:[],
+       mov_id:""
    };
-
+   
    
    async componentDidMount() {
     const m_id = this.props.id;
@@ -27,12 +38,17 @@ class MovieInformation extends Component {
     const data = await response.json();
     this.setState({ apiResponse: data});
 
+    //Setting state for movId 
+    this.setState({ mov_id: data.id});
+    
     //Cart 
     const localCart = localStorage.getItem("cart");
-    if(localCart) {
+    if(localCart) 
+    {
         this.setState({cart:JSON.parse(localCart)});
     }
   }
+
 
   addItem = (id,newItem) => {
     let newCart = this.state.cart;
@@ -40,11 +56,13 @@ class MovieInformation extends Component {
     console.log("Cart"+ newCart);
     if (newCart) { existingItem = newCart.find(item => item.id === id);}
     // Add to quantity if items exist or add new item    
-    if (existingItem) {
+    if (existingItem) 
+    {
       existingItem.quantity += 1;
-    } else {
+    } else 
+    {
         console.log("New Cart" + newItem.title);
-      newCart.push(newItem);
+        newCart.push(newItem);
     }
     // Save state & local storage    
     this.setState({cart:newCart});
@@ -53,20 +71,21 @@ class MovieInformation extends Component {
   }
   
     render(){
+        
         if (!this.state.apiResponse) {
+            
             return <div>didn't get a Data</div>;
           }
         return (
-            
-            <div className="viewMovieDetails">
+        <div className="viewMovieDetails">
             <div className="poster_img">
-                <img src= { POSTER_URL + this.state.apiResponse.poster_path } alt="" />
+                <img src= { POSTER_URL + this.state.apiResponse.poster_path } alt=""  />
             </div>
 
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span> ${MOVIE_PRICE + this.state.apiResponse.vote_average} </span>
+                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span>
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
@@ -85,7 +104,7 @@ class MovieInformation extends Component {
                 <div className="genres">
                     <p className="classGenres" >  { 
                             this.state.apiResponse.genres.map((gen)=>
-                                gen.name 
+                                gen.name
                              ) +" "
 
                         }    </p>
@@ -100,8 +119,10 @@ class MovieInformation extends Component {
                 </div>
                 
                 <section className="technicalInfo"> 
-                       <h3><u>Technical Information</u></h3>
-                        
+                        <input type="checkbox" id="chk" />
+                        <label className="chkBtn" for="chk"><u> Technical Information</u></label>
+                            
+                        <div className="technicalContent">
                         <div className="release-date">
                             <p> <b>Released Date:</b> {this.state.apiResponse.release_date}</p>
                         </div>
@@ -112,8 +133,8 @@ class MovieInformation extends Component {
                             <p> <a id="hmpage" href = {this.state.apiResponse.homepage} target="_blank">Visit Site</a></p>
                         </div>
                         <div className="production-companies">
-                            <h4>Credits</h4>
-                            <h4>Production Companies:</h4>
+                            <h4><u>Credits</u></h4>
+                            <h4><u>Production Companies:</u></h4>
                             <p>{this.state.apiResponse.production_companies.map((prd_comp)=> prd_comp.name) + " "}</p>
                         </div>
                         <div className="revenue"> 
@@ -125,16 +146,26 @@ class MovieInformation extends Component {
                         <div className="popularity"> 
                             <p><b>Popularity:</b>{this.state.apiResponse.popularity} </p>
                         </div>
-                        
+                      </div>  
                 </section>
-                
+                <br/>
                     <div className="addCart">
                             <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
+                    </div> 
+
+                    <div className="ratingsComments">
+                             <StarRating movId = {this.state.mov_id} />  
+                            
                     </div>
                 </div>
-            </div>
+                       
+        </div>
+                
         )
     }
+    
 }
 
-export default MovieInformation
+
+
+export default MovieInformation;

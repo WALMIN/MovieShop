@@ -1,5 +1,18 @@
 body {
-
+  
   background: var(--background-color);
 
+}
+
+link {
+  background: turquoise;
+
+
+}
+/*1*/
+.movie-list-container {
+  display: flex;
+    width: 95%;
+    flex-direction: column;
+    margin: 20px;
 }
