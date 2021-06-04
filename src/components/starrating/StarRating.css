@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction:column;
+    align-items:left;
+}
+
+.ratingStar{
+    size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.container .comments .userComments{
+    border:"1px solid gray";
+    border-radius:"5px";
+    width:50%;
+    padding: 10px;
+    position: relative;
+}
+
+.container .comments .submitBtn{
+    border:"1px solid gray";
+    border-radius:"5px";
+    width: fit-content;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 5px;
+}
