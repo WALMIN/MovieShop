@@ -1,16 +1,7 @@
-
-.App main { 
-  
-}
-
-.App footer {
-
-  height: 7.5vh;
-
-}
-
 body {
-  background: #151515;
+  
+  background: var(--background-color);
+
 }
 
 link {
