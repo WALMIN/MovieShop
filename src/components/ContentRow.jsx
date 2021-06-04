@@ -5,22 +5,20 @@ import { waitFor } from '@testing-library/dom';
 
 
 
-const ContentRow = ({item, genreName}) => {
-    const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
+const ContentRow = ({item}) => {
     let imgPath = null;
     let img = null;
+    //console.log('kmr vi hit?')
+    //console.log('Content row Item: ', item)
 
     if(item != null) {
         imgPath = item.poster_path;
         img = "https://image.tmdb.org/t/p/w500/" + imgPath;
 
         return( 
-            //<div className="block-wrapper"> 4
             <React.Fragment>
                 <img className="poster-img" src={img} alt="No image available"/>
-            </React.Fragment>
-            //</div>
-            
+            </React.Fragment>  
         )
     }
 

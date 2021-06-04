@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import StarRating from '../starrating/StarRating'; 
 
 
-
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_PRICE = 79
+//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
 
 //const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
 
@@ -19,6 +19,7 @@ const MOVIE_PRICE = 79
     }
   }*/
 class MovieInformation extends Component {
+
     state ={
        apiResponse:null,
        cart:[],
