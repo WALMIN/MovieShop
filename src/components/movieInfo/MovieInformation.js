@@ -3,13 +3,16 @@ import './MovieInformation.css';
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import {FaStar} from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux"; 
 
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_PRICE = 79
+//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
 
 
 class MovieInformation extends Component {
+
     state ={
        apiResponse:null,
        cart:[]

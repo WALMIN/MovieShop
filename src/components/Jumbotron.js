@@ -7,62 +7,31 @@ import { waitFor } from '@testing-library/dom';
 const Jumbotron = () => {
     const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
     const [randomMovieIndex, setRandomMovieIndex] = useState(0);
-    //setRandomMovieIndex(getRandomIndex(arrayMovieList.length));
-    //console.log('ArrayMovieList: HÄRRR');
 
-    //console.log('ARRAY MOVIELIST:', arrayMovieList)
-    
-
-    //let content = null;
+    let randomMovieArray = [];
     let posterPath = null;
     let img = null
     let randomIndex = 0;
-    console.log('Movei index random:   ' + randomMovieIndex);
+    let randomIndex1 = 0;
     
     if(arrayMovieList.length > 0) {
-        //content = arrayMovieList[0].adult;
-        randomIndex = getRandomIndex(arrayMovieList.length)
-        posterPath = arrayMovieList[randomIndex].backdrop_path;
-        //console.log('CONTENT: ', content)
-        //console.log('poster PAth: ', posterPath)
+        randomIndex = getRandomIndex(arrayMovieList.length);
+        randomMovieArray = arrayMovieList[randomIndex].movies;
 
-
-        //use img from api
-        img = "https://image.tmdb.org/t/p/w500/" + posterPath;
-        //document.body.appendChild(img);
-
+        randomIndex1 = getRandomIndex(randomMovieArray.length);
+        posterPath = randomMovieArray[randomIndex1].backdrop_path;
         
-
-
-        /*waitFor(arrayMovieList => {
-            console.log('ARRAY MOVIELIST:', arrayMovieList)
-        })*/
-        //console.log('ARRAY MOVIELIST:', arrayMovieList)
-
-        //useEffect(() => { 
-         //   let randomIndex = Math.floor(Math.random() * arrayMovieList.length);
-        //setRandomMovieIndex(randomIndex);
-        //}, []); 
-        //const randomIndex = Math.floor(Math.random() * arrayMovieList.length);
-        //setRandomMovieIndex(randomIndex);
-
-        //console.log('INDEXETTTTT::::: ', randomMovieIndex);
-        //console.log('Random movie INDEX MOVIE: ', arrayMovieList[randomMovieIndex]);
-    
-    /*arrayMovieList.map(eachMovie => (
-        randomMovie = eachMovie[Math.floor(Math.random() * arrayMovieList.length)]
-    ))*/
-    
-    //arrayMovieList[Math.floor(Math.random() * arrayMovieList.length)];
-    //style={`background-image: ${img};`}
-    //<p>RANDOM INDEX {randomIndex}</p>
+        img = "https://image.tmdb.org/t/p/w500/" + posterPath;
+        
     var bg = img
         return( 
             <div className="jumbotron" style ={ { backgroundImage: " linear-gradient(rgba(255, 99, 71, 0), rgba(20, 20, 20, 0.82)), url("+bg+")" } }>
                 <div className="synopsis">
                     {/*Vi vill ha en logo här*/}
-                    <h1>{arrayMovieList[randomIndex].original_title}</h1>
-                    <p>{arrayMovieList[randomIndex].overview}</p>
+                    <h1>{randomMovieArray[randomIndex1].original_title}</h1>
+                    <br></br>
+                    <p>{randomMovieArray[randomIndex1].overview}</p>
+                    <br></br>
                     <button>More Info</button>
                     <p>RANDOM INDEX {randomIndex}</p>
                 </div>
@@ -77,11 +46,6 @@ const Jumbotron = () => {
 
         </div>
     )
-    /*} else {
-        return (
-            <div>Tom arrayMovieList</div>
-        )
-    }*/
 }
 
 function getRandomIndex(max, ) {
