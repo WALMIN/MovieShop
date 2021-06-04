@@ -1,0 +1,99 @@
+.Confirmation {
+
+  display: flex;
+  flex-direction: column;
+
+  padding-left: 15vw;
+  padding-bottom: 9vh;
+
+  background: var(--background-color);
+  color: var(--text-color);
+
+}
+
+.Confirmation main {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 70vw;
+  height: 100%;
+  margin: 2vmin;
+
+}
+
+.Confirmation .ConfirmationIcon {
+
+  width: 12.5vmin;
+  height: 12.5vmin;
+
+}
+
+.Confirmation .ConfirmationTitle {
+
+  color: var(--primary-color);
+  font-size: calc(10px + 2.5vmin);
+  font-weight: bold;
+
+}
+
+.Confirmation .ConfirmationID {
+
+  margin-top: 2vmin;
+
+  color: #d4d4d4;
+  font-size: calc(10px + 0.75vmin);
+
+}
+
+.Confirmation .ConfirmationText {
+
+  margin-top: 0.5vmin;
+
+  color: #ffffff;
+  font-size: calc(10px + 1vmin);
+  text-align: center;
+
+}
+
+.Confirmation main div {
+
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+
+  width: 100%;
+  margin-top: 1.25vmin;
+
+}
+
+.Confirmation main hr {
+
+  width: 100%;
+  margin-top: 3vmin;
+  margin-bottom: 2vmin;
+
+}
+
+.Confirmation .ConfirmationInfoTitle {
+
+  color: #ffffff;
+  font-size: calc(10px + 1.25vmin);
+  font-weight: bold;
+
+  margin: 0px;
+  text-align: left;
+
+}
+.Confirmation .ConfirmationInfoText {
+
+  color: #ffffff;
+  font-size: calc(10px + 1.25vmin);
+
+  margin: 0px;
+  text-align: right;
+
+}
