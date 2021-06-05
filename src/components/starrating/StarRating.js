@@ -18,22 +18,39 @@ function StarRating({movId}) {
     const [userComment, setUserComment] = useState("");
     
     useEffect(() => {
-        
-        ref.where('movieId','==',mId).onSnapshot(snap => {
-            var postsLists = [];
-            snap.forEach((doc) => {
-                const data = doc.data();
-                postsLists.push(data);
-                setPosts(postsLists);
+        fetchFiebaseData();
+       /* ref.where('movieId','==',mId).onSnapshot(snap => {
+            let commentsLists = [];
+            snap.forEach(doc => {
+                //const data = doc.data();
+                commentsLists.push({ ...doc.data() });
+                //setPosts(postsLists);
             });
+            setPosts(postsLists);
             console.log("Got from firestore:" + postsLists);
             //setPosts(snap.docs.map(doc=>doc.data()))
             //setPosts(commentsList);
            console.log("setPosts value:"+ setPosts.value);
-        })
-    }, [])
+        })*/
+    }, []);
 
-    
+    const fetchFiebaseData = () => 
+    {
+        ref.where('movieId','==',mId).onSnapshot(snap => 
+            {
+            let commentsLists = [];
+            snap.forEach(doc => {
+                //const data = doc.data();
+                commentsLists.push({ ...doc.data() });
+                //setPosts(postsLists);
+            });
+            setPosts(commentsLists);
+            console.log("Got from firestore:" + commentsLists);
+            //setPosts(snap.docs.map(doc=>doc.data()))
+            //setPosts(commentsList);
+           console.log("setPosts value:"+ setPosts.value);
+        })
+    }
 
      const stars = Array(5).fill(0);
      const [currentValue,setCurrentValue] = useState(0);
@@ -67,6 +84,7 @@ function StarRating({movId}) {
         .then(() => {
             alert('Added ratings & Comments successfully');
            console.log("Document successfully written!");
+           fetchFiebaseData();
            
        })
        .catch((error) => {
