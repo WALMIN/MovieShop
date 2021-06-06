@@ -82,6 +82,8 @@ function Payment() {
                         shippingMethod, paymentMethod + " - " + cardNumber.substring(12, 16),
                         subtotal, shipping);
 
+            localStorage.removeItem("cart");
+
         }
 
     // PayPal
@@ -99,6 +101,8 @@ function Payment() {
                         shippingMethod, paymentMethod + " - " + paypalEmail,
                         subtotal, shipping);
 
+            localStorage.removeItem("cart");
+
         }
 
     // Swish
@@ -115,6 +119,8 @@ function Payment() {
 
                         shippingMethod, paymentMethod + " - " + swishNumber,
                         subtotal, shipping);
+
+            localStorage.removeItem("cart");
 
         }
 
