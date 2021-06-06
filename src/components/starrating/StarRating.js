@@ -10,37 +10,27 @@ const colors = {
 
 const ref = db.collection('movieinfo');
 
-function StarRating({movId}) {
-    const mId = movId;
-    console.log("movieId in starrating:" + mId);
-
+function StarRating(props) {
+    const mId= props.movId;
+   console.log("movieId in starrating:" + mId);
+  //  const [mId,setMovieId] = useState("");
     const [posts,setPosts] = useState([]);
     const [userComment, setUserComment] = useState("");
     
-    useEffect(() => {
+    //setMovieId(props.movId);
+
+    useEffect(() => {    
+        console.log("Props Content" + mId);
         fetchFiebaseData();
-       /* ref.where('movieId','==',mId).onSnapshot(snap => {
-            let commentsLists = [];
-            snap.forEach(doc => {
-                //const data = doc.data();
-                commentsLists.push({ ...doc.data() });
-                //setPosts(postsLists);
-            });
-            setPosts(postsLists);
-            console.log("Got from firestore:" + postsLists);
-            //setPosts(snap.docs.map(doc=>doc.data()))
-            //setPosts(commentsList);
-           console.log("setPosts value:"+ setPosts.value);
-        })*/
     }, []);
 
     const fetchFiebaseData = () => 
     {
+        console.log("Fetching Data"+mId);
         ref.where('movieId','==',mId).onSnapshot(snap => 
             {
             let commentsLists = [];
             snap.forEach(doc => {
-                //const data = doc.data();
                 commentsLists.push({ ...doc.data() });
                 //setPosts(postsLists);
             });
@@ -82,7 +72,7 @@ function StarRating({movId}) {
         //Add new ratings & comments to firebase
         ref.add(newData)
         .then(() => {
-            alert('Added ratings & Comments successfully');
+         //   alert('Added ratings & Comments successfully');
            console.log("Document successfully written!");
            fetchFiebaseData();
            
@@ -97,8 +87,8 @@ function StarRating({movId}) {
     }
      
     return (
-        <div className="container">
-            <h2> Ratings and Comments </h2>
+        <div className="container">  
+            <h3><u> Ratings and Comments</u> </h3>
             {
                 posts.map((vari) => {
                         return(
@@ -106,6 +96,7 @@ function StarRating({movId}) {
                             <p>{vari.movieRating + " "}
                             <span>{vari.movieComments}</span>
                             </p>
+                            <hr className="lineBreak"/>
                         </div>
                         )
                     }
