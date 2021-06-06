@@ -93,7 +93,7 @@ function Cart() {
       <header className="Cart-header">
         <h1>Cart</h1>
         <div>
-          <h2>{subtotal.toFixed(2)} kr</h2>
+          <h2 className="Price">{subtotal.toFixed(2)} kr</h2>
           <Link className="CheckoutButton" to="/payment" onClick={ () => updateSubtotal(subtotal)}>Checkout</Link>
         </div>
       </header>

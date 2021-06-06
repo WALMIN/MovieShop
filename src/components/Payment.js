@@ -148,12 +148,12 @@ function Payment() {
                   setShipping(shipping[3]);
                   setShippingMethod(shipping[0]);
                 }} />
-              <div for={shipping[0]}>
+              <label for={shipping[0]}>
                 <img src={(process.env.PUBLIC_URL + "/images/shipping/" + shipping[1])} />
                 <p>+{shipping[3]} kr</p>
-              </div>
+              </label>
             </div>
-            <p>{shipping[2]}</p>
+            <p className="ShippingInfo">{shipping[2]}</p>
           </div>
 
         )

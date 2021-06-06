@@ -20,7 +20,6 @@ function Confirmation() {
 
   return (
     <div className="Confirmation">
-      { (payment == null) ?
       <main>
         <img className="ConfirmationIcon" src={(process.env.PUBLIC_URL + "/images/confirmed.svg")} alt="confirmed"/>
         <h1 className="ConfirmationTitle">Order confirmed</h1>
@@ -61,9 +60,6 @@ function Confirmation() {
           <p className="ConfirmationInfoText">{(payment[4] + payment[5]).toFixed(2)} kr</p>
         </div>
       </main>
-      :
-      <Redirect to='/cart' />
-      }
     </div>
   );
 };
