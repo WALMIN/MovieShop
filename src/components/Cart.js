@@ -103,9 +103,9 @@ function Cart() {
             <div key={product.id} className="MovieItem">
               <div className="MovieItemInfo">
                 <div>
-                  <img src={product.img} alt={product.title} />
+                  <Link to={`/MovieInfo/${product.id}`}><img src={product.img} alt={product.title} /></Link>
                   <div className="MovieItemInnerInfo">
-                    <p className="MovieTitle">{product.title}</p>
+                    <Link to={`/MovieInfo/${product.id}`} className="MovieTitle">{product.title}</Link>
                     <div className="Quantity">
                       <img className="QuantityAddButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => updateItem(product.id, false) } alt="Remove"/>
                       <p className="Quantity">{product.quantity}</p>
