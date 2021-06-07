@@ -6,7 +6,7 @@ import { actions } from '../features/cart';
 
 function Cart() {
   const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [subtotal, setSubtotal] = useState(0);
 
   // Set state from local storage
   useEffect(() => {
@@ -16,9 +16,9 @@ function Cart() {
     if (localCart) {
       setCart(localCart);
 
-      setTotal(0);
+      setSubtotal(0);
       localCart.map(product => {
-        return setTotal(t => (t + (product.quantity * product.price)));
+        return setSubtotal(t => (t + (product.quantity * product.price)));
 
       });
 
@@ -54,9 +54,9 @@ function Cart() {
     localStorage.setItem('cart', cartString);
 
     // Update total price
-    setTotal(0);
+    setSubtotal(0);
     newCart.map(product => {
-      return setTotal(t => (t + (product.quantity * product.price)));
+      return setSubtotal(t => (t + (product.quantity * product.price)));
 
     });
 
@@ -74,17 +74,17 @@ function Cart() {
     localStorage.setItem('cart', cartString);
 
     // Update total price
-    setTotal(0);
+    setSubtotal(0);
     newCart.map(product => {
-      return setTotal(t => (t + (product.quantity * product.price)));
+      return setSubtotal(t => (t + (product.quantity * product.price)));
 
     });
 
   }
 
   const dispatch = useDispatch();
-  const updateTotal = (total) => {
-    dispatch(actions.updateTotal(total));
+  const updateSubtotal = (subtotal) => {
+    dispatch(actions.updateSubtotal(subtotal));
 
   }
 
@@ -93,8 +93,8 @@ function Cart() {
       <header className="Cart-header">
         <h1>Cart</h1>
         <div>
-          <h2>{total.toFixed(2)} kr</h2>
-          <Link className="CheckoutButton" to="/payment" onClick={ () => updateTotal(total)}>Checkout</Link>
+          <h2 className="Price">{subtotal.toFixed(2)} kr</h2>
+          <Link className="CheckoutButton" to="/payment" onClick={ () => updateSubtotal(subtotal)}>Checkout</Link>
         </div>
       </header>
       <main>
@@ -103,9 +103,9 @@ function Cart() {
             <div key={product.id} className="MovieItem">
               <div className="MovieItemInfo">
                 <div>
-                  <img src={product.img} alt={product.title} />
+                  <Link to={`/MovieInfo/${product.id}`}><img src={product.img} alt={product.title} /></Link>
                   <div className="MovieItemInnerInfo">
-                    <p className="MovieTitle">{product.title}</p>
+                    <Link to={`/MovieInfo/${product.id}`} className="MovieTitle">{product.title}</Link>
                     <div className="Quantity">
                       <img className="QuantityAddButton" src={(process.env.PUBLIC_URL + "/images/remove.svg")} onClick={ () => updateItem(product.id, false) } alt="Remove"/>
                       <p className="Quantity">{product.quantity}</p>

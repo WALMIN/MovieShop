@@ -1,7 +1,6 @@
 .Payment {
 
-  padding-left: 30vw;
-  padding-right: 30vw;
+  padding-left: 15vw;
   padding-bottom: 9vh;
 
   display: flex;
@@ -26,12 +25,13 @@
 
 }
 
+/* Billing */
 .Payment .BillingDetails {
 
   display: flex;
   flex-direction: column;
 
-  width: 40vw;
+  width: 70vw;
   padding-top: 1vmin;
   padding-left: 1vmin;
   padding-right: 1vmin;
@@ -54,6 +54,8 @@
   border: none;
   border-radius: 0.5vmin;
 
+  font-size: calc(10px + 0.75vmin);
+
 }
 
 .Payment .BillingDetails input:focus {
@@ -62,9 +64,10 @@
 
 }
 
+/* Shipping */
 .Payment .ShippingOption {
 
-  width: 40vw;
+  width: 70vw;
   padding: 1vmin;
   margin-bottom: 1vmin;
 
@@ -80,12 +83,12 @@
 
   display: flex;
 
-  height: 4vmin;
-  margin-bottom: 0.75vmin;
+  height: 3vh;
+  margin-bottom: 1vmin;
 
 }
 
-.Payment .ShippingOption .ShippingTitle div {
+.Payment .ShippingOption .ShippingTitle label {
 
   display: flex;
   align-items: center;
@@ -95,17 +98,18 @@
 
 }
 
-.Payment .ShippingOption .ShippingTitle div img {
+.Payment .ShippingOption .ShippingTitle label img {
 
-  height: 4vmin;
-  margin-left: 1vmin;
+  height: 3vh;
+  margin-left: 1.5vmin;
 
   object-fit: contain;
 
 }
 
-.Payment .ShippingOption .ShippingTitle div p {
+.Payment .ShippingOption .ShippingTitle label p {
 
+  font-size: calc(10px + 0.75vmin);
   font-weight: bold;
 
 }
@@ -113,16 +117,23 @@
 .Payment .ShippingOption input {
 
   width: 2vmin;
-  height: 4vmin;
+  height: 3vh;
 
 }
 
+.Payment .ShippingOption .ShippingInfo {
+
+  font-size: calc(10px + 0.5vmin);
+
+}
+
+/* Payment */
 .Payment .PaymentMethod {
 
   display: flex;
   flex-direction: column;
 
-  width: 40vw;
+  width: 70vw;
   padding: 1vmin;
   margin-bottom: 1vmin;
 
@@ -139,23 +150,21 @@
   flex-direction: row;
   align-items: center;
 
-  height: 4vmin;
+  height: 3vh;
 
 }
 
 .Payment .PaymentMethod .PaymentMethodTitle input {
 
   width: 2vmin;
-  height: 4vmin;
+  height: 3vh;
 
 }
 
-
-
 .Payment .PaymentMethod .PaymentMethodTitle img {
 
-  height: 4vmin;
-  margin-left: 1vmin;
+  height: 3vh;
+  margin-left: 1.5vmin;
 
   object-fit: contain;
 
@@ -175,6 +184,8 @@
   background: #efefef;
   border: none;
   border-radius: 0.5vmin;
+
+  font-size: calc(10px + 0.75vmin);
 
 }
 
@@ -205,6 +216,7 @@
   font-size: calc(10px + 1vmin);
   text-decoration: none;
   cursor: pointer;
+  font-weight: normal;
 
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -218,5 +230,26 @@
   background: #54BB6B;
   border: 0.25vmin solid #54BB6B;
   box-shadow: 0.25vmin 0.5vmin 1vmin #191919;
+
+}
+
+.Payment .NotReadyPurchaseButton {
+
+  margin-top: 2vmin;
+  padding: 1vmin 2vmin;
+
+  background: #EFEFEF;
+  border: 0.25vmin solid #EFEFEF;
+  color: #000000;
+  border-radius: 0.5vmin;
+  font-size: calc(10px + 1vmin);
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: normal;
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 
 }

@@ -1,17 +1,25 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
-const updateTotal = createAction('updateTotal');
+const updateSubtotal = createAction('updateSubtotal');
+const updatePayment = createAction('updatePayment');
 
-const actions = { updateTotal };
+const actions = { updateSubtotal, updatePayment };
 
 const initialState = {
-  total: 0
+  subtotal: 0,
+  payment: []
 };
 
 const reducer = createReducer(initialState, {
-  [updateTotal] : (state, action) => {
+  [updateSubtotal] : (state, action) => {
     return {
-     total: action.payload
+     subtotal: action.payload
+    }
+
+  },
+  [updatePayment] : (state, action) => {
+    return {
+     payment: action.payload
     }
 
   }

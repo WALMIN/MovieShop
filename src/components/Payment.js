@@ -1,10 +1,18 @@
 import './Payment.css';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actions } from '../features/cart';
 
 function Payment() {
+  const payment = useSelector(state => state.cart.payment);
+
+  let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+  let cardAmericanExpressRegex = /^3[47][0-9]{13}$/;
+  let cardVisaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/;
+  let cardMasterCard = /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$/;
+
   // Billing details
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -27,8 +35,9 @@ function Payment() {
 
   const [paypalEmail, setPaypalEmail] = useState("");
 
-  const total = useSelector(state => state.cart.total);
+  const subtotal = useSelector(state => state.cart.subtotal);
   const [shipping, setShipping] = useState(0);
+  const [shippingMethod, setShippingMethod] = useState("");
 
   const shippingList = [
     ["Postnord", "postnord.webp", "Delivery within 3-4 weekdays", 29],
@@ -37,54 +46,81 @@ function Payment() {
     ["Budbee", "budbee.png", "Home delivery within 1-2 weekdays", 49]
   ];
 
-  // Go to cart if no price/cart empty
-  if(total === 0) {
+  const dispatch = useDispatch();
+  const updatePayment = (email, address, shippingMethod, paymentMethod, subtotal, shipping) => {
+    dispatch(actions.updatePayment([email, address, shippingMethod, paymentMethod, subtotal, shipping]));
+
+    return <Redirect to='/confirmation' />
+
+  }
+
+  // Go to cart if no price or payment info exist
+  if(subtotal === 0 || payment === null) {
     return <Redirect to='/cart' />
 
   }
 
   function purchase() {
-    let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-
-    let cardAmericanExpressRegex = /^3[47][0-9]{13}$/;
-    let cardVisaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/;
-    let cardMasterCard = /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$/;
-
-
     if(emailRegex.test(email) && phoneRegex.test(phone.replace(" ", "")) && shipping !== 0){
       // Card
-      if(paymentMethod == 0) {
+      if(paymentMethod == "Card") {
         if(cardAmericanExpressRegex.test(cardNumber) ||
         cardVisaRegex.test(cardNumber) ||
         cardMasterCard.test(cardNumber) &&
         setCardExpire.length > 0 &&
         (cardCvc >= 100 && cardCvc <= 9999)){
 
-        alert("(" + paymentMethod + ")\n" +
-          firstName + " " + lastName + "\n" + email + "\n" + phone + "\n\n" +
-          country + "\n" + street + "\n" + streetOptional + "\n" + postalCode + "\n" + city + "\n\n" +
-          cardNumber + "\n" + cardExpire + "\n" + cardCvc);
+          updatePayment(email,
+
+                        [firstName + " " + lastName,
+                        street,
+                        streetOptional.length > 0 ? (streetOptional) : "",
+                        postalCode,
+                        city,
+                        country],
+
+                        shippingMethod, paymentMethod + " - " + cardNumber.substring(12, 16),
+                        subtotal, shipping);
+
+            localStorage.removeItem("cart");
 
         }
 
-      // PayPal
-      } else if(paymentMethod == 1) {
+    // PayPal
+    } else if(paymentMethod == "PayPal") {
         if(emailRegex.test(paypalEmail)){
-          alert("(" + paymentMethod + ")\n" +
-            firstName + " " + lastName + "\n" + email + "\n" + phone + "\n\n" +
-            country + "\n" + street + "\n" + streetOptional + "\n" + postalCode + "\n" + city + "\n\n" +
-            paypalEmail);
+          updatePayment(email,
+
+                        [firstName + " " + lastName,
+                        street,
+                        streetOptional.length > 0 ? (streetOptional) : "",
+                        postalCode,
+                        city,
+                        country],
+
+                        shippingMethod, paymentMethod + " - " + paypalEmail,
+                        subtotal, shipping);
+
+            localStorage.removeItem("cart");
 
         }
 
-      // Swish
-      } else if(paymentMethod == 2) {
+    // Swish
+    } else if(paymentMethod == "Swish") {
         if(phoneRegex.test(swishNumber)){
-          alert("(" + paymentMethod + ")\n" +
-            firstName + " " + lastName + "\n" + email + "\n" + phone + "\n\n" +
-            country + "\n" + street + "\n" + streetOptional + "\n" + postalCode + "\n" + city + "\n\n" +
-            swishNumber);
+          updatePayment(email,
+
+                        [firstName + " " + lastName,
+                        street,
+                        streetOptional.length > 0 ? (streetOptional) : "",
+                        postalCode,
+                        city,
+                        country],
+
+                        shippingMethod, paymentMethod + " - " + swishNumber,
+                        subtotal, shipping);
+
+            localStorage.removeItem("cart");
 
         }
 
@@ -114,13 +150,16 @@ function Payment() {
         shippingList.map(shipping =>
           <div className="ShippingOption">
             <div className="ShippingTitle">
-              <input type="radio" name="shipping" value={shipping[0]} onClick={ () => setShipping(shipping[3]) } />
-              <div for={shipping[0]}>
+              <input type="radio" name="shipping" value={shipping[0]} onClick={ () => {
+                  setShipping(shipping[3]);
+                  setShippingMethod(shipping[0]);
+                }} />
+              <label for={shipping[0]}>
                 <img src={(process.env.PUBLIC_URL + "/images/shipping/" + shipping[1])} />
                 <p>+{shipping[3]} kr</p>
-              </div>
+              </label>
             </div>
-            <p>{shipping[2]}</p>
+            <p className="ShippingInfo">{shipping[2]}</p>
           </div>
 
         )
@@ -130,7 +169,7 @@ function Payment() {
       <div className="PaymentMethod">
         <div className="PaymentMethodTitle">
           <div>
-            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod(0) } />
+            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod("Card") } />
           </div>
           <div>
             <img src={(process.env.PUBLIC_URL + "/images/payment/visa.jpg")} />
@@ -138,7 +177,7 @@ function Payment() {
             <img src={(process.env.PUBLIC_URL + "/images/payment/american-express.jpg")} />
           </div>
         </div>
-        { paymentMethod === 0 ?
+        { paymentMethod === "Card" ?
           <div className="PaymentMethodFields">
             <input type="text" placeholder="Card number" autocomplete="cc-number" value={cardNumber} onChange={i => { setCardNumber(i.target.value) }} style={{"margin-bottom": "1vmin"}} required />
             <input type="month" autocomplete="cc-exp" onChange={i => { setCardExpire(i.target.value) }} style={{"margin-bottom": "1vmin"}} required />
@@ -151,13 +190,13 @@ function Payment() {
       <div className="PaymentMethod">
         <div className="PaymentMethodTitle">
           <div>
-            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod(1) } />
+            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod("PayPal") } />
           </div>
           <div>
             <img src={(process.env.PUBLIC_URL + "/images/payment/paypal.png")} />
           </div>
         </div>
-        { paymentMethod === 1 ?
+        { paymentMethod === "PayPal" ?
           <div className="PaymentMethodFields">
             <input type="text" placeholder="PayPal email" autocomplete="email" value={paypalEmail} onChange={i => { setPaypalEmail(i.target.value) }} required />
           </div>
@@ -168,13 +207,13 @@ function Payment() {
       <div className="PaymentMethod">
         <div className="PaymentMethodTitle">
           <div>
-            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod(2) } />
+            <input type="radio" name="payment" value={paymentMethod} onClick={ () => setPaymentMethod("Swish") } />
           </div>
           <div>
             <img src={(process.env.PUBLIC_URL + "/images/payment/swish.svg")} />
           </div>
         </div>
-        { paymentMethod === 2 ?
+        { paymentMethod === "Swish" ?
           <div className="PaymentMethodFields">
             <input type="text" placeholder="Swish number" autocomplete="tel" value={swishNumber} onChange={i => { setSwishNumber(i.target.value) }} required />
           </div>
@@ -183,8 +222,14 @@ function Payment() {
       </div>
 
       <p className="Title">To pay</p>
-      <p className="ToPay">{(total + shipping).toFixed(2)} kr</p>
-      <button className="PurchaseButton" onClick={purchase}>Complete the purchase</button>
+      <p className="ToPay">{(subtotal + shipping).toFixed(2)} kr</p>
+      { (emailRegex.test(email) && phoneRegex.test(phone.replace(" ", "")) && shipping !== 0 &&
+        (paymentMethod == "Card" && cardAmericanExpressRegex.test(cardNumber) || cardVisaRegex.test(cardNumber) || cardMasterCard.test(cardNumber) && setCardExpire.length > 0 && (cardCvc >= 100 && cardCvc <= 9999)) ||
+        (paymentMethod == "PayPal" && emailRegex.test(paypalEmail)) ||
+        (paymentMethod == "Swish" && phoneRegex.test(swishNumber))) ?
+        <Link to="/confirmation" className="PurchaseButton" onClick={purchase}>Complete the purchase</Link> :
+        <button className="NotReadyPurchaseButton">Complete the purchase</button>
+      }
 
     </div>
   );
