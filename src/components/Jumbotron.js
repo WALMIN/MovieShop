@@ -19,13 +19,13 @@ const Jumbotron = () => {
         randomMovieArray = arrayMovieList[randomIndex].movies;
 
         randomIndex1 = getRandomIndex(randomMovieArray.length);
-        posterPath = randomMovieArray[randomIndex1].backdrop_path;
+        posterPath = randomMovieArray[randomIndex1].poster_path;
         
         img = "https://image.tmdb.org/t/p/w500/" + posterPath;
         
     var bg = img
         return( 
-            <div className="jumbotron" style ={ { backgroundImage: " linear-gradient(rgba(255, 99, 71, 0), rgba(20, 20, 20, 0.82)), url("+bg+")" } }>
+            <div className="jumbotron" style ={ { backgroundImage: " linear-gradient(rgba(15, 15, 15, 0.7), rgba(10, 10, 10, 0.96)), url("+bg+")" } }>
                 <div className="synopsis">
                     {/*Vi vill ha en logo här*/}
                     <h1>{randomMovieArray[randomIndex1].original_title}</h1>
@@ -33,7 +33,6 @@ const Jumbotron = () => {
                     <p>{randomMovieArray[randomIndex1].overview}</p>
                     <br></br>
                     <button>More Info</button>
-                    <p>RANDOM INDEX {randomIndex}</p>
                 </div>
             </div>
         )
