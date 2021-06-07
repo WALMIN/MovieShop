@@ -27,10 +27,11 @@
     }
     
     .favIcon {
-        width: 70%;
-        height: 70%;
+        width: 80%;
+        height: 80%;
         object-fit: contain;
-
+        padding-left: 10px;
+        
     }
     .movieBox .movieTitle{
         display: flex;

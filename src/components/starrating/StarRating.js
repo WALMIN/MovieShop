@@ -43,6 +43,8 @@ function StarRating(props) {
     }
 
      const stars = Array(5).fill(0);
+     const selStars = Array(5).fill(0);
+
      const [currentValue,setCurrentValue] = useState(0);
      const [hoverValue,setHoverValue] = useState(undefined);
 
@@ -74,6 +76,8 @@ function StarRating(props) {
         .then(() => {
          //   alert('Added ratings & Comments successfully');
            console.log("Document successfully written!");
+           setUserComment("");
+           setCurrentValue(0);
            fetchFiebaseData();
            
        })
@@ -89,12 +93,21 @@ function StarRating(props) {
     return (
         <div className="container">  
             <h3><u> Ratings and Comments</u> </h3>
+            <br/>
             {
                 posts.map((vari) => {
                         return(
                         <div>
-                            <p>{vari.movieRating + " "}
-                            <span>{vari.movieComments}</span>
+                            {/* <p>{vari.movieRating + " "} */}
+
+                           <p> {selStars.map((_,index) => {
+                                return(
+                                <FaStar className="starSelected"
+                                    key={index}
+                                    color = {(vari.movieRating) > index ? colors.orange : colors.grey}
+                                    />
+                                )})}
+                            <span>{" " + vari.movieComments}</span>
                             </p>
                             <hr className="lineBreak"/>
                         </div>
@@ -102,6 +115,7 @@ function StarRating(props) {
                     }
                 )
             }
+            <br/>
             <div className="star"> 
                 {stars.map((_,index) => {
                     return(

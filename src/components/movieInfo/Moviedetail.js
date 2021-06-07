@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import MovieInformation from './MovieInformation'
 import StarRating from '../starrating/StarRating'; 
-export class Moviedetail extends Component {
+
+class Moviedetail extends Component {
     state ={
         movie_id:""
     };

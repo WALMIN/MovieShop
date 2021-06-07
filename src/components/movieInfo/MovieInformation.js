@@ -87,8 +87,8 @@ class MovieInformation extends Component {
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span>
-                    <Link className="NaviationButton" to="/favourites"><img src={(process.env.PUBLIC_URL + "/images/favourites.svg")} className="favIcon" /></Link>
+                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span> 
+                    <Link className="NaviationButton" to="/favourites"><img src={(process.env.PUBLIC_URL + "/images/favourites.svg")} className="favIcon" /></Link> 
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
