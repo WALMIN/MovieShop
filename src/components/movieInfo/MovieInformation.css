@@ -245,8 +245,7 @@
         .viewMovieDetails .movieBox{
             max-width: 100%; 
             min-width: 290px; 
-            padding-left: 5px;
-            
+            padding-left: 5px;  
         }
       }
     

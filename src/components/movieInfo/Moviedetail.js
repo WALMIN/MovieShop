@@ -10,6 +10,7 @@ class Moviedetail extends Component {
     componentDidMount(){
         const m_id = this.props.id;
         this.setState({movie_id:m_id});
+        window.scrollTo(0,0);
     }
    
     render() {

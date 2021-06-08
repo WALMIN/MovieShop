@@ -9,15 +9,7 @@ import StarRating from '../starrating/StarRating';
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_PRICE = 79
-//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
 
-//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
-
-/*const mapStateToProps = (state) => {
-    return{
-    arrayMovieList: state.movieList.arrayMovieList
-    }
-  }*/
 class MovieInformation extends Component {
     constructor(props){
         super(props);
@@ -88,7 +80,6 @@ class MovieInformation extends Component {
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
                     <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span> 
-                    <Link className="NaviationButton" to="/favourites"><img src={(process.env.PUBLIC_URL + "/images/favourites.svg")} className="favIcon" /></Link> 
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
