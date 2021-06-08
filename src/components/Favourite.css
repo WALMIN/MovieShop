@@ -66,6 +66,8 @@
 
   .Container .MovieContainer{
     flex-direction: row;
+    text-decoration: none;
+    cursor: pointer;
   }
   
 

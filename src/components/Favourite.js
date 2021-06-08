@@ -1,23 +1,59 @@
 import React from 'react';
 import './Favourite.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actions } from '../features/favouriteList';
+import {Link} from 'react-router-dom';
+
 
 function Favourites() {
-  const favouriteList = useSelector(state => state.favouriteList.items);
+  
+  
+  const [favouriteList, setFavourite] = useState([]);
+  
 
+  // Set state from local storage
+  useEffect(() => {
+    let localFavourite = localStorage.getItem("favourite");
+    localFavourite = JSON.parse(localFavourite);
 
-  const dispatch = useDispatch();
-  const deleteFromFavourites = (id) => {
-    dispatch(actions.deleteFavourites(id));
+    if (localFavourite) {
+      setFavourite(localFavourite);
+
+     
+
+    }
+
+  }, []);
+  
+  
+
+  
+
+  
+
+  const removeFavourites = (id) => {
+    let newFavourite = [...favouriteList];
+
+    // Remove item from list
+    newFavourite = newFavourite.filter(item => item.id !== id);
+
+    // Save state & local storage
+    setFavourite(newFavourite);
+    let favouriteString = JSON.stringify(newFavourite);
+    localStorage.setItem('favourite', favouriteString);
 
   }
 
 
+
+
+  
+
   const [show,setShow]= useState(false)
   const [edit,setEdit]= useState(false)
   
+
+
 
 
   return (
@@ -39,13 +75,15 @@ function Favourites() {
 
         {favouriteList.map(product =>
 
-          <div   className= "MovieContainer">
+      <Link className ="MovieContainer"to={`/MovieInfo/${product.id}`}>
+       
+       <div>
 
             <div className="MoviePoster" >
 
-              <img src={product[2]} />
+              <img src={product.img} />
 
-              <p className="MovieTitle">{product[1]}</p>
+              <p className="MovieTitle">{product.title}</p>
 
             </div>
 
@@ -54,7 +92,7 @@ function Favourites() {
               
               {
 
-              show?<img src={(process.env.PUBLIC_URL + "/images/clear.svg")} onClick={()=>deleteFromFavourites(product[0])}/>:null
+              show?<img src={(process.env.PUBLIC_URL + "/images/clear.svg")} onClick={()=>removeFavourites(product.id)}/>:null
               
               }
 
@@ -62,6 +100,7 @@ function Favourites() {
             </div>
 
           </div>
+          </Link>
 
 
 
