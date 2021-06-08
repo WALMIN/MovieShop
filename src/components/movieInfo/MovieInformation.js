@@ -44,7 +44,7 @@ class MovieInformation extends Component {
     }
 
      //Favorite
-     const localFavourite = localStorage.getItem("favouriteList");
+     const localFavourite = localStorage.getItem("favourite");
      if(localFavourite){
          this.setState({favouriteList:JSON.parse(localFavourite)});
      }
@@ -85,7 +85,7 @@ class MovieInformation extends Component {
     }
     this.setState({favouriteList:newFavourite});
     let stringFavourite = JSON.stringify(newFavourite);
-    localStorage.setItem("favouriteList", stringFavourite)
+    localStorage.setItem("favourite", stringFavourite)
   }
   
     render(){
