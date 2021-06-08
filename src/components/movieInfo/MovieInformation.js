@@ -17,7 +17,9 @@ class MovieInformation extends Component {
             apiResponse:null,
             cart:[],
             favouriteList:[],
-            mov_id:""
+            mov_id:"",
+            hours:0,
+            minutes:0
         };
 }
    
@@ -103,9 +105,10 @@ class MovieInformation extends Component {
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span> 
+                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span>
                     <Link className="NaviationButton" to="/favourites">
                         <img src={(process.env.PUBLIC_URL + "/images/favourites.svg")} className="favIcon" onClick={ () => this.addFavourite(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path}) }/></Link>
+                    
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
@@ -119,7 +122,9 @@ class MovieInformation extends Component {
                     </p>
                 </div>       
                 <div className="runtime">
-                    <p>{this.state.apiResponse.runtime} <i>minutes</i></p>
+                     
+                    
+                    <p> <i> {Math.floor(this.state.apiResponse.runtime / 60)} hours {this.state.apiResponse.runtime % 60} minutes </i></p>
                   
                 <div className="genres">
                     <p className="classGenres" >  { 
