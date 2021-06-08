@@ -9,31 +9,25 @@ import StarRating from '../starrating/StarRating';
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_PRICE = 79
-//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList); 
 
-//const arrayMovieList = useSelector(state => state.movieList.arrayMovieList);
-
-/*const mapStateToProps = (state) => {
-    return{
-    arrayMovieList: state.movieList.arrayMovieList
-    }
-  }*/
 class MovieInformation extends Component {
-
-    state ={
-       apiResponse:null,
-       cart:[],
-       mov_id:""
-   };
-   
+    constructor(props){
+        super(props);
+        this.state ={
+            apiResponse:null,
+            cart:[],
+            mov_id:""
+        };
+}
    
    async componentDidMount() {
-    const m_id = this.props.id;
-    console.log("Movie Id"+ m_id);
+    const m_id = this.props.movId;
+    console.log("Movie Id from Info Page"+ m_id);
     const api_key="?api_key=3dbd54ecb77c41b970728ba04b569d4c"
     //const movie_url = "https://api.themoviedb.org/3/movie/106646?api_key=3dbd54ecb77c41b970728ba04b569d4c";
     const url = "https://api.themoviedb.org/3/movie/";
     const movie_url=url+m_id+api_key;
+    console.log(movie_url);
     const response = await fetch(movie_url);
     const data = await response.json();
     this.setState({ apiResponse: data});
@@ -85,7 +79,7 @@ class MovieInformation extends Component {
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span>
+                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span> 
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
@@ -152,13 +146,9 @@ class MovieInformation extends Component {
                     <div className="addCart">
                             <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
                     </div> 
-
-                    <div className="ratingsComments">
-                             <StarRating movId = {this.state.mov_id} />  
-                            
-                    </div>
+                  
                 </div>
-                       
+                
         </div>
                 
         )

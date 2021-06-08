@@ -10,32 +10,41 @@ const colors = {
 
 const ref = db.collection('movieinfo');
 
-function StarRating({movId}) {
-    const mId = movId;
-    console.log("movieId in starrating:" + mId);
-
+function StarRating(props) {
+    const mId= props.movId;
+   console.log("movieId in starrating:" + mId);
+  //  const [mId,setMovieId] = useState("");
     const [posts,setPosts] = useState([]);
     const [userComment, setUserComment] = useState("");
     
-    useEffect(() => {
-        
-        ref.where('movieId','==',mId).onSnapshot(snap => {
-            var postsLists = [];
-            snap.forEach((doc) => {
-                const data = doc.data();
-                postsLists.push(data);
-                setPosts(postsLists);
+    //setMovieId(props.movId);
+
+    useEffect(() => {    
+        console.log("Props Content" + mId);
+        fetchFiebaseData();
+    }, []);
+
+    const fetchFiebaseData = () => 
+    {
+        console.log("Fetching Data"+mId);
+        ref.where('movieId','==',mId).onSnapshot(snap => 
+            {
+            let commentsLists = [];
+            snap.forEach(doc => {
+                commentsLists.push({ ...doc.data() });
+                //setPosts(postsLists);
             });
-            console.log("Got from firestore:" + postsLists);
+            setPosts(commentsLists);
+            console.log("Got from firestore:" + commentsLists);
             //setPosts(snap.docs.map(doc=>doc.data()))
             //setPosts(commentsList);
            console.log("setPosts value:"+ setPosts.value);
         })
-    }, [])
-
-    
+    }
 
      const stars = Array(5).fill(0);
+     const selStars = Array(5).fill(0);
+
      const [currentValue,setCurrentValue] = useState(0);
      const [hoverValue,setHoverValue] = useState(undefined);
 
@@ -65,8 +74,11 @@ function StarRating({movId}) {
         //Add new ratings & comments to firebase
         ref.add(newData)
         .then(() => {
-            alert('Added ratings & Comments successfully');
+         //   alert('Added ratings & Comments successfully');
            console.log("Document successfully written!");
+           setUserComment("");
+           setCurrentValue(0);
+           fetchFiebaseData();
            
        })
        .catch((error) => {
@@ -79,20 +91,31 @@ function StarRating({movId}) {
     }
      
     return (
-        <div className="container">
-            <h2> Ratings and Comments </h2>
+        <div className="container">  
+            <h3><u> Ratings and Comments</u> </h3>
+            <br/>
             {
                 posts.map((vari) => {
                         return(
                         <div>
-                            <p>{vari.movieRating + " "}
-                            <span>{vari.movieComments}</span>
+                            {/* <p>{vari.movieRating + " "} */}
+
+                           <p> {selStars.map((_,index) => {
+                                return(
+                                <FaStar className="starSelected"
+                                    key={index}
+                                    color = {(vari.movieRating) > index ? colors.orange : colors.grey}
+                                    />
+                                )})}
+                            <span>{" " + vari.movieComments}</span>
                             </p>
+                            <hr className="lineBreak"/>
                         </div>
                         )
                     }
                 )
             }
+            <br/>
             <div className="star"> 
                 {stars.map((_,index) => {
                     return(
