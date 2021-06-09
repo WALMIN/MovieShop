@@ -16,7 +16,10 @@ class MovieInformation extends Component {
         this.state ={
             apiResponse:null,
             cart:[],
-            mov_id:""
+            favouriteList:[],
+            mov_id:"",
+            hours:0,
+            minutes:0
         };
 }
    
@@ -41,9 +44,16 @@ class MovieInformation extends Component {
     {
         this.setState({cart:JSON.parse(localCart)});
     }
+
+     //Favorite
+     const localFavourite = localStorage.getItem("favourite");
+     if(localFavourite){
+         this.setState({favouriteList:JSON.parse(localFavourite)});
+     }
   }
 
-
+   
+//Add cart
   addItem = (id,newItem) => {
     let newCart = this.state.cart;
     let existingItem = null;
@@ -63,6 +73,22 @@ class MovieInformation extends Component {
     let stringCart = JSON.stringify(newCart);
     localStorage.setItem("cart", stringCart) 
   }
+
+  //Add Favorite 
+   addFavourite = (id, newItem) => {
+    let newFavourite = this.state.favouriteList;
+    let existingItem = null;
+    console.log("Favorite:"+newFavourite);
+    if(newFavourite) { existingItem = newFavourite.find(item => item.id === id);}
+     //Add to favorites if item doesn't exists
+    if (!existingItem) { 
+        console.log("New Favourite:" + newItem.title);
+        newFavourite.push(newItem);
+    }
+    this.setState({favouriteList:newFavourite});
+    let stringFavourite = JSON.stringify(newFavourite);
+    localStorage.setItem("favourite", stringFavourite)
+  }
   
     render(){
         
@@ -79,7 +105,10 @@ class MovieInformation extends Component {
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span> 
+                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span>
+                    <Link className="NaviationButton" to="/favourites">
+                        <img src={(process.env.PUBLIC_URL + "/images/favourites.svg")} className="favIcon" onClick={ () => this.addFavourite(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path}) }/></Link>
+                    
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
@@ -93,7 +122,9 @@ class MovieInformation extends Component {
                     </p>
                 </div>       
                 <div className="runtime">
-                    <p>{this.state.apiResponse.runtime} <i>minutes</i></p>
+                     
+                    
+                    <p> <i> {Math.floor(this.state.apiResponse.runtime / 60)} hours {this.state.apiResponse.runtime % 60} minutes </i></p>
                   
                 <div className="genres">
                     <p className="classGenres" >  { 
@@ -147,7 +178,11 @@ class MovieInformation extends Component {
                             <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
                     </div> 
                   
-                </div>
+                    {/* <div className="addFavorite">
+                        <Link to="/Favorite" className="favorite" onClick={ () => this.addFavourite(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path}) }> ADD TO Favorite </Link>
+                    </div> */}
+                
+            </div>
                 
         </div>
                 
