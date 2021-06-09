@@ -4,11 +4,10 @@ body {
 
 }
 
-link {
-  background: turquoise;
-
-
+*link p{
+  text-decoration: none;
 }
+
 /*1*/
 .movie-list-container {
   display: flex;

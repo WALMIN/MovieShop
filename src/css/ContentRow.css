@@ -1,4 +1,9 @@
 
+*p {
+    text-decoration: none;
+    color: white;
+}
+
 .container { 
     display: flex;
     flex-direction: column;
@@ -37,6 +42,8 @@ div + .movie-row-container {
     /*margin: 20px 0 10px;*/
     color: white;
     font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .poster-img {

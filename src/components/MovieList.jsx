@@ -56,29 +56,25 @@ const [list, setList] = useState(null);
     } else if (status === STATUS.SUCCESS_MOVIES) { 
     let filteredMovieList = []
     let genreMovie = null;
-    //setList(arrayMovieList);
-    //console.log('Array movie List', arrayMovieList)
     
-
-
     
          return ( 
-            <div className="genre-movie-container"> 2
+            <div className="genre-movie-container"> 
                 {console.log('Nu är arrayMovieList klar')} 
                 {/*<h1>{STATUS.FETCHING_MOVIES_BY_GENRE}</h1>
                 <p>{'Alla MOVIES nu hämtade utifrån GENRE'}</p> */}
                  {/*console.log('Array Movie List: ', arrayMovieList)*/}
                     {arrayMovieList.map((item) => (
-                        <div className="movie-row-container"> 3
+                        <div className="movie-row-container"> 
                             <h1 className="genre-title" >{item.name}</h1> 
                             {/*console.log('varje Item: ', item)*/}
 
 
-                            <div className="content-row-genre-item-movie"> 3.2
+                            <div className="content-row-genre-item-movie"> 
                                 {item.movies.map((movie) => (
                                     <Link to={`/MovieInfo/${movie.id}`} className="contentrow-link-container">
                                         {/*console.log('varje movie: ', movie)*/}
-                                        <ContentRow item={movie}/> 
+                                        <ContentRow item={movie} className="content-row-class"/> 
                                     </Link>    
                                 ))}
                              </div>
@@ -160,16 +156,12 @@ export function fetchAllMoviesByGenre(dispatch) {
                         dispatch(actions.successAllMovies());
                        
                     })
-  
                     .catch(error => {
                         console.error('There was an error!', error);
                     });
 
- 
-
-             
             });
-  
+
     
         })
         .catch(error => {
