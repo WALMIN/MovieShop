@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from '../features/cart';
+import defaultImg from '../img/movielogo.jpg';
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -93,7 +94,7 @@ function Cart() {
       <header className="Cart-header">
         <h1>Cart</h1>
         <div>
-          <h2 className="Price">{subtotal.toFixed(2)} kr</h2>
+          <h2 className="Price">${subtotal.toFixed(2)}</h2>
           <Link className="CheckoutButton" to="/payment" onClick={ () => updateSubtotal(subtotal)}>Checkout</Link>
         </div>
       </header>
@@ -103,7 +104,16 @@ function Cart() {
             <div key={product.id} className="MovieItem">
               <div className="MovieItemInfo">
                 <div>
-                  <Link to={`/MovieInfo/${product.id}`}><img src={product.img} alt={product.title} /></Link>
+                  <Link to={`/MovieInfo/${product.id}`}>
+                  { product.img !== "https://image.tmdb.org/t/p/w500null" ?
+                    <div>
+                      <img src={product.img} alt={product.title} />
+                    </div>
+                    :
+                    <div>
+                      <img src={defaultImg} alt={product.title} />
+                    </div>
+                  }</Link>
                   <div className="MovieItemInnerInfo">
                     <Link to={`/MovieInfo/${product.id}`} className="MovieTitle">{product.title}</Link>
                     <div className="Quantity">
@@ -114,7 +124,7 @@ function Cart() {
                     </div>
                   </div>
                 </div>
-                <p className="MoviePrice">{product.price.toFixed(2)} kr</p>
+                <p className="MoviePrice">${product.price.toFixed(2)}</p>
                 </div>
             </div>
           )

@@ -109,6 +109,7 @@
 
 .Payment .ShippingOption .ShippingTitle label p {
 
+  color: #000000;
   font-size: calc(10px + 0.75vmin);
   font-weight: bold;
 
@@ -123,6 +124,7 @@
 
 .Payment .ShippingOption .ShippingInfo {
 
+  color: #000000;
   font-size: calc(10px + 0.5vmin);
 
 }

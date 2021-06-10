@@ -3,13 +3,14 @@ import './Favourite.css';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {Link} from 'react-router-dom';
+import defaultImg from '../img/movielogo.jpg';
 
 
 function Favourites() {
-  
-  
+
+
   const [favouriteList, setFavourite] = useState([]);
-  
+
 
   // Set state from local storage
   useEffect(() => {
@@ -19,17 +20,17 @@ function Favourites() {
     if (localFavourite) {
       setFavourite(localFavourite);
 
-     
+
 
     }
 
   }, []);
-  
-  
 
-  
 
-  
+
+
+
+
 
   const removeFavourites = (id) => {
     let newFavourite = [...favouriteList];
@@ -47,41 +48,48 @@ function Favourites() {
 
 
 
-  
+
 
   const [show,setShow]= useState(false)
   const [edit,setEdit]= useState(false)
-  
+
 
 
 
 
   return (
     <div className="Container">
-      
+
       <header className="SavedMovies">
         <h1>Saved Movies</h1>
-    
+
         <img src={(process.env.PUBLIC_URL + "/images/edit.svg")} onClick={()=>setShow(!show)}/>
 
       </header>
-      
-      
+
+
       <div className= "RowItem">
 
       <div className="MovieItems">
 
-      
+
 
         {favouriteList.map(product =>
 
       <Link className ="MovieContainer"to={`/MovieInfo/${product.id}`}>
-       
+
        <div>
 
             <div className="MoviePoster" >
-
-              <img src={product.img} />
+              { product.img !== "https://image.tmdb.org/t/p/w500null" ?
+                <div>
+                  <img src={product.img} alt={product.title} />
+                </div>
+                :
+                <div>
+                  <img src={defaultImg} alt={product.title} />
+                </div>
+              }
 
               <p className="MovieTitle">{product.title}</p>
 
@@ -89,11 +97,11 @@ function Favourites() {
 
 
             <div className="RemoveFavourites">
-              
+
               {
 
               show?<img src={(process.env.PUBLIC_URL + "/images/clear.svg")} onClick={()=>removeFavourites(product.id)}/>:null
-              
+
               }
 
 
@@ -108,9 +116,9 @@ function Favourites() {
 
       </div>
 
-      
-      
-      
+
+
+
 
       </div>
 

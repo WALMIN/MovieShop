@@ -1,10 +1,10 @@
 
-*p {
+p {
     text-decoration: none;
     color: white;
 }
 
-.container { 
+.container {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -15,7 +15,7 @@
 }
 
 /*2*/
-.genre-movie-container { 
+.genre-movie-container {
     display: flex;
     width: 95%;
     flex-direction: column;
@@ -59,7 +59,7 @@ div + .movie-row-container {
     text-decoration: none;
     height: 100%;
     width: 100%;
-  
+
 }
 
 .contentrow-link-container {
@@ -79,7 +79,7 @@ div + .movie-row-container {
         top: 20vh;
     }
 
-    .genre-movie-container { 
+    .genre-movie-container {
         margin: 25px;
     }
 
@@ -88,10 +88,10 @@ div + .movie-row-container {
         height: 270px;
     }
 
-    .genre-movie-container { 
+    .genre-movie-container {
         width: 98%;
     }
 
-    
-    
+
+
 }

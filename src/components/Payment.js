@@ -40,10 +40,10 @@ function Payment() {
   const [shippingMethod, setShippingMethod] = useState("");
 
   const shippingList = [
-    ["Postnord", "postnord.webp", "Delivery within 3-4 weekdays", 29],
-    ["DHL", "dhl.png", "Delivery within 3-4 weekdays", 29],
-    ["Instabox", "instabox.png", "Delivery within 1-2 days", 39],
-    ["Budbee", "budbee.png", "Home delivery within 1-2 weekdays", 49]
+    ["Postnord", "postnord.webp", "Delivery within 3-4 weekdays", 3],
+    ["DHL", "dhl.png", "Delivery within 3-4 weekdays", 3],
+    ["Instabox", "instabox.png", "Delivery within 1-2 days", 4],
+    ["Budbee", "budbee.png", "Home delivery within 1-2 weekdays", 5]
   ];
 
   const dispatch = useDispatch();
@@ -156,7 +156,7 @@ function Payment() {
                 }} />
               <label for={shipping[0]}>
                 <img src={(process.env.PUBLIC_URL + "/images/shipping/" + shipping[1])} />
-                <p>+{shipping[3]} kr</p>
+                <p>+${shipping[3]}</p>
               </label>
             </div>
             <p className="ShippingInfo">{shipping[2]}</p>
@@ -222,7 +222,7 @@ function Payment() {
       </div>
 
       <p className="Title">To pay</p>
-      <p className="ToPay">{(subtotal + shipping).toFixed(2)} kr</p>
+      <p className="ToPay">${(subtotal + shipping).toFixed(2)}</p>
       { (emailRegex.test(email) && phoneRegex.test(phone.replace(" ", "")) && shipping !== 0 &&
         (paymentMethod == "Card" && cardAmericanExpressRegex.test(cardNumber) || cardVisaRegex.test(cardNumber) || cardMasterCard.test(cardNumber) && setCardExpire.length > 0 && (cardCvc >= 100 && cardCvc <= 9999)) ||
         (paymentMethod == "PayPal" && emailRegex.test(paypalEmail)) ||
