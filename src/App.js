@@ -18,7 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Jumbotron />
-            <div className="movie-list-container" style={{position: "absolute", top: "65vh"}}> 1
+            <div className="movie-list-container" style={{position: "absolute", top: "65vh"}}>
               <MovieList />
             </div>
           </Route>

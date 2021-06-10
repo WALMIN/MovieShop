@@ -1,9 +1,14 @@
 
+*p {
+    text-decoration: none;
+    color: white;
+}
+
 .container { 
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: -60px;
+    top: -30vh;
     width: 100%;
     height: 100%;
     background: pink;
@@ -14,7 +19,6 @@
     display: flex;
     width: 95%;
     flex-direction: column;
-    margin: 20px;
 }
 
 /*3*/
@@ -38,9 +42,13 @@ div + .movie-row-container {
     /*margin: 20px 0 10px;*/
     color: white;
     font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .poster-img {
+    position: relative;
+    text-align: center;
     border-radius: 5px;
     padding-right: 8px;
     width: 140px;
@@ -55,7 +63,35 @@ div + .movie-row-container {
 }
 
 .contentrow-link-container {
-    display: flex;
     width: 100%;
     height: 100%;
+}
+
+.contentrow-link-container + .alt-img-title {
+    position: absolute;
+    top: -8px;
+    right: 16px;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        top: 20vh;
+    }
+
+    .genre-movie-container { 
+        margin: 25px;
+    }
+
+    .poster-img {
+        width: 200px;
+        height: 270px;
+    }
+
+    .genre-movie-container { 
+        width: 98%;
+    }
+
+    
+    
 }
