@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/MovieShop/static/css/main.a878c46e.chunk.css",
-    "main.js": "/MovieShop/static/js/main.41c91054.chunk.js",
-    "main.js.map": "/MovieShop/static/js/main.41c91054.chunk.js.map",
+    "main.css": "/MovieShop/static/css/main.f1c8b72a.chunk.css",
+    "main.js": "/MovieShop/static/js/main.58637fd0.chunk.js",
+    "main.js.map": "/MovieShop/static/js/main.58637fd0.chunk.js.map",
     "runtime-main.js": "/MovieShop/static/js/runtime-main.90da56cd.js",
     "runtime-main.js.map": "/MovieShop/static/js/runtime-main.90da56cd.js.map",
-    "static/js/2.152886e7.chunk.js": "/MovieShop/static/js/2.152886e7.chunk.js",
-    "static/js/2.152886e7.chunk.js.map": "/MovieShop/static/js/2.152886e7.chunk.js.map",
+    "static/js/2.fe5a07e1.chunk.js": "/MovieShop/static/js/2.fe5a07e1.chunk.js",
+    "static/js/2.fe5a07e1.chunk.js.map": "/MovieShop/static/js/2.fe5a07e1.chunk.js.map",
     "static/js/3.2000a440.chunk.js": "/MovieShop/static/js/3.2000a440.chunk.js",
     "static/js/3.2000a440.chunk.js.map": "/MovieShop/static/js/3.2000a440.chunk.js.map",
     "index.html": "/MovieShop/index.html",
-    "static/css/main.a878c46e.chunk.css.map": "/MovieShop/static/css/main.a878c46e.chunk.css.map",
-    "static/js/2.152886e7.chunk.js.LICENSE.txt": "/MovieShop/static/js/2.152886e7.chunk.js.LICENSE.txt",
+    "static/css/main.f1c8b72a.chunk.css.map": "/MovieShop/static/css/main.f1c8b72a.chunk.css.map",
+    "static/js/2.fe5a07e1.chunk.js.LICENSE.txt": "/MovieShop/static/js/2.fe5a07e1.chunk.js.LICENSE.txt",
     "static/media/movielogo.ce72d476.jpg": "/MovieShop/static/media/movielogo.ce72d476.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.90da56cd.js",
-    "static/js/2.152886e7.chunk.js",
-    "static/css/main.a878c46e.chunk.css",
-    "static/js/main.41c91054.chunk.js"
+    "static/js/2.fe5a07e1.chunk.js",
+    "static/css/main.f1c8b72a.chunk.css",
+    "static/js/main.58637fd0.chunk.js"
   ]
 }
