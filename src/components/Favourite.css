@@ -1,10 +1,9 @@
 .Container{
 
-    background: var(--background-color);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    color: var(--text-color);
+  padding-bottom: 8vh;
+
+  background: var(--background-color);
+  color: var(--text-color);
 }
 
 .Container .SavedMovies .EditButton {
@@ -22,84 +21,80 @@
 .Container .MovieItems{
 
   display: flex;
+  flex-direction: column wrap;
   align-items: center;
-  height: 20vh;
-  margin-top: 0.2vmin;
-  margin-bottom: 0.2vmin;
-
+  flex-wrap: wrap;
 
 }
 
+.Container .MovieItems div img {
 
+  width: 22.5vmin;
+  height: 25vmin;
+  object-fit: contain;
 
+}
 
-.Container .MovieItems div {
+.Container .MoviePoster .MovieTitle {
 
-    display: flex;
-    align-items: center;
+  width: calc(22.5vmin);
+  color: var(--primary-color);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 
-  }
+}
 
-  .Container .MovieItems div img {
+.Container .MovieItems .RemoveFavourites img {
 
-    width: 20vh;
-    height: 20vh;
-    margin-top: 6vmin;
-    object-fit: contain;
-    margin-bottom: 1vmin;
+  width: 2vh;
+  height: 2vh;
+  cursor: pointer;
 
-  }
-  .Container .MoviePoster .MovieTitle{
+  margin-bottom: 25vmin;
 
-    color: var(--primary-color);
-  }
+}
 
+.Container .MovieContainer {
 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
+  width: calc(22.5vmin + 2vh);
+  margin: 1vmin 2vmin;
 
-  .Container .SavedMovies{
-   text-align: left;
-   margin: 2vmin;
-   flex-direction: row ;
-   justify-content: space-between;
+}
 
+.Container .MoviePoster {
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  }
+}
 
-  .Container .MovieItems .RemoveFavourites img{
+.Container .SavedMovies {
 
-    width: 2vh;
-    height: 2vh;
-    margin-bottom: 20vmin;
-    cursor: pointer;
+  text-align: left;
+  margin: 2vmin;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 
-  }
+}
 
-  .Container .MovieContainer{
-    flex-direction: row;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.Container .SavedMovies img {
 
+  width: 4vh;
+  height: 3vh;
+  border: 1px solid var(--text-color);
+  border-radius: 0vmin 0.5vmin 0.5vmin 0vmin;
+  cursor: pointer;
 
-  .Container .MoviePoster {
-    flex-direction: column;
-  }
-
-  .Container .SavedMovies img {
-    width: 4vh;
-    height: 3vh;
-    border: 1px solid var(--text-color);
-    border-radius: 0vmin 0.5vmin 0.5vmin 0vmin;
-    cursor: pointer;
-
-
-
-  }
-  .Container .SavedMovies{
-    display: flex;
-    flex-direction: row;
-    align-items:  flex-end;
-
-  }
+}

@@ -238,6 +238,7 @@
   color: var(--primary-color);
   font-size: calc(10px + 1.5vmin);
   font-weight: bold;
+  text-align: center;
 
 }
 
@@ -246,6 +247,7 @@
   margin-top: 0vmin;
 
   font-size: calc(10px + 1vmin);
+  text-align: center;
 
 }
 

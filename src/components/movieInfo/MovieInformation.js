@@ -111,7 +111,7 @@ class MovieInformation extends Component {
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span><b> ${MOVIE_PRICE + (this.state.apiResponse.vote_average / 10)}</b> </span>
+                    <span><b> ${(MOVIE_PRICE + (this.state.apiResponse.vote_average / 10)).toFixed(2)}</b> </span>
                     <Link className="NaviationButton" to="/favourites">
                         <img src={(process.env.PUBLIC_URL + "/images/favourites.svg")} className="favIcon" onClick={ () => this.addFavourite(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path}) }/></Link>
 

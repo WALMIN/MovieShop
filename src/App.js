@@ -38,22 +38,4 @@ function App() {
   );
 }
 
-const TestMovieList = () => {
-  const apiList = useSelector(state => state.movieList.fact);
-
-  if (apiList != null) {
-    return (
-      <div style={{background: '#f3f3f3'}}>
-        {apiList.map((item) => (
-          <p>{item.id} {item.name}</p>
-        ))}
-      </div>
-    )
-  } else {
-    return (
-      <div>Ingen laddad lista, vänta.....</div>
-    )
-  }
-};
-
 export default App;
