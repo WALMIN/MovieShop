@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {FaStar} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import StarRating from '../starrating/StarRating';
+import defaultImg from '../../img/movielogo.jpg';
 
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
@@ -99,7 +100,12 @@ class MovieInformation extends Component {
         return (
         <div className="viewMovieDetails">
             <div className="poster_img">
-                <img src= { POSTER_URL + this.state.apiResponse.poster_path } alt=""  />
+                {/* <img src= { POSTER_URL + this.state.apiResponse.poster_path } alt=""  /> */}
+                { this.state.apiResponse.poster_path !== null ?
+                      <img src={ POSTER_URL + this.state.apiResponse.poster_path } alt="" />
+                    :
+                      <img src={ defaultImg } style = { {width:"60%",height:"60%",objectFit:"contain",paddingLeft:"80px",justifyContent:"space-around"}} alt="" />
+                  }
             </div>
 
             <div className="movieBox">
@@ -122,8 +128,6 @@ class MovieInformation extends Component {
                     </p>
                 </div>
                 <div className="runtime">
-
-
                     <p> <i> {Math.floor(this.state.apiResponse.runtime / 60)} hours {this.state.apiResponse.runtime % 60} minutes </i></p>
 
                 <div className="genres">
@@ -177,11 +181,6 @@ class MovieInformation extends Component {
                     <div className="addCart">
                             <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
                     </div>
-
-                    {/* <div className="addFavorite">
-                        <Link to="/Favorite" className="favorite" onClick={ () => this.addFavourite(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path}) }> ADD TO Favorite </Link>
-                    </div> */}
-
             </div>
 
         </div>

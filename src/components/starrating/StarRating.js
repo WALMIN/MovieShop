@@ -92,7 +92,7 @@ function StarRating(props) {
      
     return (
         <div className="container">  
-            <h3><u> Ratings and Comments</u> </h3>
+            <h2><u> Ratings and Comments</u> </h2>
             <br/>
             {
                 posts.map((vari) => {
