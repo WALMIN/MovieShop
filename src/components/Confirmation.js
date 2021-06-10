@@ -48,17 +48,17 @@ function Confirmation() {
 
           <div>
             <p className="ConfirmationInfoTitle">Subtotal</p>
-            <p className="ConfirmationInfoText">{payment[4].toFixed(2)} kr</p>
+            <p className="ConfirmationInfoText">${payment[4].toFixed(2)}</p>
           </div>
 
           <div>
             <p className="ConfirmationInfoTitle">Shipping</p>
-            <p className="ConfirmationInfoText">{payment[5].toFixed(2)} kr</p>
+            <p className="ConfirmationInfoText">${payment[5].toFixed(2)}</p>
           </div>
 
           <div>
             <p className="ConfirmationInfoTitle">Total</p>
-            <p className="ConfirmationInfoText">{(payment[4] + payment[5]).toFixed(2)} kr</p>
+            <p className="ConfirmationInfoText">${(payment[4] + payment[5]).toFixed(2)}</p>
           </div>
         </main>
       </div>

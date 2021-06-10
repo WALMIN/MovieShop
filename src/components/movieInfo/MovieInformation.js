@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import {FaStar} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import StarRating from '../starrating/StarRating'; 
+import StarRating from '../starrating/StarRating';
 
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w500"
-const MOVIE_PRICE = 79
+const MOVIE_PRICE = 7.9
 
 class MovieInformation extends Component {
     constructor(props){
@@ -22,7 +22,7 @@ class MovieInformation extends Component {
             minutes:0
         };
 }
-   
+
    async componentDidMount() {
     const m_id = this.props.movId;
     console.log("Movie Id from Info Page"+ m_id);
@@ -35,12 +35,12 @@ class MovieInformation extends Component {
     const data = await response.json();
     this.setState({ apiResponse: data});
 
-    //Setting state for movId 
+    //Setting state for movId
     this.setState({ mov_id: data.id});
-    
-    //Cart 
+
+    //Cart
     const localCart = localStorage.getItem("cart");
-    if(localCart) 
+    if(localCart)
     {
         this.setState({cart:JSON.parse(localCart)});
     }
@@ -52,36 +52,36 @@ class MovieInformation extends Component {
      }
   }
 
-   
+
 //Add cart
   addItem = (id,newItem) => {
     let newCart = this.state.cart;
     let existingItem = null;
     console.log("Cart"+ newCart);
     if (newCart) { existingItem = newCart.find(item => item.id === id);}
-    // Add to quantity if items exist or add new item    
-    if (existingItem) 
+    // Add to quantity if items exist or add new item
+    if (existingItem)
     {
       existingItem.quantity += 1;
-    } else 
+    } else
     {
         console.log("New Cart" + newItem.title);
         newCart.push(newItem);
     }
-    // Save state & local storage    
+    // Save state & local storage
     this.setState({cart:newCart});
     let stringCart = JSON.stringify(newCart);
-    localStorage.setItem("cart", stringCart) 
+    localStorage.setItem("cart", stringCart)
   }
 
-  //Add Favorite 
+  //Add Favorite
    addFavourite = (id, newItem) => {
     let newFavourite = this.state.favouriteList;
     let existingItem = null;
     console.log("Favorite:"+newFavourite);
     if(newFavourite) { existingItem = newFavourite.find(item => item.id === id);}
      //Add to favorites if item doesn't exists
-    if (!existingItem) { 
+    if (!existingItem) {
         console.log("New Favourite:" + newItem.title);
         newFavourite.push(newItem);
     }
@@ -89,11 +89,11 @@ class MovieInformation extends Component {
     let stringFavourite = JSON.stringify(newFavourite);
     localStorage.setItem("favourite", stringFavourite)
   }
-  
+
     render(){
-        
+
         if (!this.state.apiResponse) {
-            
+
             return <div>didn't get a Data</div>;
           }
         return (
@@ -105,10 +105,10 @@ class MovieInformation extends Component {
             <div className="movieBox">
                 <div className="movieTitle">
                     <h2> {this.state.apiResponse.title} </h2>
-                    <span><b> ${MOVIE_PRICE + this.state.apiResponse.vote_average}</b> </span>
+                    <span><b> ${MOVIE_PRICE + (this.state.apiResponse.vote_average / 10)}</b> </span>
                     <Link className="NaviationButton" to="/favourites">
                         <img src={(process.env.PUBLIC_URL + "/images/favourites.svg")} className="favIcon" onClick={ () => this.addFavourite(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path}) }/></Link>
-                    
+
                 </div>
                 <div className="release_status">({this.state.apiResponse.status})
                     <span className="lang">
@@ -120,33 +120,33 @@ class MovieInformation extends Component {
                     <span className="rating_value">{this.state.apiResponse.vote_average} </span>
                     <span className="vote_counts">{this.state.apiResponse.vote_count.toLocaleString("en-US")} votes</span>
                     </p>
-                </div>       
+                </div>
                 <div className="runtime">
-                     
-                    
+
+
                     <p> <i> {Math.floor(this.state.apiResponse.runtime / 60)} hours {this.state.apiResponse.runtime % 60} minutes </i></p>
-                  
+
                 <div className="genres">
-                    <p className="classGenres" >  { 
+                    <p className="classGenres" >  {
                             this.state.apiResponse.genres.map((gen)=>
                                 gen.name
                              ) +" "
 
                         }    </p>
-                   
+
                 </div>
                 </div>
-              
+
                 <div className="overview">
-                    <h3><u>Overview</u></h3>  
+                    <h3><u>Overview</u></h3>
                     <p>{this.state.apiResponse.overview} </p>
-                    
+
                 </div>
-                
-                <section className="technicalInfo"> 
+
+                <section className="technicalInfo">
                         <input type="checkbox" id="chk" />
                         <label className="chkBtn" for="chk"><u> Technical Information</u></label>
-                            
+
                         <div className="technicalContent">
                         <div className="release-date">
                             <p> <b>Released Date:</b> {this.state.apiResponse.release_date}</p>
@@ -154,7 +154,7 @@ class MovieInformation extends Component {
                         <div className="spoken-languages">
                             <p><b>Spoken Languages:</b> {this.state.apiResponse.spoken_languages.map((sp_lang)=> sp_lang.english_name) + " " }</p>
                         </div>
-                        <div className="homepage"> 
+                        <div className="homepage">
                             <p> <a id="hmpage" href = {this.state.apiResponse.homepage} target="_blank">Visit Site</a></p>
                         </div>
                         <div className="production-companies">
@@ -162,33 +162,33 @@ class MovieInformation extends Component {
                             <h4><u>Production Companies:</u></h4>
                             <p>{this.state.apiResponse.production_companies.map((prd_comp)=> prd_comp.name) + " "}</p>
                         </div>
-                        <div className="revenue"> 
+                        <div className="revenue">
                             <p><b>Revenue:</b>{this.state.apiResponse.revenue.toLocaleString("en-US")} USD</p>
                         </div>
-                        <div className="budget"> 
+                        <div className="budget">
                             <p><b>Budget:</b>{this.state.apiResponse.budget.toLocaleString("en-US")} USD</p>
                         </div>
-                        <div className="popularity"> 
+                        <div className="popularity">
                             <p><b>Popularity:</b>{this.state.apiResponse.popularity} </p>
                         </div>
-                      </div>  
+                      </div>
                 </section>
                 <br/>
                     <div className="addCart">
                             <Link to="/Cart" className="cart" onClick={ () => this.addItem(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path, price: MOVIE_PRICE+this.state.apiResponse.vote_average, quantity: 1}) }> ADD TO CART </Link>
-                    </div> 
-                  
+                    </div>
+
                     {/* <div className="addFavorite">
                         <Link to="/Favorite" className="favorite" onClick={ () => this.addFavourite(this.state.apiResponse.id, {id: this.state.apiResponse.id, title: this.state.apiResponse.title, img: POSTER_URL + this.state.apiResponse.poster_path}) }> ADD TO Favorite </Link>
                     </div> */}
-                
+
             </div>
-                
+
         </div>
-                
+
         )
     }
-    
+
 }
 
 
