@@ -63,7 +63,7 @@ function Favourites() {
       <header className="SavedMovies">
         <h1>Saved Movies</h1>
 
-        <img src={(process.env.PUBLIC_URL + "/images/edit.svg")} onClick={()=>setShow(!show)}/>
+        <img className="EditButton" src={show ? (process.env.PUBLIC_URL + "/images/save.svg") : (process.env.PUBLIC_URL + "/images/edit.svg")} onClick={()=>setShow(!show)}/>
 
       </header>
 
@@ -76,9 +76,9 @@ function Favourites() {
 
         {favouriteList.map(product =>
 
-      <Link className ="MovieContainer"to={`/MovieInfo/${product.id}`}>
-
-       <div>
+          <div>
+            <Link className ="MovieContainer"to={`/MovieInfo/${product.id}`}>
+            <div>
 
             <div className="MoviePoster" >
               { product.img !== "https://image.tmdb.org/t/p/w500null" ?
@@ -95,20 +95,21 @@ function Favourites() {
 
             </div>
 
-
-            <div className="RemoveFavourites">
-
-              {
-
-              show?<img src={(process.env.PUBLIC_URL + "/images/clear.svg")} onClick={()=>removeFavourites(product.id)}/>:null
-
-              }
-
-
-            </div>
-
           </div>
           </Link>
+
+          <div className="RemoveFavourites">
+
+            {
+
+            show?<img src={(process.env.PUBLIC_URL + "/images/delete.svg")} onClick={()=>removeFavourites(product.id)}/>:null
+
+            }
+
+
+          </div>
+
+        </div>
 
 
 

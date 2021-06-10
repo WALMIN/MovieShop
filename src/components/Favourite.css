@@ -7,61 +7,73 @@
     color: var(--text-color);
 }
 
+.Container .SavedMovies .EditButton {
+
+  width: 4vh;
+  height: 4vh;
+  margin: 0;
+  padding: 0.5vmin;
+
+  border: 0.1vmin solid var(--text-color);
+  border-radius: 0.5vmin;
+
+}
+
 .Container .MovieItems{
-    
+
   display: flex;
   align-items: center;
   height: 20vh;
   margin-top: 0.2vmin;
   margin-bottom: 0.2vmin;
-  
-  
+
+
 }
 
 
-    
+
 
 .Container .MovieItems div {
 
     display: flex;
     align-items: center;
-    
+
   }
-  
+
   .Container .MovieItems div img {
-  
+
     width: 20vh;
     height: 20vh;
     margin-top: 6vmin;
     object-fit: contain;
     margin-bottom: 1vmin;
-  
+
   }
   .Container .MoviePoster .MovieTitle{
-    
+
     color: var(--primary-color);
   }
 
 
 
-  
+
   .Container .SavedMovies{
    text-align: left;
    margin: 2vmin;
    flex-direction: row ;
    justify-content: space-between;
-   
 
-    
+
+
   }
 
   .Container .MovieItems .RemoveFavourites img{
-  
+
     width: 2vh;
     height: 2vh;
     margin-bottom: 20vmin;
     cursor: pointer;
-    
+
   }
 
   .Container .MovieContainer{
@@ -69,27 +81,25 @@
     text-decoration: none;
     cursor: pointer;
   }
-  
+
 
   .Container .MoviePoster {
     flex-direction: column;
   }
-  
+
   .Container .SavedMovies img {
     width: 4vh;
     height: 3vh;
     border: 1px solid var(--text-color);
     border-radius: 0vmin 0.5vmin 0.5vmin 0vmin;
     cursor: pointer;
-    
-    
-    
+
+
+
   }
   .Container .SavedMovies{
     display: flex;
     flex-direction: row;
     align-items:  flex-end;
-    
+
   }
-  
-  
