@@ -1,11 +1,7 @@
 body {
-  
+
   background: var(--background-color);
 
-}
-
-*link p{
-  text-decoration: none;
 }
 
 /*1*/

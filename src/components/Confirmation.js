@@ -41,7 +41,7 @@ function Confirmation() {
 
           <div>
             <p className="ConfirmationInfoTitle">Payment method</p>
-            <p className="ConfirmationInfoText">{payment[3]}</p>
+            <p className="ConfirmationInfoText">{payment[3][0]}<br/>{payment[3][1]}</p>
           </div>
 
           <br />

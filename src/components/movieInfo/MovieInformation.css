@@ -27,8 +27,8 @@
     }
 
     .favIcon {
-        width: 80%;
-        height: 80%;
+        width: 4vh;
+        height: 4vh;
         object-fit: contain;
         padding-left: 10px;
 

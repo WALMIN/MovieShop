@@ -79,7 +79,7 @@ function Payment() {
                         city,
                         country],
 
-                        shippingMethod, paymentMethod + " - " + cardNumber.substring(12, 16),
+                        shippingMethod, [paymentMethod, cardNumber.substring(12, 16)],
                         subtotal, shipping);
 
             localStorage.removeItem("cart");
@@ -98,7 +98,7 @@ function Payment() {
                         city,
                         country],
 
-                        shippingMethod, paymentMethod + " - " + paypalEmail,
+                        shippingMethod, [paymentMethod, paypalEmail],
                         subtotal, shipping);
 
             localStorage.removeItem("cart");
@@ -117,7 +117,7 @@ function Payment() {
                         city,
                         country],
 
-                        shippingMethod, paymentMethod + " - " + swishNumber,
+                        shippingMethod, [paymentMethod, swishNumber],
                         subtotal, shipping);
 
             localStorage.removeItem("cart");

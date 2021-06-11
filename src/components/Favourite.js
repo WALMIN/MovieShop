@@ -61,27 +61,20 @@ function Favourites() {
     <div className="Container">
 
       <header className="SavedMovies">
-        <h1>Saved Movies</h1>
+        <h1>Favourites</h1>
 
         <img className="EditButton" src={show ? (process.env.PUBLIC_URL + "/images/save.svg") : (process.env.PUBLIC_URL + "/images/edit.svg")} onClick={()=>setShow(!show)}/>
 
       </header>
 
-
       <div className= "RowItem">
+        <div className="MovieItems">
+          {favouriteList.map(product =>
 
-      <div className="MovieItems">
-
-
-
-        {favouriteList.map(product =>
-
-          <div>
-            <Link className ="MovieContainer"to={`/MovieInfo/${product.id}`}>
-            <div>
-
-            <div className="MoviePoster" >
-              { product.img !== "https://image.tmdb.org/t/p/w500null" ?
+          <div className ="MovieContainer">
+            <Link style={{textDecoration: "none"}} to={`/MovieInfo/${product.id}`}>
+              <div className="MoviePoster" >
+                { product.img !== "https://image.tmdb.org/t/p/w500null" ?
                 <div>
                   <img src={product.img} alt={product.title} />
                 </div>
@@ -89,26 +82,18 @@ function Favourites() {
                 <div>
                   <img src={defaultImg} alt={product.title} />
                 </div>
+                }
+
+                <p className="MovieTitle">{product.title}</p>
+              </div>
+            </Link>
+
+            <div className="RemoveFavourites">
+              { show ?
+                <img src={(process.env.PUBLIC_URL + "/images/delete.svg")} onClick={()=>removeFavourites(product.id)}/>
+                : null
               }
-
-              <p className="MovieTitle">{product.title}</p>
-
             </div>
-
-          </div>
-          </Link>
-
-          <div className="RemoveFavourites">
-
-            {
-
-            show?<img src={(process.env.PUBLIC_URL + "/images/delete.svg")} onClick={()=>removeFavourites(product.id)}/>:null
-
-            }
-
-
-          </div>
-
         </div>
 
 

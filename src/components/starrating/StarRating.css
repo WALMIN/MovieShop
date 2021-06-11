@@ -8,7 +8,7 @@
     padding-bottom: 10px;
     background: var(--background-color);
     color: var(--text-color);
-  
+
 }
 
 .ratingStar{
@@ -41,12 +41,12 @@
     height: 50%;
     background-color: grey;
     padding-right: 50px;
-    
+
 }
 
 
 
-@media only screen 
+@media only screen
 and (max-device-width: 812px)
 and (orientation: portrait)
 {
@@ -62,8 +62,11 @@ and (orientation: portrait)
         color: var(--text-color);
     }
     .container .comments .userComments{
-   
         padding-bottom: 50px;
     }
-    
+
+    .container .comments .submitBtn {
+      margin-bottom: 9vh;
+    }
+
 }
